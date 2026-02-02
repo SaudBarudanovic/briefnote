@@ -1,8 +1,8 @@
 <?php
 /**
- * Settings class for Dev Notes
+ * Settings class for SiteDocs
  *
- * @package DevNotes
+ * @package SiteDocs
  */
 
 // Prevent direct access
@@ -11,23 +11,23 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * DevNotes Settings Class
+ * SiteDocs Settings Class
  *
  * Handles plugin settings and configuration
  */
-class DevNotes_Settings {
+class SiteDocs_Settings {
 
     /**
      * Single instance
      *
-     * @var DevNotes_Settings|null
+     * @var SiteDocs_Settings|null
      */
     private static $instance = null;
 
     /**
      * Get single instance
      *
-     * @return DevNotes_Settings
+     * @return SiteDocs_Settings
      */
     public static function instance() {
         if ( is_null( self::$instance ) ) {
@@ -51,7 +51,7 @@ class DevNotes_Settings {
      * @return mixed
      */
     public static function get( $key, $default = null ) {
-        $settings = get_option( 'devnotes_settings', array() );
+        $settings = get_option( 'sitedocs_settings', array() );
         return isset( $settings[ $key ] ) ? $settings[ $key ] : $default;
     }
 
@@ -63,9 +63,9 @@ class DevNotes_Settings {
      * @return bool
      */
     public static function set( $key, $value ) {
-        $settings = get_option( 'devnotes_settings', array() );
+        $settings = get_option( 'sitedocs_settings', array() );
         $settings[ $key ] = $value;
-        return update_option( 'devnotes_settings', $settings );
+        return update_option( 'sitedocs_settings', $settings );
     }
 
     /**

@@ -1,19 +1,19 @@
 <?php
 /**
- * Encryption class for Dev Notes
+ * Encryption class for SiteDocs
  *
- * @package DevNotes
+ * @package SiteDocs
  * @since 1.0.0
  * @license GPL-2.0-or-later
  *
- * This file is part of Dev Notes.
+ * This file is part of SiteDocs.
  *
- * Dev Notes is free software: you can redistribute it and/or modify
+ * SiteDocs is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 2 of the License, or
  * any later version.
  *
- * Dev Notes is distributed in the hope that it will be useful,
+ * SiteDocs is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
@@ -25,16 +25,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * DevNotes Encryption Class
+ * SiteDocs Encryption Class
  *
  * Uses sodium_compat for secure encryption of credentials
  */
-class DevNotes_Encryption {
+class SiteDocs_Encryption {
 
     /**
      * Option name for storing our encryption key
      */
-    const KEY_OPTION = 'devnotes_encryption_key';
+    const KEY_OPTION = 'sitedocs_encryption_key';
 
     /**
      * Get or generate the encryption key
@@ -109,7 +109,7 @@ class DevNotes_Encryption {
         } catch ( Exception $e ) {
             if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
                 // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
-                error_log( 'DevNotes Encryption Error: ' . $e->getMessage() );
+                error_log( 'SiteDocs Encryption Error: ' . $e->getMessage() );
             }
             return false;
         }
@@ -153,7 +153,7 @@ class DevNotes_Encryption {
         } catch ( Exception $e ) {
             if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
                 // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
-                error_log( 'DevNotes Decryption Error: ' . $e->getMessage() );
+                error_log( 'SiteDocs Decryption Error: ' . $e->getMessage() );
             }
             return false;
         }

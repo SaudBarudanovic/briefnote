@@ -1,5 +1,5 @@
 /**
- * Dev Notes Admin Styles
+ * SiteDocs Admin Styles
  * Modern, clean design with proper dark mode support
  */
 
@@ -8,135 +8,135 @@
    ======================================== */
 :root {
     /* Primary colors */
-    --dn-primary: #3b82f6;
-    --dn-primary-hover: #2563eb;
-    --dn-primary-light: #dbeafe;
-    --dn-primary-dark: #1d4ed8;
+    --sd-primary: #3b82f6;
+    --sd-primary-hover: #2563eb;
+    --sd-primary-light: #dbeafe;
+    --sd-primary-dark: #1d4ed8;
 
     /* Status colors */
-    --dn-success: #10b981;
-    --dn-success-bg: #d1fae5;
-    --dn-error: #ef4444;
-    --dn-error-bg: #fee2e2;
-    --dn-warning: #f59e0b;
-    --dn-warning-bg: #fef3c7;
-    --dn-info: #6366f1;
-    --dn-info-bg: #e0e7ff;
+    --sd-success: #10b981;
+    --sd-success-bg: #d1fae5;
+    --sd-error: #ef4444;
+    --sd-error-bg: #fee2e2;
+    --sd-warning: #f59e0b;
+    --sd-warning-bg: #fef3c7;
+    --sd-info: #6366f1;
+    --sd-info-bg: #e0e7ff;
 
     /* Neutral colors */
-    --dn-bg-primary: #ffffff;
-    --dn-bg-secondary: #f8fafc;
-    --dn-bg-tertiary: #f1f5f9;
-    --dn-bg-hover: #e2e8f0;
+    --sd-bg-primary: #ffffff;
+    --sd-bg-secondary: #f8fafc;
+    --sd-bg-tertiary: #f1f5f9;
+    --sd-bg-hover: #e2e8f0;
 
     /* Text colors */
-    --dn-text-primary: #0f172a;
-    --dn-text-secondary: #475569;
-    --dn-text-muted: #94a3b8;
-    --dn-text-inverse: #ffffff;
+    --sd-text-primary: #0f172a;
+    --sd-text-secondary: #475569;
+    --sd-text-muted: #94a3b8;
+    --sd-text-inverse: #ffffff;
 
     /* Border colors */
-    --dn-border: #e2e8f0;
-    --dn-border-strong: #cbd5e1;
+    --sd-border: #e2e8f0;
+    --sd-border-strong: #cbd5e1;
 
     /* Shadow */
-    --dn-shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-    --dn-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
-    --dn-shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-    --dn-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --sd-shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --sd-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+    --sd-shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --sd-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 
     /* Editor specific */
-    --dn-editor-bg: #ffffff;
-    --dn-code-bg: #1e293b;
-    --dn-code-text: #e2e8f0;
+    --sd-editor-bg: #ffffff;
+    --sd-code-bg: #1e293b;
+    --sd-code-text: #e2e8f0;
 
     /* Spacing */
-    --dn-radius-sm: 6px;
-    --dn-radius: 8px;
-    --dn-radius-lg: 12px;
-    --dn-radius-xl: 16px;
+    --sd-radius-sm: 6px;
+    --sd-radius: 8px;
+    --sd-radius-lg: 12px;
+    --sd-radius-xl: 16px;
 }
 
 /* ========================================
    CSS Variables - Dark Mode
    ======================================== */
-.devnotes-dark {
-    --dn-primary: #60a5fa;
-    --dn-primary-hover: #93c5fd;
-    --dn-primary-light: #1e3a5f;
-    --dn-primary-dark: #3b82f6;
+.sitedocs-dark {
+    --sd-primary: #60a5fa;
+    --sd-primary-hover: #93c5fd;
+    --sd-primary-light: #1e3a5f;
+    --sd-primary-dark: #3b82f6;
 
-    --dn-success: #34d399;
-    --dn-success-bg: #064e3b;
-    --dn-error: #f87171;
-    --dn-error-bg: #7f1d1d;
-    --dn-warning: #fbbf24;
-    --dn-warning-bg: #78350f;
-    --dn-info: #818cf8;
-    --dn-info-bg: #312e81;
+    --sd-success: #34d399;
+    --sd-success-bg: #064e3b;
+    --sd-error: #f87171;
+    --sd-error-bg: #7f1d1d;
+    --sd-warning: #fbbf24;
+    --sd-warning-bg: #78350f;
+    --sd-info: #818cf8;
+    --sd-info-bg: #312e81;
 
-    --dn-bg-primary: #0f172a;
-    --dn-bg-secondary: #1e293b;
-    --dn-bg-tertiary: #334155;
-    --dn-bg-hover: #475569;
+    --sd-bg-primary: #0f172a;
+    --sd-bg-secondary: #1e293b;
+    --sd-bg-tertiary: #334155;
+    --sd-bg-hover: #475569;
 
-    --dn-text-primary: #f1f5f9;
-    --dn-text-secondary: #cbd5e1;
-    --dn-text-muted: #64748b;
-    --dn-text-inverse: #0f172a;
+    --sd-text-primary: #f1f5f9;
+    --sd-text-secondary: #cbd5e1;
+    --sd-text-muted: #64748b;
+    --sd-text-inverse: #0f172a;
 
-    --dn-border: #334155;
-    --dn-border-strong: #475569;
+    --sd-border: #334155;
+    --sd-border-strong: #475569;
 
-    --dn-shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
-    --dn-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.4), 0 1px 2px -1px rgb(0 0 0 / 0.4);
-    --dn-shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4), 0 2px 4px -2px rgb(0 0 0 / 0.4);
-    --dn-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.4), 0 4px 6px -4px rgb(0 0 0 / 0.4);
+    --sd-shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+    --sd-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.4), 0 1px 2px -1px rgb(0 0 0 / 0.4);
+    --sd-shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4), 0 2px 4px -2px rgb(0 0 0 / 0.4);
+    --sd-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.4), 0 4px 6px -4px rgb(0 0 0 / 0.4);
 
-    --dn-editor-bg: #1e293b;
-    --dn-code-bg: #0f172a;
-    --dn-code-text: #e2e8f0;
+    --sd-editor-bg: #1e293b;
+    --sd-code-bg: #0f172a;
+    --sd-code-text: #e2e8f0;
 }
 
 /* ========================================
    Base Styles
    ======================================== */
-.devnotes-wrap {
+.sitedocs-wrap {
     /* max-width: 1400px; */
     margin: 20px 20px 20px 0;
     padding: 24px;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    background: var(--dn-bg-secondary);
-    border-radius: var(--dn-radius-lg);
+    background: var(--sd-bg-secondary);
+    border-radius: var(--sd-radius-lg);
     min-height: calc(100vh - 100px);
 }
 
 /* Dark mode full background override */
-.devnotes-dark {
-    background: var(--dn-bg-primary) !important;
+.sitedocs-dark {
+    background: var(--sd-bg-primary) !important;
 }
 
 /* Override WordPress admin background in dark mode */
-body.devnotes-dark-mode,
-body.devnotes-dark-mode #wpcontent,
-body.devnotes-dark-mode #wpbody,
-body.devnotes-dark-mode #wpbody-content {
+body.sitedocs-dark-mode,
+body.sitedocs-dark-mode #wpcontent,
+body.sitedocs-dark-mode #wpbody,
+body.sitedocs-dark-mode #wpbody-content {
     background: #0f172a !important;
 }
 
-body.devnotes-dark-mode #wpfooter {
+body.sitedocs-dark-mode #wpfooter {
     background: #0f172a !important;
     color: #64748b;
 }
 
-.devnotes-wrap * {
+.sitedocs-wrap * {
     box-sizing: border-box;
 }
 
 /* ========================================
    Header / Title
    ======================================== */
-.devnotes-title {
+.sitedocs-title {
     display: flex;
     align-items: center;
     gap: 12px;
@@ -144,106 +144,106 @@ body.devnotes-dark-mode #wpfooter {
     font-weight: 600;
     margin: 0 0 24px;
     padding: 0;
-    color: var(--dn-text-primary);
+    color: var(--sd-text-primary);
     letter-spacing: -0.5px;
 }
 
-.devnotes-title .dashicons {
+.sitedocs-title .dashicons {
     font-size: 32px;
     width: 32px;
     height: 32px;
-    color: var(--dn-primary);
+    color: var(--sd-primary);
 }
 
 /* ========================================
    Tabs Navigation
    ======================================== */
-.devnotes-tabs {
+.sitedocs-tabs {
     display: flex;
     align-items: center;
     gap: 4px;
-    background: var(--dn-bg-secondary);
+    background: var(--sd-bg-secondary);
     padding: 6px;
-    border-radius: var(--dn-radius-lg);
+    border-radius: var(--sd-radius-lg);
     margin-bottom: 20px;
-    box-shadow: var(--dn-shadow-sm);
-    border: 1px solid var(--dn-border);
+    box-shadow: var(--sd-shadow-sm);
+    border: 1px solid var(--sd-border);
 }
 
-.devnotes-tab {
+.sitedocs-tab {
     display: flex;
     align-items: center;
     gap: 8px;
     padding: 10px 18px;
     border: none;
     background: transparent;
-    color: var(--dn-text-secondary);
+    color: var(--sd-text-secondary);
     cursor: pointer;
     font-size: 14px;
     font-weight: 500;
-    border-radius: var(--dn-radius);
+    border-radius: var(--sd-radius);
     transition: all 0.2s ease;
 }
 
-.devnotes-tab:hover {
-    background: var(--dn-bg-hover);
-    color: var(--dn-text-primary);
+.sitedocs-tab:hover {
+    background: var(--sd-bg-hover);
+    color: var(--sd-text-primary);
 }
 
-.devnotes-tab.active {
-    background: var(--dn-bg-primary);
-    color: var(--dn-primary);
-    box-shadow: var(--dn-shadow);
+.sitedocs-tab.active {
+    background: var(--sd-bg-primary);
+    color: var(--sd-primary);
+    box-shadow: var(--sd-shadow);
 }
 
-.devnotes-tab .dashicons {
+.sitedocs-tab .dashicons {
     font-size: 18px;
     width: 18px;
     height: 18px;
 }
 
-.devnotes-tab-actions {
+.sitedocs-tab-actions {
     margin-left: auto;
     display: flex;
     align-items: center;
     gap: 8px;
 }
 
-.devnotes-theme-toggle {
+.sitedocs-theme-toggle {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 38px;
     height: 38px;
-    background: var(--dn-bg-primary);
-    border: 1px solid var(--dn-border);
-    border-radius: var(--dn-radius);
+    background: var(--sd-bg-primary);
+    border: 1px solid var(--sd-border);
+    border-radius: var(--sd-radius);
     cursor: pointer;
-    color: var(--dn-text-secondary);
+    color: var(--sd-text-secondary);
     transition: all 0.2s ease;
 }
 
-.devnotes-theme-toggle:hover {
-    background: var(--dn-primary);
-    border-color: var(--dn-primary);
-    color: var(--dn-text-inverse);
+.sitedocs-theme-toggle:hover {
+    background: var(--sd-primary);
+    border-color: var(--sd-primary);
+    color: var(--sd-text-inverse);
 }
 
-.devnotes-dark .devnotes-theme-toggle {
-    color: var(--dn-warning);
+.sitedocs-dark .sitedocs-theme-toggle {
+    color: var(--sd-warning);
 }
 
 /* Dark mode tabs styling */
-.devnotes-dark .devnotes-tabs {
+.sitedocs-dark .sitedocs-tabs {
     background: #1e293b;
     border-color: #334155;
 }
 
-.devnotes-dark .devnotes-tab.active {
+.sitedocs-dark .sitedocs-tab.active {
     background: #0f172a;
 }
 
-.devnotes-dark .devnotes-tab-content {
+.sitedocs-dark .sitedocs-tab-content {
     background: #0f172a;
     border-color: #334155;
 }
@@ -251,49 +251,49 @@ body.devnotes-dark-mode #wpfooter {
 /* ========================================
    Tab Content
    ======================================== */
-.devnotes-tab-content {
+.sitedocs-tab-content {
     display: none;
-    background: var(--dn-bg-primary);
+    background: var(--sd-bg-primary);
     padding: 24px;
-    border-radius: var(--dn-radius-lg);
-    border: 1px solid var(--dn-border);
-    box-shadow: var(--dn-shadow);
+    border-radius: var(--sd-radius-lg);
+    border: 1px solid var(--sd-border);
+    box-shadow: var(--sd-shadow);
 }
 
-.devnotes-tab-content.active {
+.sitedocs-tab-content.active {
     display: block;
 }
 
 /* ========================================
    Notes Editor Section
    ======================================== */
-.devnotes-editor-header {
+.sitedocs-editor-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 16px;
     padding-bottom: 16px;
-    border-bottom: 1px solid var(--dn-border);
+    border-bottom: 1px solid var(--sd-border);
 }
 
-.devnotes-save-status {
+.sitedocs-save-status {
     display: flex;
     align-items: center;
     gap: 12px;
-    color: var(--dn-text-muted);
+    color: var(--sd-text-muted);
     font-size: 13px;
 }
 
-.devnotes-last-saved {
-    color: var(--dn-text-secondary);
+.sitedocs-last-saved {
+    color: var(--sd-text-secondary);
 }
 
-#devnotes-last-saved-time {
+#sitedocs-last-saved-time {
     font-weight: 500;
-    color: var(--dn-text-primary);
+    color: var(--sd-text-primary);
 }
 
-.devnotes-save-indicator {
+.sitedocs-save-indicator {
     display: inline-flex;
     align-items: center;
     gap: 6px;
@@ -305,58 +305,58 @@ body.devnotes-dark-mode #wpfooter {
     letter-spacing: 0.5px;
 }
 
-.devnotes-save-indicator.saving {
-    background: var(--dn-warning-bg);
-    color: var(--dn-warning);
+.sitedocs-save-indicator.saving {
+    background: var(--sd-warning-bg);
+    color: var(--sd-warning);
 }
 
-.devnotes-save-indicator.saved {
-    background: var(--dn-success-bg);
-    color: var(--dn-success);
+.sitedocs-save-indicator.saved {
+    background: var(--sd-success-bg);
+    color: var(--sd-success);
 }
 
-.devnotes-save-indicator.error {
-    background: var(--dn-error-bg);
-    color: var(--dn-error);
+.sitedocs-save-indicator.error {
+    background: var(--sd-error-bg);
+    color: var(--sd-error);
 }
 
-#devnotes-save-btn {
+#sitedocs-save-btn {
     display: flex;
     align-items: center;
     gap: 8px;
     padding: 10px 20px;
-    background: var(--dn-primary);
+    background: var(--sd-primary);
     color: white;
     border: none;
-    border-radius: var(--dn-radius);
+    border-radius: var(--sd-radius);
     font-size: 14px;
     font-weight: 500;
     cursor: pointer;
     transition: all 0.2s ease;
 }
 
-#devnotes-save-btn:hover {
-    background: var(--dn-primary-hover);
+#sitedocs-save-btn:hover {
+    background: var(--sd-primary-hover);
     transform: translateY(-1px);
-    box-shadow: var(--dn-shadow-md);
+    box-shadow: var(--sd-shadow-md);
 }
 
-#devnotes-save-btn .dashicons {
+#sitedocs-save-btn .dashicons {
     font-size: 18px;
     width: 18px;
     height: 18px;
 }
 
 /* Editor container */
-#devnotes-editor {
+#sitedocs-editor {
     min-height: 600px;
-    border: 1px solid var(--dn-border);
-    border-radius: var(--dn-radius);
+    border: 1px solid var(--sd-border);
+    border-radius: var(--sd-radius);
     overflow: hidden;
-    background: var(--dn-editor-bg);
+    background: var(--sd-editor-bg);
 }
 
-.devnotes-dark #devnotes-editor {
+.sitedocs-dark #sitedocs-editor {
     border-color: #334155;
     background: #1e293b;
 }
@@ -366,20 +366,20 @@ body.devnotes-dark-mode #wpfooter {
    ======================================== */
 .toastui-editor-defaultUI {
     border: none !important;
-    background: var(--dn-editor-bg) !important;
+    background: var(--sd-editor-bg) !important;
 }
 
 .toastui-editor-main {
-    background: var(--dn-editor-bg) !important;
+    background: var(--sd-editor-bg) !important;
 }
 
 .toastui-editor-main-container {
-    background: var(--dn-editor-bg) !important;
+    background: var(--sd-editor-bg) !important;
 }
 
 .toastui-editor-md-container,
 .toastui-editor-ww-container {
-    background: var(--dn-editor-bg) !important;
+    background: var(--sd-editor-bg) !important;
 }
 
 .toastui-editor-defaultUI-toolbar {
@@ -389,7 +389,7 @@ body.devnotes-dark-mode #wpfooter {
 .toastui-editor-contents {
     font-size: 15px !important;
     line-height: 1.7 !important;
-    color: var(--dn-text-primary) !important;
+    color: var(--sd-text-primary) !important;
 }
 
 .toastui-editor-tooltip .arrow {
@@ -397,9 +397,9 @@ body.devnotes-dark-mode #wpfooter {
 }
 
 .ProseMirror {
-    color: var(--dn-text-primary) !important;
+    color: var(--sd-text-primary) !important;
     padding: 20px !important;
-    background: var(--dn-editor-bg) !important;
+    background: var(--sd-editor-bg) !important;
 }
 
 /* WYSIWYG editor text - ensure visibility in dark mode */
@@ -427,7 +427,7 @@ body.devnotes-dark-mode #wpfooter {
 .ProseMirror th,
 .ProseMirror blockquote,
 .ProseMirror span {
-    color: var(--dn-text-primary) !important;
+    color: var(--sd-text-primary) !important;
 }
 
 /* Markdown source editor text */
@@ -437,22 +437,22 @@ body.devnotes-dark-mode #wpfooter {
 .toastui-editor-md-container .CodeMirror-line,
 .toastui-editor-md-container .CodeMirror-lines,
 .CodeMirror {
-    color: var(--dn-text-primary) !important;
-    background: var(--dn-editor-bg) !important;
+    color: var(--sd-text-primary) !important;
+    background: var(--sd-editor-bg) !important;
 }
 
 .CodeMirror-cursor {
-    border-left-color: var(--dn-text-primary) !important;
+    border-left-color: var(--sd-text-primary) !important;
 }
 
 .CodeMirror-selected {
-    background: var(--dn-primary-light) !important;
+    background: var(--sd-primary-light) !important;
 }
 
 .toastui-editor-md-preview {
-    background: var(--dn-bg-secondary) !important;
+    background: var(--sd-bg-secondary) !important;
     padding: 20px !important;
-    color: var(--dn-text-primary) !important;
+    color: var(--sd-text-primary) !important;
 }
 
 .toastui-editor-md-preview p,
@@ -465,11 +465,11 @@ body.devnotes-dark-mode #wpfooter {
 .toastui-editor-md-preview li,
 .toastui-editor-md-preview td,
 .toastui-editor-md-preview th {
-    color: var(--dn-text-primary) !important;
+    color: var(--sd-text-primary) !important;
 }
 
 .toastui-editor-toolbar {
-    background: var(--dn-bg-secondary) !important;
+    background: var(--sd-bg-secondary) !important;
     padding: 8px 6px 0 !important;
     height: auto;
 }
@@ -477,146 +477,146 @@ body.devnotes-dark-mode #wpfooter {
 .toastui-editor-toolbar-icons {
     background-color: transparent !important;
     border-color: transparent !important;
-    color: var(--dn-text-secondary) !important;
+    color: var(--sd-text-secondary) !important;
 }
 
 
 .toastui-editor-toolbar-icons:hover {
-    background-color: var(--dn-bg-hover) !important;
+    background-color: var(--sd-bg-hover) !important;
     border-color: transparent !important;
 }
 
 .toastui-editor-toolbar-icons:active,
 .toastui-editor-toolbar-icons.active {
-    background-color: var(--dn-primary-light) !important;
-    color: var(--dn-primary) !important;
+    background-color: var(--sd-primary-light) !important;
+    color: var(--sd-primary) !important;
 }
 
 .toastui-editor-mode-switch {
-    background: var(--dn-bg-secondary) !important;
-    border-top: 1px solid var(--dn-border) !important;
+    background: var(--sd-bg-secondary) !important;
+    border-top: 1px solid var(--sd-border) !important;
 }
 
 .toastui-editor-mode-switch .tab-item {
     background: transparent !important;
-    color: var(--dn-text-secondary) !important;
+    color: var(--sd-text-secondary) !important;
     border: none !important;
 }
 
 .toastui-editor-mode-switch .tab-item.active {
-    background: var(--dn-bg-primary) !important;
-    color: var(--dn-primary) !important;
+    background: var(--sd-bg-primary) !important;
+    color: var(--sd-primary) !important;
 }
 
 .toastui-editor-md-tab-container {
-    background: var(--dn-bg-secondary) !important;
-    border-bottom: 1px solid var(--dn-border) !important;
+    background: var(--sd-bg-secondary) !important;
+    border-bottom: 1px solid var(--sd-border) !important;
 }
 
 /* Placeholder text in dark mode */
-.devnotes-dark .ProseMirror .placeholder,
-.devnotes-dark .toastui-editor-contents .placeholder {
-    color: var(--dn-text-muted) !important;
+.sitedocs-dark .ProseMirror .placeholder,
+.sitedocs-dark .toastui-editor-contents .placeholder {
+    color: var(--sd-text-muted) !important;
 }
 
 /* Force dark mode colors on editor content */
-.devnotes-dark .toastui-editor-defaultUI,
-.devnotes-dark .toastui-editor-main,
-.devnotes-dark .toastui-editor-main-container,
-.devnotes-dark .toastui-editor-md-container,
-.devnotes-dark .toastui-editor-ww-container {
+.sitedocs-dark .toastui-editor-defaultUI,
+.sitedocs-dark .toastui-editor-main,
+.sitedocs-dark .toastui-editor-main-container,
+.sitedocs-dark .toastui-editor-md-container,
+.sitedocs-dark .toastui-editor-ww-container {
     background: #1e293b !important;
 }
 
-.devnotes-dark .toastui-editor-contents,
-.devnotes-dark .toastui-editor-contents *:not(pre):not(code):not(.token),
-.devnotes-dark .ProseMirror,
-.devnotes-dark .ProseMirror *:not(pre):not(code):not(.token) {
+.sitedocs-dark .toastui-editor-contents,
+.sitedocs-dark .toastui-editor-contents *:not(pre):not(code):not(.token),
+.sitedocs-dark .ProseMirror,
+.sitedocs-dark .ProseMirror *:not(pre):not(code):not(.token) {
     color: #f1f5f9 !important;
 }
 
-.devnotes-dark .toastui-editor-md-preview,
-.devnotes-dark .toastui-editor-md-preview *:not(pre):not(code):not(.token) {
+.sitedocs-dark .toastui-editor-md-preview,
+.sitedocs-dark .toastui-editor-md-preview *:not(pre):not(code):not(.token) {
     color: #f1f5f9 !important;
 }
 
-.devnotes-dark .CodeMirror,
-.devnotes-dark .CodeMirror-code,
-.devnotes-dark .CodeMirror-line,
-.devnotes-dark .CodeMirror-lines,
-.devnotes-dark .CodeMirror pre,
-.devnotes-dark .CodeMirror span {
+.sitedocs-dark .CodeMirror,
+.sitedocs-dark .CodeMirror-code,
+.sitedocs-dark .CodeMirror-line,
+.sitedocs-dark .CodeMirror-lines,
+.sitedocs-dark .CodeMirror pre,
+.sitedocs-dark .CodeMirror span {
     color: #f1f5f9 !important;
     background: #1e293b !important;
 }
 
-.devnotes-dark .CodeMirror-gutters {
+.sitedocs-dark .CodeMirror-gutters {
     background: #1e293b !important;
     border-right-color: #334155 !important;
 }
 
-.devnotes-dark .CodeMirror-linenumber {
+.sitedocs-dark .CodeMirror-linenumber {
     color: #64748b !important;
 }
 
-.devnotes-dark .toastui-editor-toolbar,
-.devnotes-dark .toastui-editor-defaultUI-toolbar,
-.devnotes-dark .toastui-editor-toolbar-group {
+.sitedocs-dark .toastui-editor-toolbar,
+.sitedocs-dark .toastui-editor-defaultUI-toolbar,
+.sitedocs-dark .toastui-editor-toolbar-group {
     background: #1e293b !important;
     border-color: #334155 !important;
 }
 
-.devnotes-dark .toastui-editor-toolbar-icons {
+.sitedocs-dark .toastui-editor-toolbar-icons {
     background-color: transparent !important;
     border-color: transparent !important;
     filter: brightness(0) invert(1) !important;
 }
 
-.devnotes-dark .toastui-editor-toolbar-icons:hover {
+.sitedocs-dark .toastui-editor-toolbar-icons:hover {
     background-color: #334155 !important;
 }
 
-.devnotes-dark .toastui-editor-toolbar-icons:active,
-.devnotes-dark .toastui-editor-toolbar-icons.active {
+.sitedocs-dark .toastui-editor-toolbar-icons:active,
+.sitedocs-dark .toastui-editor-toolbar-icons.active {
     background-color: #3b82f6 !important;
 }
 
-.devnotes-dark .toastui-editor-toolbar-divider {
+.sitedocs-dark .toastui-editor-toolbar-divider {
     background-color: #334155 !important;
 }
 
-.devnotes-dark .toastui-editor-dropdown-toolbar {
+.sitedocs-dark .toastui-editor-dropdown-toolbar {
     background: #1e293b !important;
     border-color: #334155 !important;
 }
 
-.devnotes-dark .toastui-editor-popup {
+.sitedocs-dark .toastui-editor-popup {
     background: #1e293b !important;
     border-color: #334155 !important;
 }
 
-.devnotes-dark .toastui-editor-popup-body {
+.sitedocs-dark .toastui-editor-popup-body {
     background: #1e293b !important;
 }
 
-.devnotes-dark .toastui-editor-popup-body label,
-.devnotes-dark .toastui-editor-popup-body input,
-.devnotes-dark .toastui-editor-popup-body select {
+.sitedocs-dark .toastui-editor-popup-body label,
+.sitedocs-dark .toastui-editor-popup-body input,
+.sitedocs-dark .toastui-editor-popup-body select {
     color: #f1f5f9 !important;
     background: #0f172a !important;
     border-color: #334155 !important;
 }
 
-.devnotes-dark .toastui-editor-mode-switch {
+.sitedocs-dark .toastui-editor-mode-switch {
     background: #1e293b !important;
     border-top-color: #334155 !important;
 }
 
-.devnotes-dark .toastui-editor-mode-switch .tab-item {
+.sitedocs-dark .toastui-editor-mode-switch .tab-item {
     color: #94a3b8 !important;
 }
 
-.devnotes-dark .toastui-editor-mode-switch .tab-item.active {
+.sitedocs-dark .toastui-editor-mode-switch .tab-item.active {
     color: #60a5fa !important;
     background: #0f172a !important;
 }
@@ -624,47 +624,47 @@ body.devnotes-dark-mode #wpfooter {
 /* Table styling in dark mode */
 .toastui-editor-contents table,
 .toastui-editor-md-preview table {
-    border-color: var(--dn-border) !important;
+    border-color: var(--sd-border) !important;
 }
 
 .toastui-editor-contents th,
 .toastui-editor-contents td,
 .toastui-editor-md-preview th,
 .toastui-editor-md-preview td {
-    border-color: var(--dn-border) !important;
-    background: var(--dn-bg-primary) !important;
+    border-color: var(--sd-border) !important;
+    background: var(--sd-bg-primary) !important;
 }
 
 .toastui-editor-contents th,
 .toastui-editor-md-preview th {
-    background: var(--dn-bg-tertiary) !important;
+    background: var(--sd-bg-tertiary) !important;
 }
 
 /* Blockquote styling */
 .toastui-editor-contents blockquote,
 .toastui-editor-md-preview blockquote {
-    border-left-color: var(--dn-primary) !important;
-    color: var(--dn-text-secondary) !important;
+    border-left-color: var(--sd-primary) !important;
+    color: var(--sd-text-secondary) !important;
 }
 
 /* Links */
 .toastui-editor-contents a,
 .toastui-editor-md-preview a {
-    color: var(--dn-primary) !important;
+    color: var(--sd-primary) !important;
 }
 
 /* HR */
 .toastui-editor-contents hr,
 .toastui-editor-md-preview hr {
-    border-color: var(--dn-border) !important;
+    border-color: var(--sd-border) !important;
 }
 
 /* Code blocks in editor */
 .toastui-editor-contents pre,
 .toastui-editor-md-preview pre {
-    background: var(--dn-code-bg) !important;
-    color: var(--dn-code-text) !important;
-    border-radius: var(--dn-radius) !important;
+    background: var(--sd-code-bg) !important;
+    color: var(--sd-code-text) !important;
+    border-radius: var(--sd-radius) !important;
     padding: 16px !important;
     font-family: "JetBrains Mono", "Fira Code", "SF Mono", Consolas, monospace !important;
     font-size: 13px !important;
@@ -674,8 +674,8 @@ body.devnotes-dark-mode #wpfooter {
 
 .toastui-editor-contents code,
 .toastui-editor-md-preview code {
-    background: var(--dn-bg-tertiary) !important;
-    color: var(--dn-primary) !important;
+    background: var(--sd-bg-tertiary) !important;
+    color: var(--sd-primary) !important;
     padding: 2px 6px !important;
     border-radius: 4px !important;
     font-family: "JetBrains Mono", "Fira Code", "SF Mono", Consolas, monospace !important;
@@ -691,42 +691,42 @@ body.devnotes-dark-mode #wpfooter {
 /* ========================================
    Credentials Section
    ======================================== */
-.devnotes-credentials-header {
+.sitedocs-credentials-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 24px;
 }
 
-.devnotes-credentials-header h2 {
+.sitedocs-credentials-header h2 {
     margin: 0;
     font-size: 20px;
     font-weight: 600;
-    color: var(--dn-text-primary);
+    color: var(--sd-text-primary);
 }
 
-#devnotes-add-credential {
+#sitedocs-add-credential {
     display: flex;
     align-items: center;
     gap: 8px;
     padding: 10px 18px;
-    background: var(--dn-primary);
+    background: var(--sd-primary);
     color: white;
     border: none;
-    border-radius: var(--dn-radius);
+    border-radius: var(--sd-radius);
     font-size: 14px;
     font-weight: 500;
     cursor: pointer;
     transition: all 0.2s ease;
 }
 
-#devnotes-add-credential:hover {
-    background: var(--dn-primary-hover);
+#sitedocs-add-credential:hover {
+    background: var(--sd-primary-hover);
     transform: translateY(-1px);
-    box-shadow: var(--dn-shadow-md);
+    box-shadow: var(--sd-shadow-md);
 }
 
-#devnotes-add-credential .dashicons {
+#sitedocs-add-credential .dashicons {
     font-size: 18px;
     width: 18px;
     height: 18px;
@@ -734,17 +734,17 @@ body.devnotes-dark-mode #wpfooter {
 }
 
 /* Credentials list */
-.devnotes-credentials-list {
+.sitedocs-credentials-list {
     display: flex;
     flex-direction: column;
     gap: 12px;
 }
 
 /* Credential card */
-.devnotes-credential-card {
-    background: var(--dn-bg-secondary);
-    border: 1px solid var(--dn-border);
-    border-radius: var(--dn-radius-lg);
+.sitedocs-credential-card {
+    background: var(--sd-bg-secondary);
+    border: 1px solid var(--sd-border);
+    border-radius: var(--sd-radius-lg);
     padding: 20px;
     display: grid;
     grid-template-columns: 1fr auto;
@@ -753,197 +753,197 @@ body.devnotes-dark-mode #wpfooter {
     transition: all 0.2s ease;
 }
 
-.devnotes-credential-card:hover {
-    border-color: var(--dn-primary);
-    box-shadow: var(--dn-shadow-md);
+.sitedocs-credential-card:hover {
+    border-color: var(--sd-primary);
+    box-shadow: var(--sd-shadow-md);
     transform: translateY(-2px);
 }
 
-.devnotes-credential-info {
+.sitedocs-credential-info {
     min-width: 0;
 }
 
-.devnotes-credential-label {
+.sitedocs-credential-label {
     font-weight: 600;
     font-size: 16px;
-    color: var(--dn-text-primary);
+    color: var(--sd-text-primary);
     margin-bottom: 8px;
 }
 
-.devnotes-credential-meta {
+.sitedocs-credential-meta {
     display: flex;
     gap: 16px;
     flex-wrap: wrap;
     font-size: 13px;
-    color: var(--dn-text-secondary);
+    color: var(--sd-text-secondary);
 }
 
-.devnotes-credential-meta span {
+.sitedocs-credential-meta span {
     display: flex;
     align-items: center;
     gap: 6px;
 }
 
-.devnotes-credential-meta .dashicons {
+.sitedocs-credential-meta .dashicons {
     font-size: 14px;
     width: 14px;
     height: 14px;
-    color: var(--dn-text-muted);
+    color: var(--sd-text-muted);
 }
 
-.devnotes-credential-meta a {
-    color: var(--dn-primary);
+.sitedocs-credential-meta a {
+    color: var(--sd-primary);
     text-decoration: none;
 }
 
-.devnotes-credential-meta a:hover {
+.sitedocs-credential-meta a:hover {
     text-decoration: underline;
 }
 
 /* Credential action buttons */
-.devnotes-credential-actions {
+.sitedocs-credential-actions {
     display: flex;
     gap: 8px;
 }
 
-.devnotes-credential-actions button {
+.sitedocs-credential-actions button {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 38px;
     height: 38px;
     padding: 0;
-    border-radius: var(--dn-radius);
-    border: 1px solid var(--dn-border);
-    background: var(--dn-bg-primary);
-    color: var(--dn-text-secondary);
+    border-radius: var(--sd-radius);
+    border: 1px solid var(--sd-border);
+    background: var(--sd-bg-primary);
+    color: var(--sd-text-secondary);
     cursor: pointer;
     transition: all 0.2s ease;
 }
 
-.devnotes-credential-actions button:hover {
-    background: var(--dn-primary);
-    border-color: var(--dn-primary);
+.sitedocs-credential-actions button:hover {
+    background: var(--sd-primary);
+    border-color: var(--sd-primary);
     color: white;
     transform: translateY(-2px);
-    box-shadow: var(--dn-shadow);
+    box-shadow: var(--sd-shadow);
 }
 
-.devnotes-credential-actions button.delete:hover {
-    background: var(--dn-error);
-    border-color: var(--dn-error);
+.sitedocs-credential-actions button.delete:hover {
+    background: var(--sd-error);
+    border-color: var(--sd-error);
 }
 
-.devnotes-credential-actions .dashicons {
+.sitedocs-credential-actions .dashicons {
     font-size: 18px;
     width: 18px;
     height: 18px;
 }
 
 /* Credential revealed fields */
-.devnotes-credential-fields {
+.sitedocs-credential-fields {
     grid-column: 1 / -1;
     margin-top: 16px;
     padding-top: 16px;
-    border-top: 1px solid var(--dn-border);
+    border-top: 1px solid var(--sd-border);
     display: none;
 }
 
-.devnotes-credential-fields.visible {
+.sitedocs-credential-fields.visible {
     display: block;
 }
 
-.devnotes-field-row {
+.sitedocs-field-row {
     display: flex;
     align-items: center;
     gap: 12px;
     margin-bottom: 12px;
     padding: 12px 16px;
-    background: var(--dn-bg-primary);
-    border: 1px solid var(--dn-border);
-    border-radius: var(--dn-radius);
+    background: var(--sd-bg-primary);
+    border: 1px solid var(--sd-border);
+    border-radius: var(--sd-radius);
 }
 
-.devnotes-field-row:last-child {
+.sitedocs-field-row:last-child {
     margin-bottom: 0;
 }
 
-.devnotes-field-label {
+.sitedocs-field-label {
     font-weight: 600;
     font-size: 12px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    color: var(--dn-text-muted);
+    color: var(--sd-text-muted);
     min-width: 100px;
 }
 
-.devnotes-field-value {
+.sitedocs-field-value {
     flex: 1;
     font-family: "JetBrains Mono", "Fira Code", monospace;
     font-size: 14px;
-    color: var(--dn-text-primary);
+    color: var(--sd-text-primary);
     word-break: break-all;
-    background: var(--dn-bg-tertiary);
+    background: var(--sd-bg-tertiary);
     padding: 8px 12px;
-    border-radius: var(--dn-radius-sm);
+    border-radius: var(--sd-radius-sm);
 }
 
-.devnotes-field-value.masked {
+.sitedocs-field-value.masked {
     letter-spacing: 3px;
-    color: var(--dn-text-muted);
+    color: var(--sd-text-muted);
 }
 
-.devnotes-field-actions {
+.sitedocs-field-actions {
     display: flex;
     gap: 6px;
 }
 
-.devnotes-field-actions button {
+.sitedocs-field-actions button {
     padding: 6px 12px;
-    border-radius: var(--dn-radius-sm);
-    border: 1px solid var(--dn-border);
-    background: var(--dn-bg-secondary);
-    color: var(--dn-text-secondary);
+    border-radius: var(--sd-radius-sm);
+    border: 1px solid var(--sd-border);
+    background: var(--sd-bg-secondary);
+    color: var(--sd-text-secondary);
     cursor: pointer;
     font-size: 12px;
     font-weight: 500;
     transition: all 0.2s ease;
 }
 
-.devnotes-field-actions button:hover {
-    background: var(--dn-primary);
-    border-color: var(--dn-primary);
+.sitedocs-field-actions button:hover {
+    background: var(--sd-primary);
+    border-color: var(--sd-primary);
     color: white;
 }
 
 /* ========================================
    Empty State
    ======================================== */
-.devnotes-empty-state {
+.sitedocs-empty-state {
     text-align: center;
     padding: 60px 20px;
-    color: var(--dn-text-muted);
+    color: var(--sd-text-muted);
 }
 
-.devnotes-empty-state .dashicons {
+.sitedocs-empty-state .dashicons {
     font-size: 64px;
     width: 64px;
     height: 64px;
     opacity: 0.3;
-    color: var(--dn-text-muted);
+    color: var(--sd-text-muted);
 }
 
-.devnotes-empty-state p {
+.sitedocs-empty-state p {
     font-size: 16px;
     margin: 0 0 24px;
-    color: var(--dn-text-secondary);
+    color: var(--sd-text-secondary);
 }
 
 
 /* ========================================
    Modal Styles
    ======================================== */
-.devnotes-modal {
+.sitedocs-modal {
     display: none;
     position: fixed;
     top: 0;
@@ -958,132 +958,132 @@ body.devnotes-dark-mode #wpfooter {
     padding: 20px;
 }
 
-.devnotes-modal.active {
+.sitedocs-modal.active {
     display: flex;
 }
 
-.devnotes-modal-content {
-    background: var(--dn-bg-primary);
-    border-radius: var(--dn-radius-xl);
+.sitedocs-modal-content {
+    background: var(--sd-bg-primary);
+    border-radius: var(--sd-radius-xl);
     width: 100%;
     max-width: 520px;
     max-height: 90vh;
     overflow-y: auto;
-    box-shadow: var(--dn-shadow-lg);
-    border: 1px solid var(--dn-border);
+    box-shadow: var(--sd-shadow-lg);
+    border: 1px solid var(--sd-border);
 }
 
-.devnotes-modal-small {
+.sitedocs-modal-small {
     max-width: 420px;
 }
 
-.devnotes-modal-header {
+.sitedocs-modal-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 20px 24px;
-    border-bottom: 1px solid var(--dn-border);
-    background: var(--dn-bg-secondary);
-    border-radius: var(--dn-radius-xl) var(--dn-radius-xl) 0 0;
+    border-bottom: 1px solid var(--sd-border);
+    background: var(--sd-bg-secondary);
+    border-radius: var(--sd-radius-xl) var(--sd-radius-xl) 0 0;
 }
 
-.devnotes-modal-header h3 {
+.sitedocs-modal-header h3 {
     margin: 0;
     font-size: 18px;
     font-weight: 600;
-    color: var(--dn-text-primary);
+    color: var(--sd-text-primary);
 }
 
-.devnotes-modal-close {
+.sitedocs-modal-close {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 32px;
     height: 32px;
-    background: var(--dn-bg-tertiary);
+    background: var(--sd-bg-tertiary);
     border: none;
-    border-radius: var(--dn-radius);
+    border-radius: var(--sd-radius);
     font-size: 20px;
     cursor: pointer;
-    color: var(--dn-text-secondary);
+    color: var(--sd-text-secondary);
     transition: all 0.2s ease;
 }
 
-.devnotes-modal-close:hover {
-    background: var(--dn-error);
+.sitedocs-modal-close:hover {
+    background: var(--sd-error);
     color: white;
 }
 
-#devnotes-credential-form,
-#devnotes-password-form {
+#sitedocs-credential-form,
+#sitedocs-password-form {
     padding: 24px;
 }
 
-.devnotes-form-row {
+.sitedocs-form-row {
     margin-bottom: 20px;
 }
 
-.devnotes-form-row:last-of-type {
+.sitedocs-form-row:last-of-type {
     margin-bottom: 0;
 }
 
-.devnotes-form-row label {
+.sitedocs-form-row label {
     display: block;
     margin-bottom: 8px;
     font-weight: 500;
-    color: var(--dn-text-primary);
+    color: var(--sd-text-primary);
     font-size: 14px;
 }
 
-.devnotes-form-row label .required {
-    color: var(--dn-error);
+.sitedocs-form-row label .required {
+    color: var(--sd-error);
     margin-left: 2px;
 }
 
-.devnotes-form-row input[type="text"],
-.devnotes-form-row input[type="url"],
-.devnotes-form-row input[type="password"],
-.devnotes-form-row select,
-.devnotes-form-row textarea {
+.sitedocs-form-row input[type="text"],
+.sitedocs-form-row input[type="url"],
+.sitedocs-form-row input[type="password"],
+.sitedocs-form-row select,
+.sitedocs-form-row textarea {
     width: 100%;
     padding: 12px 14px;
-    border: 1px solid var(--dn-border);
-    border-radius: var(--dn-radius);
+    border: 1px solid var(--sd-border);
+    border-radius: var(--sd-radius);
     font-size: 14px;
-    background: var(--dn-bg-primary);
-    color: var(--dn-text-primary);
+    background: var(--sd-bg-primary);
+    color: var(--sd-text-primary);
     transition: all 0.2s ease;
 }
 
-.devnotes-form-row input:focus,
-.devnotes-form-row select:focus,
-.devnotes-form-row textarea:focus {
-    border-color: var(--dn-primary);
+.sitedocs-form-row input:focus,
+.sitedocs-form-row select:focus,
+.sitedocs-form-row textarea:focus {
+    border-color: var(--sd-primary);
     outline: none;
-    box-shadow: 0 0 0 3px var(--dn-primary-light);
+    box-shadow: 0 0 0 3px var(--sd-primary-light);
 }
 
-.devnotes-form-row select {
+.sitedocs-form-row select {
     cursor: pointer;
 }
 
-.devnotes-form-row textarea {
+.sitedocs-form-row textarea {
     resize: vertical;
     min-height: 100px;
 }
 
 /* Password field with toggle */
-.devnotes-password-field {
+.sitedocs-password-field {
     position: relative;
     display: flex;
 }
 
-.devnotes-password-field input,
-.devnotes-password-field textarea {
+.sitedocs-password-field input,
+.sitedocs-password-field textarea {
     padding-right: 48px;
 }
 
-.devnotes-toggle-visibility {
+.sitedocs-toggle-visibility {
     position: absolute;
     right: 4px;
     top: 50%;
@@ -1091,147 +1091,147 @@ body.devnotes-dark-mode #wpfooter {
     width: 36px;
     height: 36px;
     border: none;
-    background: var(--dn-bg-tertiary);
+    background: var(--sd-bg-tertiary);
     cursor: pointer;
-    border-radius: var(--dn-radius-sm);
-    color: var(--dn-text-muted);
+    border-radius: var(--sd-radius-sm);
+    color: var(--sd-text-muted);
     display: flex;
     align-items: center;
     justify-content: center;
     transition: all 0.2s ease;
 }
 
-.devnotes-toggle-visibility:hover {
-    background: var(--dn-primary);
+.sitedocs-toggle-visibility:hover {
+    background: var(--sd-primary);
     color: white;
 }
 
-.devnotes-secure-textarea {
+.sitedocs-secure-textarea {
     font-family: "JetBrains Mono", "Fira Code", monospace;
     -webkit-text-security: disc;
 }
 
-.devnotes-secure-textarea.visible {
+.sitedocs-secure-textarea.visible {
     -webkit-text-security: none;
 }
 
-.devnotes-modal-footer {
+.sitedocs-modal-footer {
     display: flex;
     justify-content: flex-end;
     gap: 12px;
     padding: 20px 24px;
-    border-top: 1px solid var(--dn-border);
-    background: var(--dn-bg-secondary);
-    border-radius: 0 0 var(--dn-radius-xl) var(--dn-radius-xl);
+    border-top: 1px solid var(--sd-border);
+    background: var(--sd-bg-secondary);
+    border-radius: 0 0 var(--sd-radius-xl) var(--sd-radius-xl);
     margin-top: 24px;
 }
 
-.devnotes-modal-footer .button {
+.sitedocs-modal-footer .button {
     padding: 10px 20px;
-    border-radius: var(--dn-radius);
+    border-radius: var(--sd-radius);
     font-size: 14px;
     font-weight: 500;
     cursor: pointer;
     transition: all 0.2s ease;
 }
 
-.devnotes-modal-footer .button.button-primary {
-    background: var(--dn-primary);
-    border-color: var(--dn-primary);
+.sitedocs-modal-footer .button.button-primary {
+    background: var(--sd-primary);
+    border-color: var(--sd-primary);
     color: white;
 }
 
-.devnotes-modal-footer .button.button-primary:hover {
-    background: var(--dn-primary-hover);
-    border-color: var(--dn-primary-hover);
+.sitedocs-modal-footer .button.button-primary:hover {
+    background: var(--sd-primary-hover);
+    border-color: var(--sd-primary-hover);
 }
 
-.devnotes-modal-cancel {
-    background: var(--dn-bg-tertiary) !important;
-    border: 1px solid var(--dn-border) !important;
-    color: var(--dn-text-secondary) !important;
+.sitedocs-modal-cancel {
+    background: var(--sd-bg-tertiary) !important;
+    border: 1px solid var(--sd-border) !important;
+    color: var(--sd-text-secondary) !important;
 }
 
-.devnotes-modal-cancel:hover {
-    background: var(--dn-bg-hover) !important;
-    color: var(--dn-text-primary) !important;
+.sitedocs-modal-cancel:hover {
+    background: var(--sd-bg-hover) !important;
+    color: var(--sd-text-primary) !important;
 }
 
-.devnotes-error {
-    color: var(--dn-error);
+.sitedocs-error {
+    color: var(--sd-error);
     font-size: 13px;
     margin-top: 12px;
     padding: 12px 16px;
-    background: var(--dn-error-bg);
-    border-radius: var(--dn-radius);
-    border: 1px solid var(--dn-error);
+    background: var(--sd-error-bg);
+    border-radius: var(--sd-radius);
+    border: 1px solid var(--sd-error);
 }
 
 /* ========================================
    Activity Log
    ======================================== */
-.devnotes-activity-header {
+.sitedocs-activity-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 24px;
 }
 
-.devnotes-activity-header h2 {
+.sitedocs-activity-header h2 {
     margin: 0;
     font-size: 20px;
     font-weight: 600;
-    color: var(--dn-text-primary);
+    color: var(--sd-text-primary);
 }
 
-.devnotes-activity-filters select {
+.sitedocs-activity-filters select {
     padding: 10px 14px;
-    border: 1px solid var(--dn-border);
-    border-radius: var(--dn-radius);
-    background: var(--dn-bg-primary);
-    color: var(--dn-text-primary);
+    border: 1px solid var(--sd-border);
+    border-radius: var(--sd-radius);
+    background: var(--sd-bg-primary);
+    color: var(--sd-text-primary);
     font-size: 14px;
     cursor: pointer;
 }
 
-.devnotes-activity-filters select:focus {
-    border-color: var(--dn-primary);
+.sitedocs-activity-filters select:focus {
+    border-color: var(--sd-primary);
     outline: none;
-    box-shadow: 0 0 0 3px var(--dn-primary-light);
+    box-shadow: 0 0 0 3px var(--sd-primary-light);
 }
 
-.devnotes-activity-log {
-    background: var(--dn-bg-secondary);
-    border: 1px solid var(--dn-border);
-    border-radius: var(--dn-radius-lg);
+.sitedocs-activity-log {
+    background: var(--sd-bg-secondary);
+    border: 1px solid var(--sd-border);
+    border-radius: var(--sd-radius-lg);
     overflow: hidden;
 }
 
-.devnotes-activity-row {
+.sitedocs-activity-row {
     display: grid;
     grid-template-columns: 160px 100px 1fr 150px;
     gap: 16px;
     padding: 16px 20px;
-    border-bottom: 1px solid var(--dn-border);
+    border-bottom: 1px solid var(--sd-border);
     align-items: center;
     font-size: 14px;
     transition: background 0.2s ease;
 }
 
-.devnotes-activity-row:last-child {
+.sitedocs-activity-row:last-child {
     border-bottom: none;
 }
 
-.devnotes-activity-row:hover {
-    background: var(--dn-bg-tertiary);
+.sitedocs-activity-row:hover {
+    background: var(--sd-bg-tertiary);
 }
 
-.devnotes-activity-time {
-    color: var(--dn-text-muted);
+.sitedocs-activity-time {
+    color: var(--sd-text-muted);
     font-size: 13px;
 }
 
-.devnotes-activity-action {
+.sitedocs-activity-action {
     font-weight: 600;
     font-size: 12px;
     text-transform: uppercase;
@@ -1242,101 +1242,101 @@ body.devnotes-dark-mode #wpfooter {
     text-align: center;
 }
 
-.devnotes-activity-action.viewed {
-    background: var(--dn-info-bg);
-    color: var(--dn-info);
+.sitedocs-activity-action.viewed {
+    background: var(--sd-info-bg);
+    color: var(--sd-info);
 }
 
-.devnotes-activity-action.copied {
-    background: var(--dn-warning-bg);
-    color: var(--dn-warning);
+.sitedocs-activity-action.copied {
+    background: var(--sd-warning-bg);
+    color: var(--sd-warning);
 }
 
-.devnotes-activity-action.created {
-    background: var(--dn-success-bg);
-    color: var(--dn-success);
+.sitedocs-activity-action.created {
+    background: var(--sd-success-bg);
+    color: var(--sd-success);
 }
 
-.devnotes-activity-action.modified {
+.sitedocs-activity-action.modified {
     background: #f3e8ff;
     color: #9333ea;
 }
 
-.devnotes-dark .devnotes-activity-action.modified {
+.sitedocs-dark .sitedocs-activity-action.modified {
     background: #581c87;
     color: #c084fc;
 }
 
-.devnotes-activity-action.deleted {
-    background: var(--dn-error-bg);
-    color: var(--dn-error);
+.sitedocs-activity-action.deleted {
+    background: var(--sd-error-bg);
+    color: var(--sd-error);
 }
 
 /* Notes action types */
-.devnotes-activity-action.notes_accessed {
+.sitedocs-activity-action.notes_accessed {
     background: #ecfdf5;
     color: #059669;
 }
 
-.devnotes-dark .devnotes-activity-action.notes_accessed {
+.sitedocs-dark .sitedocs-activity-action.notes_accessed {
     background: #064e3b;
     color: #6ee7b7;
 }
 
-.devnotes-activity-action.notes_saved {
+.sitedocs-activity-action.notes_saved {
     background: #eff6ff;
     color: #2563eb;
 }
 
-.devnotes-dark .devnotes-activity-action.notes_saved {
+.sitedocs-dark .sitedocs-activity-action.notes_saved {
     background: #1e3a8a;
     color: #93c5fd;
 }
 
-.devnotes-activity-action.notes_copied {
+.sitedocs-activity-action.notes_copied {
     background: #fef3c7;
     color: #d97706;
 }
 
-.devnotes-dark .devnotes-activity-action.notes_copied {
+.sitedocs-dark .sitedocs-activity-action.notes_copied {
     background: #78350f;
     color: #fcd34d;
 }
 
-.devnotes-activity-action.notes_pasted {
+.sitedocs-activity-action.notes_pasted {
     background: #fce7f3;
     color: #db2777;
 }
 
-.devnotes-dark .devnotes-activity-action.notes_pasted {
+.sitedocs-dark .sitedocs-activity-action.notes_pasted {
     background: #831843;
     color: #f9a8d4;
 }
 
-.devnotes-activity-action.notes_exported {
+.sitedocs-activity-action.notes_exported {
     background: #f0fdf4;
     color: #16a34a;
 }
 
-.devnotes-dark .devnotes-activity-action.notes_exported {
+.sitedocs-dark .sitedocs-activity-action.notes_exported {
     background: #14532d;
     color: #86efac;
 }
 
-.devnotes-activity-label {
-    color: var(--dn-text-primary);
+.sitedocs-activity-label {
+    color: var(--sd-text-primary);
     font-weight: 500;
 }
 
-.devnotes-activity-details {
+.sitedocs-activity-details {
     font-size: 12px;
-    color: var(--dn-text-muted);
+    color: var(--sd-text-muted);
     font-weight: 400;
     margin-top: 4px;
 }
 
-.devnotes-activity-user {
-    color: var(--dn-text-secondary);
+.sitedocs-activity-user {
+    color: var(--sd-text-secondary);
     font-size: 13px;
     text-align: right;
 }
@@ -1344,170 +1344,170 @@ body.devnotes-dark-mode #wpfooter {
 /* ========================================
    Pagination
    ======================================== */
-.devnotes-pagination {
+.sitedocs-pagination {
     display: flex;
     justify-content: center;
     gap: 6px;
     margin-top: 24px;
 }
 
-.devnotes-pagination button {
+.sitedocs-pagination button {
     padding: 10px 16px;
-    border: 1px solid var(--dn-border);
-    border-radius: var(--dn-radius);
-    background: var(--dn-bg-primary);
-    color: var(--dn-text-primary);
+    border: 1px solid var(--sd-border);
+    border-radius: var(--sd-radius);
+    background: var(--sd-bg-primary);
+    color: var(--sd-text-primary);
     cursor: pointer;
     font-size: 14px;
     font-weight: 500;
     transition: all 0.2s ease;
 }
 
-.devnotes-pagination button:hover:not(:disabled) {
-    background: var(--dn-primary);
-    border-color: var(--dn-primary);
+.sitedocs-pagination button:hover:not(:disabled) {
+    background: var(--sd-primary);
+    border-color: var(--sd-primary);
     color: white;
 }
 
-.devnotes-pagination button:disabled {
+.sitedocs-pagination button:disabled {
     opacity: 0.4;
     cursor: not-allowed;
 }
 
-.devnotes-pagination button.active {
-    background: var(--dn-primary);
-    border-color: var(--dn-primary);
+.sitedocs-pagination button.active {
+    background: var(--sd-primary);
+    border-color: var(--sd-primary);
     color: white;
 }
 
 /* ========================================
    Settings
    ======================================== */
-.devnotes-settings h2 {
+.sitedocs-settings h2 {
     margin: 0 0 24px;
     font-size: 20px;
     font-weight: 600;
-    color: var(--dn-text-primary);
+    color: var(--sd-text-primary);
 }
 
-.devnotes-settings h3 {
+.sitedocs-settings h3 {
     margin: 32px 0 16px;
     padding-bottom: 12px;
-    border-bottom: 1px solid var(--dn-border);
-    color: var(--dn-text-primary);
+    border-bottom: 1px solid var(--sd-border);
+    color: var(--sd-text-primary);
     font-size: 16px;
     font-weight: 600;
 }
 
-.devnotes-settings h3:first-of-type {
+.sitedocs-settings h3:first-of-type {
     margin-top: 0;
 }
 
-.devnotes-dark .devnotes-settings h2,
-.devnotes-dark .devnotes-settings h3 {
+.sitedocs-dark .sitedocs-settings h2,
+.sitedocs-dark .sitedocs-settings h3 {
     color: #f1f5f9;
 }
 
-.devnotes-dark .devnotes-settings h3 {
+.sitedocs-dark .sitedocs-settings h3 {
     border-bottom-color: #334155;
 }
 
-.devnotes-settings .form-table {
-    background: var(--dn-bg-secondary);
-    border-radius: var(--dn-radius-lg);
-    border: 1px solid var(--dn-border);
+.sitedocs-settings .form-table {
+    background: var(--sd-bg-secondary);
+    border-radius: var(--sd-radius-lg);
+    border: 1px solid var(--sd-border);
     overflow: hidden;
 }
 
-.devnotes-settings .form-table th {
-    color: var(--dn-text-primary);
+.sitedocs-settings .form-table th {
+    color: var(--sd-text-primary);
     font-weight: 500;
-    background: var(--dn-bg-tertiary);
+    background: var(--sd-bg-tertiary);
     padding: 16px 20px;
 }
 
-.devnotes-settings .form-table td {
+.sitedocs-settings .form-table td {
     padding: 16px 20px;
-    background: var(--dn-bg-secondary);
+    background: var(--sd-bg-secondary);
 }
 
-.devnotes-settings .form-table tr {
-    border-bottom: 1px solid var(--dn-border);
+.sitedocs-settings .form-table tr {
+    border-bottom: 1px solid var(--sd-border);
 }
 
-.devnotes-settings .form-table tr:last-child {
+.sitedocs-settings .form-table tr:last-child {
     border-bottom: none;
 }
 
-.devnotes-settings .description {
-    color: var(--dn-text-muted);
+.sitedocs-settings .description {
+    color: var(--sd-text-muted);
     font-size: 13px;
     margin-top: 8px;
 }
 
-.devnotes-settings input[type="number"] {
+.sitedocs-settings input[type="number"] {
     width: 80px;
     padding: 8px 12px;
-    border: 1px solid var(--dn-border);
-    border-radius: var(--dn-radius);
-    background: var(--dn-bg-primary);
-    color: var(--dn-text-primary);
+    border: 1px solid var(--sd-border);
+    border-radius: var(--sd-radius);
+    background: var(--sd-bg-primary);
+    color: var(--sd-text-primary);
 }
 
-.devnotes-settings input[type="checkbox"] {
+.sitedocs-settings input[type="checkbox"] {
     width: 18px;
     height: 18px;
-    accent-color: var(--dn-primary);
+    accent-color: var(--sd-primary);
 }
 
-.devnotes-settings .submit {
+.sitedocs-settings .submit {
     margin-top: 24px;
     padding-top: 24px;
-    border-top: 1px solid var(--dn-border);
+    border-top: 1px solid var(--sd-border);
 }
 
-.devnotes-settings .submit .button-primary {
+.sitedocs-settings .submit .button-primary {
     padding: 10px 24px;
-    background: var(--dn-primary);
-    border-color: var(--dn-primary);
-    border-radius: var(--dn-radius);
+    background: var(--sd-primary);
+    border-color: var(--sd-primary);
+    border-radius: var(--sd-radius);
     font-size: 14px;
     font-weight: 500;
 }
 
-.devnotes-settings .submit .button-primary:hover {
-    background: var(--dn-primary-hover);
-    border-color: var(--dn-primary-hover);
+.sitedocs-settings .submit .button-primary:hover {
+    background: var(--sd-primary-hover);
+    border-color: var(--sd-primary-hover);
 }
 
 /* Toggle switch */
-.devnotes-toggle {
+.sitedocs-toggle {
     position: relative;
     display: inline-block;
     width: 48px;
     height: 26px;
 }
 
-.devnotes-toggle input {
+.sitedocs-toggle input {
     opacity: 0;
     width: 0;
     height: 0;
 }
 
-.devnotes-toggle-slider {
+.sitedocs-toggle-slider {
     position: absolute;
     cursor: pointer;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: var(--dn-bg-tertiary);
+    background-color: var(--sd-bg-tertiary);
     transition: 0.3s;
     border-radius: 26px;
-    border: 1px solid var(--dn-border);
+    border: 1px solid var(--sd-border);
 }
 
-.devnotes-toggle-slider:before {
+.sitedocs-toggle-slider:before {
     position: absolute;
     content: "";
     height: 20px;
@@ -1517,20 +1517,20 @@ body.devnotes-dark-mode #wpfooter {
     background-color: white;
     transition: 0.3s;
     border-radius: 50%;
-    box-shadow: var(--dn-shadow);
+    box-shadow: var(--sd-shadow);
 }
 
-.devnotes-toggle input:checked + .devnotes-toggle-slider {
-    background-color: var(--dn-primary);
-    border-color: var(--dn-primary);
+.sitedocs-toggle input:checked + .sitedocs-toggle-slider {
+    background-color: var(--sd-primary);
+    border-color: var(--sd-primary);
 }
 
-.devnotes-toggle input:checked + .devnotes-toggle-slider:before {
+.sitedocs-toggle input:checked + .sitedocs-toggle-slider:before {
     transform: translateX(22px);
 }
 
 /* Access badge */
-.devnotes-access-badge {
+.sitedocs-access-badge {
     display: inline-block;
     padding: 6px 12px;
     border-radius: 20px;
@@ -1538,122 +1538,122 @@ body.devnotes-dark-mode #wpfooter {
     font-weight: 600;
 }
 
-.devnotes-access-badge.access-granted {
-    background: var(--dn-success-bg);
-    color: var(--dn-success);
+.sitedocs-access-badge.access-granted {
+    background: var(--sd-success-bg);
+    color: var(--sd-success);
 }
 
 /* User access table */
-#devnotes-user-access {
+#sitedocs-user-access {
     margin-top: 16px;
 }
 
-#devnotes-user-access table {
-    background: var(--dn-bg-secondary);
-    border-radius: var(--dn-radius-lg);
-    border: 1px solid var(--dn-border);
+#sitedocs-user-access table {
+    background: var(--sd-bg-secondary);
+    border-radius: var(--sd-radius-lg);
+    border: 1px solid var(--sd-border);
     overflow: hidden;
 }
 
-#devnotes-user-access th {
-    background: var(--dn-bg-tertiary);
-    color: var(--dn-text-primary);
+#sitedocs-user-access th {
+    background: var(--sd-bg-tertiary);
+    color: var(--sd-text-primary);
     font-weight: 600;
     padding: 14px 16px;
     text-align: left;
 }
 
-#devnotes-user-access td {
+#sitedocs-user-access td {
     padding: 14px 16px;
     vertical-align: middle;
-    border-top: 1px solid var(--dn-border);
-    color: var(--dn-text-primary);
+    border-top: 1px solid var(--sd-border);
+    color: var(--sd-text-primary);
 }
 
-#devnotes-user-access img {
+#sitedocs-user-access img {
     border-radius: 50%;
     vertical-align: middle;
     margin-right: 12px;
 }
 
-#devnotes-user-access strong {
-    color: var(--dn-text-primary);
+#sitedocs-user-access strong {
+    color: var(--sd-text-primary);
 }
 
-#devnotes-user-access .description {
-    color: var(--dn-text-muted);
+#sitedocs-user-access .description {
+    color: var(--sd-text-muted);
     font-size: 12px;
 }
 
 /* Dark mode settings overrides */
-.devnotes-dark .devnotes-settings .form-table {
+.sitedocs-dark .sitedocs-settings .form-table {
     background: #1e293b;
     border-color: #334155;
 }
 
-.devnotes-dark .devnotes-settings .form-table th {
+.sitedocs-dark .sitedocs-settings .form-table th {
     background: #334155;
     color: #f1f5f9;
 }
 
-.devnotes-dark .devnotes-settings .form-table td {
+.sitedocs-dark .sitedocs-settings .form-table td {
     background: #1e293b;
     color: #f1f5f9;
 }
 
-.devnotes-dark .devnotes-settings .form-table tr {
+.sitedocs-dark .sitedocs-settings .form-table tr {
     border-bottom-color: #334155;
 }
 
-.devnotes-dark .devnotes-settings .description {
+.sitedocs-dark .sitedocs-settings .description {
     color: #94a3b8;
 }
 
-.devnotes-dark .devnotes-settings input[type="number"] {
+.sitedocs-dark .sitedocs-settings input[type="number"] {
     background: #0f172a;
     border-color: #334155;
     color: #f1f5f9;
 }
 
-.devnotes-dark .devnotes-settings input[type="number"]:focus {
+.sitedocs-dark .sitedocs-settings input[type="number"]:focus {
     border-color: #60a5fa;
     box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.2);
 }
 
-.devnotes-dark .devnotes-settings .submit {
+.sitedocs-dark .sitedocs-settings .submit {
     border-top-color: #334155;
 }
 
-.devnotes-dark #devnotes-user-access table {
+.sitedocs-dark #sitedocs-user-access table {
     background: #1e293b;
     border-color: #334155;
 }
 
-.devnotes-dark #devnotes-user-access th {
+.sitedocs-dark #sitedocs-user-access th {
     background: #334155;
     color: #f1f5f9;
 }
 
-.devnotes-dark #devnotes-user-access td {
+.sitedocs-dark #sitedocs-user-access td {
     background: #1e293b;
     border-top-color: #334155;
     color: #f1f5f9;
 }
 
-.devnotes-dark #devnotes-user-access strong {
+.sitedocs-dark #sitedocs-user-access strong {
     color: #f1f5f9;
 }
 
-.devnotes-dark #devnotes-user-access .description {
+.sitedocs-dark #sitedocs-user-access .description {
     color: #64748b;
 }
 
-.devnotes-dark .devnotes-toggle-slider {
+.sitedocs-dark .sitedocs-toggle-slider {
     background-color: #334155;
     border-color: #475569;
 }
 
-.devnotes-dark .devnotes-access-badge.access-granted {
+.sitedocs-dark .sitedocs-access-badge.access-granted {
     background: #064e3b;
     color: #34d399;
 }
@@ -1661,18 +1661,18 @@ body.devnotes-dark-mode #wpfooter {
 /* ========================================
    Loading & Notifications
    ======================================== */
-.devnotes-loading {
+.sitedocs-loading {
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 60px;
 }
 
-.devnotes-spinner {
+.sitedocs-spinner {
     width: 40px;
     height: 40px;
-    border: 3px solid var(--dn-border);
-    border-top-color: var(--dn-primary);
+    border: 3px solid var(--sd-border);
+    border-top-color: var(--sd-primary);
     border-radius: 50%;
     animation: spin 0.8s linear infinite;
 }
@@ -1684,16 +1684,16 @@ body.devnotes-dark-mode #wpfooter {
 }
 
 /* Copied notification */
-.devnotes-copied-notice {
+.sitedocs-copied-notice {
     position: fixed;
     bottom: 30px;
     right: 30px;
-    background: var(--dn-success);
+    background: var(--sd-success);
     color: white;
     padding: 14px 24px;
-    border-radius: var(--dn-radius-lg);
+    border-radius: var(--sd-radius-lg);
     font-weight: 600;
-    box-shadow: var(--dn-shadow-lg);
+    box-shadow: var(--sd-shadow-lg);
     z-index: 100200;
     animation: slideInUp 0.3s ease;
 }
@@ -1712,114 +1712,114 @@ body.devnotes-dark-mode #wpfooter {
 /* ========================================
    Drag and Drop
    ======================================== */
-.devnotes-credential-card.dragging {
+.sitedocs-credential-card.dragging {
     opacity: 0.5;
     transform: scale(0.98);
 }
 
-.devnotes-credential-card.drag-over {
-    border-color: var(--dn-primary);
-    background: var(--dn-primary-light);
+.sitedocs-credential-card.drag-over {
+    border-color: var(--sd-primary);
+    background: var(--sd-primary-light);
 }
 
 /* ========================================
    Responsive Design
    ======================================== */
 @media screen and (max-width: 1024px) {
-    .devnotes-activity-row {
+    .sitedocs-activity-row {
         grid-template-columns: 1fr 1fr;
         gap: 12px;
     }
 
-    .devnotes-activity-user {
+    .sitedocs-activity-user {
         text-align: left;
     }
 }
 
 @media screen and (max-width: 782px) {
-    .devnotes-wrap {
+    .sitedocs-wrap {
         margin: 10px;
     }
 
-    .devnotes-title {
+    .sitedocs-title {
         font-size: 22px;
     }
 
-    .devnotes-tabs {
+    .sitedocs-tabs {
         flex-wrap: wrap;
         padding: 8px;
     }
 
-    .devnotes-tab {
+    .sitedocs-tab {
         padding: 10px 14px;
         font-size: 13px;
     }
 
-    .devnotes-tab-actions {
+    .sitedocs-tab-actions {
         width: 100%;
         justify-content: flex-end;
         margin-top: 8px;
         padding-top: 8px;
-        border-top: 1px solid var(--dn-border);
+        border-top: 1px solid var(--sd-border);
     }
 
-    .devnotes-tab-content {
+    .sitedocs-tab-content {
         padding: 16px;
     }
 
-    .devnotes-editor-header {
+    .sitedocs-editor-header {
         flex-direction: column;
         gap: 12px;
         align-items: stretch;
     }
 
-    .devnotes-save-status {
+    .sitedocs-save-status {
         justify-content: center;
     }
 
-    #devnotes-save-btn {
+    #sitedocs-save-btn {
         width: 100%;
         justify-content: center;
     }
 
-    #devnotes-editor {
+    #sitedocs-editor {
         min-height: 400px;
     }
 
-    .devnotes-credentials-header {
+    .sitedocs-credentials-header {
         flex-direction: column;
         gap: 16px;
         align-items: stretch;
     }
 
-    #devnotes-add-credential {
+    #sitedocs-add-credential {
         width: 100%;
         justify-content: center;
     }
 
-    .devnotes-credential-card {
+    .sitedocs-credential-card {
         grid-template-columns: 1fr;
         gap: 16px;
     }
 
-    .devnotes-credential-actions {
+    .sitedocs-credential-actions {
         justify-content: flex-start;
     }
 
-    .devnotes-activity-row {
+    .sitedocs-activity-row {
         grid-template-columns: 1fr;
         gap: 8px;
     }
 
-    .devnotes-modal-content {
+    .sitedocs-modal-content {
         margin: 10px;
         max-height: calc(100vh - 20px);
     }
 
-    .devnotes-modal-header,
-    #devnotes-credential-form,
-    #devnotes-password-form,
-    .devnotes-modal-footer {
+    .sitedocs-modal-header,
+    #sitedocs-credential-form,
+    #sitedocs-password-form,
+    .sitedocs-modal-footer {
         padding: 16px;
     }
 }
@@ -1827,11 +1827,11 @@ body.devnotes-dark-mode #wpfooter {
 /* ========================================
    WordPress Admin Overrides
    ======================================== */
-.devnotes-wrap .button {
+.sitedocs-wrap .button {
     height: auto;
     line-height: 1.4;
 }
 
-.devnotes-wrap input[type="checkbox"] {
+.sitedocs-wrap input[type="checkbox"] {
     margin: 0;
 }

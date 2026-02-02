@@ -1,8 +1,8 @@
 <?php
 /**
- * Audit Log class for Dev Notes
+ * Audit Log class for SiteDocs
  *
- * @package DevNotes
+ * @package SiteDocs
  */
 
 // Prevent direct access
@@ -11,11 +11,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * DevNotes Audit Log Class
+ * SiteDocs Audit Log Class
  *
  * Handles logging of credential access and modifications
  */
-class DevNotes_Audit_Log {
+class SiteDocs_Audit_Log {
 
     /**
      * Action types - Credentials
@@ -43,17 +43,17 @@ class DevNotes_Audit_Log {
     public static function get_action_types() {
         return array(
             // Credential actions
-            self::ACTION_VIEWED   => __( 'Credential Viewed', 'dev-notes' ),
-            self::ACTION_COPIED   => __( 'Credential Copied', 'dev-notes' ),
-            self::ACTION_CREATED  => __( 'Credential Created', 'dev-notes' ),
-            self::ACTION_MODIFIED => __( 'Credential Modified', 'dev-notes' ),
-            self::ACTION_DELETED  => __( 'Credential Deleted', 'dev-notes' ),
+            self::ACTION_VIEWED   => __( 'Credential Viewed', 'sitedocs' ),
+            self::ACTION_COPIED   => __( 'Credential Copied', 'sitedocs' ),
+            self::ACTION_CREATED  => __( 'Credential Created', 'sitedocs' ),
+            self::ACTION_MODIFIED => __( 'Credential Modified', 'sitedocs' ),
+            self::ACTION_DELETED  => __( 'Credential Deleted', 'sitedocs' ),
             // Notes actions
-            self::ACTION_NOTES_ACCESSED => __( 'Notes Accessed', 'dev-notes' ),
-            self::ACTION_NOTES_SAVED    => __( 'Notes Saved', 'dev-notes' ),
-            self::ACTION_NOTES_COPIED   => __( 'Notes Copied', 'dev-notes' ),
-            self::ACTION_NOTES_PASTED   => __( 'Notes Pasted', 'dev-notes' ),
-            self::ACTION_NOTES_EXPORTED => __( 'Notes Exported', 'dev-notes' ),
+            self::ACTION_NOTES_ACCESSED => __( 'Notes Accessed', 'sitedocs' ),
+            self::ACTION_NOTES_SAVED    => __( 'Notes Saved', 'sitedocs' ),
+            self::ACTION_NOTES_COPIED   => __( 'Notes Copied', 'sitedocs' ),
+            self::ACTION_NOTES_PASTED   => __( 'Notes Pasted', 'sitedocs' ),
+            self::ACTION_NOTES_EXPORTED => __( 'Notes Exported', 'sitedocs' ),
         );
     }
 
@@ -64,11 +64,11 @@ class DevNotes_Audit_Log {
      */
     public static function get_credential_action_types() {
         return array(
-            self::ACTION_VIEWED   => __( 'Viewed', 'dev-notes' ),
-            self::ACTION_COPIED   => __( 'Copied', 'dev-notes' ),
-            self::ACTION_CREATED  => __( 'Created', 'dev-notes' ),
-            self::ACTION_MODIFIED => __( 'Modified', 'dev-notes' ),
-            self::ACTION_DELETED  => __( 'Deleted', 'dev-notes' ),
+            self::ACTION_VIEWED   => __( 'Viewed', 'sitedocs' ),
+            self::ACTION_COPIED   => __( 'Copied', 'sitedocs' ),
+            self::ACTION_CREATED  => __( 'Created', 'sitedocs' ),
+            self::ACTION_MODIFIED => __( 'Modified', 'sitedocs' ),
+            self::ACTION_DELETED  => __( 'Deleted', 'sitedocs' ),
         );
     }
 
@@ -79,11 +79,11 @@ class DevNotes_Audit_Log {
      */
     public static function get_notes_action_types() {
         return array(
-            self::ACTION_NOTES_ACCESSED => __( 'Accessed', 'dev-notes' ),
-            self::ACTION_NOTES_SAVED    => __( 'Saved', 'dev-notes' ),
-            self::ACTION_NOTES_COPIED   => __( 'Content Copied', 'dev-notes' ),
-            self::ACTION_NOTES_PASTED   => __( 'Content Pasted', 'dev-notes' ),
-            self::ACTION_NOTES_EXPORTED => __( 'Exported', 'dev-notes' ),
+            self::ACTION_NOTES_ACCESSED => __( 'Accessed', 'sitedocs' ),
+            self::ACTION_NOTES_SAVED    => __( 'Saved', 'sitedocs' ),
+            self::ACTION_NOTES_COPIED   => __( 'Content Copied', 'sitedocs' ),
+            self::ACTION_NOTES_PASTED   => __( 'Content Pasted', 'sitedocs' ),
+            self::ACTION_NOTES_EXPORTED => __( 'Exported', 'sitedocs' ),
         );
     }
 
@@ -99,7 +99,7 @@ class DevNotes_Audit_Log {
     public static function log( $action_type, $credential_label, $credential_id = null, $details = null ) {
         global $wpdb;
 
-        $table = DevNotes_Database::get_audit_log_table();
+        $table = SiteDocs_Database::get_audit_log_table();
 
         // Validate action type
         if ( ! array_key_exists( $action_type, self::get_action_types() ) ) {
@@ -158,7 +158,7 @@ class DevNotes_Audit_Log {
 
         $args = wp_parse_args( $args, $defaults );
 
-        $table = DevNotes_Database::get_audit_log_table();
+        $table = SiteDocs_Database::get_audit_log_table();
 
         // Build query
         $where = array( '1=1' );
@@ -215,7 +215,7 @@ class DevNotes_Audit_Log {
         if ( $results ) {
             foreach ( $results as &$row ) {
                 $user = get_userdata( $row['user_id'] );
-                $row['user_display_name'] = $user ? $user->display_name : __( 'Unknown User', 'dev-notes' );
+                $row['user_display_name'] = $user ? $user->display_name : __( 'Unknown User', 'sitedocs' );
                 $row['user_email'] = $user ? $user->user_email : '';
             }
         }
@@ -234,14 +234,14 @@ class DevNotes_Audit_Log {
     public static function cleanup_old_logs() {
         global $wpdb;
 
-        $settings = get_option( 'devnotes_settings', array() );
+        $settings = get_option( 'sitedocs_settings', array() );
         $retention_days = isset( $settings['audit_log_retention_days'] ) ? intval( $settings['audit_log_retention_days'] ) : 90;
 
         if ( $retention_days <= 0 ) {
             return; // No cleanup if retention is 0 or negative
         }
 
-        $table = DevNotes_Database::get_audit_log_table();
+        $table = SiteDocs_Database::get_audit_log_table();
         $cutoff_date = gmdate( 'Y-m-d H:i:s', strtotime( "-{$retention_days} days" ) );
 
         // phpcs:disable WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter

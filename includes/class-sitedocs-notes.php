@@ -1,19 +1,19 @@
 <?php
 /**
- * Notes class for Dev Notes
+ * Notes class for SiteDocs
  *
- * @package DevNotes
+ * @package SiteDocs
  * @since 1.0.0
  * @license GPL-2.0-or-later
  *
- * This file is part of Dev Notes.
+ * This file is part of SiteDocs.
  *
- * Dev Notes is free software: you can redistribute it and/or modify
+ * SiteDocs is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 2 of the License, or
  * any later version.
  *
- * Dev Notes is distributed in the hope that it will be useful,
+ * SiteDocs is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
@@ -25,21 +25,21 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * DevNotes Notes Class
+ * SiteDocs Notes Class
  *
  * Handles Markdown notes storage and retrieval
  */
-class DevNotes_Notes {
+class SiteDocs_Notes {
 
     /**
      * Option name for notes content
      */
-    const OPTION_CONTENT = 'devnotes_content';
+    const OPTION_CONTENT = 'sitedocs_content';
 
     /**
      * Option name for last saved timestamp
      */
-    const OPTION_LAST_SAVED = 'devnotes_last_saved';
+    const OPTION_LAST_SAVED = 'sitedocs_last_saved';
 
     /**
      * Get notes content
@@ -91,7 +91,7 @@ class DevNotes_Notes {
         $timestamp = self::get_last_saved();
 
         if ( ! $timestamp ) {
-            return __( 'Never', 'dev-notes' );
+            return __( 'Never', 'sitedocs' );
         }
 
         $datetime = strtotime( $timestamp );

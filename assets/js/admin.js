@@ -1,5 +1,5 @@
 /**
- * Dev Notes Admin JavaScript
+ * SiteDocs Admin JavaScript
  */
 
 (function($) {
@@ -35,22 +35,22 @@
      */
     function initTheme() {
         // Check for saved preference or system preference
-        const savedTheme = localStorage.getItem('devnotes_theme');
+        const savedTheme = localStorage.getItem('sitedocs_theme');
         const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
         if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
-            document.querySelector('.devnotes-wrap').classList.add('devnotes-dark');
-            document.body.classList.add('devnotes-dark-mode');
+            document.querySelector('.sitedocs-wrap').classList.add('sitedocs-dark');
+            document.body.classList.add('sitedocs-dark-mode');
         }
 
         // Toggle button
-        $('#devnotes-theme-toggle').on('click', function() {
-            const wrap = document.querySelector('.devnotes-wrap');
-            wrap.classList.toggle('devnotes-dark');
-            document.body.classList.toggle('devnotes-dark-mode');
+        $('#sitedocs-theme-toggle').on('click', function() {
+            const wrap = document.querySelector('.sitedocs-wrap');
+            wrap.classList.toggle('sitedocs-dark');
+            document.body.classList.toggle('sitedocs-dark-mode');
 
-            const isDark = wrap.classList.contains('devnotes-dark');
-            localStorage.setItem('devnotes_theme', isDark ? 'dark' : 'light');
+            const isDark = wrap.classList.contains('sitedocs-dark');
+            localStorage.setItem('sitedocs_theme', isDark ? 'dark' : 'light');
 
             // Reinitialize editor for theme change
             if (editor) {
@@ -64,23 +64,23 @@
      * Initialize tabs
      */
     function initTabs() {
-        $('.devnotes-tab').on('click', function() {
+        $('.sitedocs-tab').on('click', function() {
             const tabId = $(this).data('tab');
 
             // Update tab buttons
-            $('.devnotes-tab').removeClass('active');
+            $('.sitedocs-tab').removeClass('active');
             $(this).addClass('active');
 
             // Update tab content
-            $('.devnotes-tab-content').removeClass('active');
+            $('.sitedocs-tab-content').removeClass('active');
             $('#tab-' + tabId).addClass('active');
 
             // Load data for specific tabs and log access
             if (tabId === 'notes') {
                 logNotesAccess();
-            } else if (tabId === 'credentials' && devnotesAdmin.canViewCredentials) {
+            } else if (tabId === 'credentials' && sitedocsAdmin.canViewCredentials) {
                 loadCredentials();
-            } else if (tabId === 'activity' && devnotesAdmin.canViewCredentials) {
+            } else if (tabId === 'activity' && sitedocsAdmin.canViewCredentials) {
                 loadActivityLog();
             }
         });
@@ -90,14 +90,14 @@
      * Initialize Toast UI Editor
      */
     function initEditor(initialContent) {
-        const container = document.getElementById('devnotes-editor');
+        const container = document.getElementById('sitedocs-editor');
         if (!container) return;
 
         // Clear existing editor
         container.innerHTML = '';
 
-        const isDark = document.querySelector('.devnotes-wrap').classList.contains('devnotes-dark');
-        const content = initialContent !== undefined ? initialContent : devnotesAdmin.content;
+        const isDark = document.querySelector('.sitedocs-wrap').classList.contains('sitedocs-dark');
+        const content = initialContent !== undefined ? initialContent : sitedocsAdmin.content;
 
         // Initialize Toast UI Editor
         editor = new toastui.Editor({
@@ -126,7 +126,7 @@
         });
 
         // Manual save button
-        $('#devnotes-save-btn').off('click').on('click', function() {
+        $('#sitedocs-save-btn').off('click').on('click', function() {
             saveNotes('manual');
         });
 
@@ -158,11 +158,11 @@
         showSaveIndicator('saving');
 
         $.ajax({
-            url: devnotesAdmin.ajaxUrl,
+            url: sitedocsAdmin.ajaxUrl,
             type: 'POST',
             data: {
-                action: 'devnotes_save_notes',
-                nonce: devnotesAdmin.nonce,
+                action: 'sitedocs_save_notes',
+                nonce: sitedocsAdmin.nonce,
                 content: content,
                 save_type: saveType
             },
@@ -170,7 +170,7 @@
                 if (response.success) {
                     isDirty = false;
                     showSaveIndicator('saved');
-                    $('#devnotes-last-saved-time').text(response.data.lastSaved);
+                    $('#sitedocs-last-saved-time').text(response.data.lastSaved);
                 } else {
                     showSaveIndicator('error');
                 }
@@ -185,21 +185,21 @@
      * Show save indicator
      */
     function showSaveIndicator(status) {
-        const indicator = $('#devnotes-save-indicator');
+        const indicator = $('#sitedocs-save-indicator');
         indicator.removeClass('saving saved error');
 
         switch (status) {
             case 'saving':
-                indicator.addClass('saving').text(devnotesAdmin.strings.saving);
+                indicator.addClass('saving').text(sitedocsAdmin.strings.saving);
                 break;
             case 'saved':
-                indicator.addClass('saved').text(devnotesAdmin.strings.saved);
+                indicator.addClass('saved').text(sitedocsAdmin.strings.saved);
                 setTimeout(function() {
                     indicator.removeClass('saved').text('');
                 }, 3000);
                 break;
             case 'error':
-                indicator.addClass('error').text(devnotesAdmin.strings.saveError);
+                indicator.addClass('error').text(sitedocsAdmin.strings.saveError);
                 break;
         }
     }
@@ -208,10 +208,10 @@
      * Initialize credentials functionality
      */
     function initCredentials() {
-        if (!devnotesAdmin.canViewCredentials) return;
+        if (!sitedocsAdmin.canViewCredentials) return;
 
         // Add credential button
-        $('#devnotes-add-credential').on('click', function() {
+        $('#sitedocs-add-credential').on('click', function() {
             openCredentialModal();
         });
 
@@ -221,13 +221,13 @@
         });
 
         // Form submission
-        $('#devnotes-credential-form').on('submit', function(e) {
+        $('#sitedocs-credential-form').on('submit', function(e) {
             e.preventDefault();
             saveCredential();
         });
 
         // Toggle visibility buttons
-        $(document).on('click', '.devnotes-toggle-visibility', function() {
+        $(document).on('click', '.sitedocs-toggle-visibility', function() {
             const targetId = $(this).data('target');
             const target = $('#' + targetId);
             const icon = $(this).find('.dashicons');
@@ -251,15 +251,15 @@
      * Load credentials list
      */
     function loadCredentials() {
-        const container = $('#devnotes-credentials-list');
-        container.html('<div class="devnotes-loading"><div class="devnotes-spinner"></div></div>');
+        const container = $('#sitedocs-credentials-list');
+        container.html('<div class="sitedocs-loading"><div class="sitedocs-spinner"></div></div>');
 
         $.ajax({
-            url: devnotesAdmin.ajaxUrl,
+            url: sitedocsAdmin.ajaxUrl,
             type: 'POST',
             data: {
-                action: 'devnotes_get_credentials',
-                nonce: devnotesAdmin.nonce
+                action: 'sitedocs_get_credentials',
+                nonce: sitedocsAdmin.nonce
             },
             success: function(response) {
                 if (response.success) {
@@ -273,13 +273,13 @@
      * Render credentials list
      */
     function renderCredentials(credentials) {
-        const container = $('#devnotes-credentials-list');
+        const container = $('#sitedocs-credentials-list');
 
         if (!credentials || credentials.length === 0) {
             container.html(`
-                <div class="devnotes-empty-state">
+                <div class="sitedocs-empty-state">
                     <span class="dashicons dashicons-lock"></span>
-                    <p>${devnotesAdmin.strings.noCredentials}</p>
+                    <p>${sitedocsAdmin.strings.noCredentials}</p>
                 </div>
             `);
             return;
@@ -289,15 +289,15 @@
         credentials.forEach(function(cred) {
             const typeIcon = getTypeIcon(cred.type);
             html += `
-                <div class="devnotes-credential-card" data-id="${cred.id}" draggable="true">
-                    <div class="devnotes-credential-info">
-                        <div class="devnotes-credential-label">${escapeHtml(cred.label)}</div>
-                        <div class="devnotes-credential-meta">
+                <div class="sitedocs-credential-card" data-id="${cred.id}" draggable="true">
+                    <div class="sitedocs-credential-info">
+                        <div class="sitedocs-credential-label">${escapeHtml(cred.label)}</div>
+                        <div class="sitedocs-credential-meta">
                             <span><span class="dashicons ${typeIcon}"></span> ${escapeHtml(cred.type_label)}</span>
                             ${cred.url ? `<span><span class="dashicons dashicons-admin-links"></span> <a href="${escapeHtml(cred.url)}" target="_blank">${truncateUrl(cred.url)}</a></span>` : ''}
                         </div>
                     </div>
-                    <div class="devnotes-credential-actions">
+                    <div class="sitedocs-credential-actions">
                         <button type="button" class="reveal-btn" data-id="${cred.id}" title="Reveal">
                             <span class="dashicons dashicons-visibility"></span>
                         </button>
@@ -311,7 +311,7 @@
                             <span class="dashicons dashicons-trash"></span>
                         </button>
                     </div>
-                    <div class="devnotes-credential-fields" id="fields-${cred.id}"></div>
+                    <div class="sitedocs-credential-fields" id="fields-${cred.id}"></div>
                 </div>
             `;
         });
@@ -356,14 +356,14 @@
      * Open credential modal for adding
      */
     function openCredentialModal(credential) {
-        const modal = $('#devnotes-credential-modal');
-        const form = $('#devnotes-credential-form')[0];
+        const modal = $('#sitedocs-credential-modal');
+        const form = $('#sitedocs-credential-form')[0];
 
         form.reset();
         $('#credential-id').val('');
 
         if (credential) {
-            $('#devnotes-modal-title').text(devnotesAdmin.strings.editCredential);
+            $('#sitedocs-modal-title').text(sitedocsAdmin.strings.editCredential);
             $('#credential-id').val(credential.id);
             $('#credential-label').val(credential.label);
             $('#credential-type').val(credential.type);
@@ -377,7 +377,7 @@
             if (credential.ssh_key) $('#credential-ssh-key').val(credential.ssh_key);
             if (credential.secure_note) $('#credential-secure-note').val(credential.secure_note);
         } else {
-            $('#devnotes-modal-title').text(devnotesAdmin.strings.addCredential);
+            $('#sitedocs-modal-title').text(sitedocsAdmin.strings.addCredential);
         }
 
         updateCredentialFields($('#credential-type').val());
@@ -396,10 +396,10 @@
      * Save credential
      */
     function saveCredential() {
-        const form = $('#devnotes-credential-form');
+        const form = $('#sitedocs-credential-form');
         const data = {
-            action: 'devnotes_save_credential',
-            nonce: devnotesAdmin.nonce,
+            action: 'sitedocs_save_credential',
+            nonce: sitedocsAdmin.nonce,
             id: $('#credential-id').val(),
             label: $('#credential-label').val(),
             type: $('#credential-type').val(),
@@ -413,7 +413,7 @@
         };
 
         $.ajax({
-            url: devnotesAdmin.ajaxUrl,
+            url: sitedocsAdmin.ajaxUrl,
             type: 'POST',
             data: data,
             success: function(response) {
@@ -433,11 +433,11 @@
     function editCredential(id) {
         checkVerification(function() {
             $.ajax({
-                url: devnotesAdmin.ajaxUrl,
+                url: sitedocsAdmin.ajaxUrl,
                 type: 'POST',
                 data: {
-                    action: 'devnotes_get_credential',
-                    nonce: devnotesAdmin.nonce,
+                    action: 'sitedocs_get_credential',
+                    nonce: sitedocsAdmin.nonce,
                     id: id
                 },
                 success: function(response) {
@@ -458,16 +458,16 @@
      * Delete credential
      */
     function deleteCredential(id) {
-        if (!confirm(devnotesAdmin.strings.confirmDelete)) {
+        if (!confirm(sitedocsAdmin.strings.confirmDelete)) {
             return;
         }
 
         $.ajax({
-            url: devnotesAdmin.ajaxUrl,
+            url: sitedocsAdmin.ajaxUrl,
             type: 'POST',
             data: {
-                action: 'devnotes_delete_credential',
-                nonce: devnotesAdmin.nonce,
+                action: 'sitedocs_delete_credential',
+                nonce: sitedocsAdmin.nonce,
                 id: id
             },
             success: function(response) {
@@ -493,11 +493,11 @@
             }
 
             $.ajax({
-                url: devnotesAdmin.ajaxUrl,
+                url: sitedocsAdmin.ajaxUrl,
                 type: 'POST',
                 data: {
-                    action: 'devnotes_get_credential',
-                    nonce: devnotesAdmin.nonce,
+                    action: 'sitedocs_get_credential',
+                    nonce: sitedocsAdmin.nonce,
                     id: id
                 },
                 success: function(response) {
@@ -540,10 +540,10 @@
         typeFields.forEach(function(field) {
             const value = credential[field.key] || '';
             html += `
-                <div class="devnotes-field-row">
-                    <span class="devnotes-field-label">${field.label}:</span>
-                    <span class="devnotes-field-value" data-field="${field.key}">${escapeHtml(value)}</span>
-                    <div class="devnotes-field-actions">
+                <div class="sitedocs-field-row">
+                    <span class="sitedocs-field-label">${field.label}:</span>
+                    <span class="sitedocs-field-value" data-field="${field.key}">${escapeHtml(value)}</span>
+                    <div class="sitedocs-field-actions">
                         <button type="button" class="copy-field-btn" data-id="${id}" data-field="${field.key}">Copy</button>
                     </div>
                 </div>
@@ -564,11 +564,11 @@
     function copyCredential(id) {
         checkVerification(function() {
             $.ajax({
-                url: devnotesAdmin.ajaxUrl,
+                url: sitedocsAdmin.ajaxUrl,
                 type: 'POST',
                 data: {
-                    action: 'devnotes_get_credential',
-                    nonce: devnotesAdmin.nonce,
+                    action: 'sitedocs_get_credential',
+                    nonce: sitedocsAdmin.nonce,
                     id: id
                 },
                 success: function(response) {
@@ -610,11 +610,11 @@
      */
     function copyCredentialField(id, field) {
         $.ajax({
-            url: devnotesAdmin.ajaxUrl,
+            url: sitedocsAdmin.ajaxUrl,
             type: 'POST',
             data: {
-                action: 'devnotes_copy_credential',
-                nonce: devnotesAdmin.nonce,
+                action: 'sitedocs_copy_credential',
+                nonce: sitedocsAdmin.nonce,
                 id: id,
                 field: field
             },
@@ -647,11 +647,11 @@
      */
     function logCopyAction(id, field) {
         $.ajax({
-            url: devnotesAdmin.ajaxUrl,
+            url: sitedocsAdmin.ajaxUrl,
             type: 'POST',
             data: {
-                action: 'devnotes_copy_credential',
-                nonce: devnotesAdmin.nonce,
+                action: 'sitedocs_copy_credential',
+                nonce: sitedocsAdmin.nonce,
                 id: id,
                 field: field
             }
@@ -687,7 +687,7 @@
             document.execCommand('copy');
             showCopiedNotice();
         } catch (e) {
-            alert(devnotesAdmin.strings.copyFailed);
+            alert(sitedocsAdmin.strings.copyFailed);
         }
         document.body.removeChild(textarea);
     }
@@ -696,7 +696,7 @@
      * Show copied notification
      */
     function showCopiedNotice() {
-        const notice = $('<div class="devnotes-copied-notice">' + devnotesAdmin.strings.copied + '</div>');
+        const notice = $('<div class="sitedocs-copied-notice">' + sitedocsAdmin.strings.copied + '</div>');
         $('body').append(notice);
         setTimeout(function() {
             notice.fadeOut(function() {
@@ -709,7 +709,7 @@
      * Initialize drag and drop for reordering
      */
     function initDragAndDrop() {
-        const cards = document.querySelectorAll('.devnotes-credential-card');
+        const cards = document.querySelectorAll('.sitedocs-credential-card');
         let draggedItem = null;
 
         cards.forEach(function(card) {
@@ -720,7 +720,7 @@
 
             card.addEventListener('dragend', function() {
                 this.classList.remove('dragging');
-                document.querySelectorAll('.devnotes-credential-card').forEach(function(c) {
+                document.querySelectorAll('.sitedocs-credential-card').forEach(function(c) {
                     c.classList.remove('drag-over');
                 });
                 saveOrder();
@@ -739,7 +739,7 @@
                 e.preventDefault();
                 if (draggedItem !== this) {
                     const container = this.parentNode;
-                    const allCards = [...container.querySelectorAll('.devnotes-credential-card')];
+                    const allCards = [...container.querySelectorAll('.sitedocs-credential-card')];
                     const draggedIndex = allCards.indexOf(draggedItem);
                     const targetIndex = allCards.indexOf(this);
 
@@ -758,16 +758,16 @@
      */
     function saveOrder() {
         const order = [];
-        $('.devnotes-credential-card').each(function() {
+        $('.sitedocs-credential-card').each(function() {
             order.push($(this).data('id'));
         });
 
         $.ajax({
-            url: devnotesAdmin.ajaxUrl,
+            url: sitedocsAdmin.ajaxUrl,
             type: 'POST',
             data: {
-                action: 'devnotes_reorder_credentials',
-                nonce: devnotesAdmin.nonce,
+                action: 'sitedocs_reorder_credentials',
+                nonce: sitedocsAdmin.nonce,
                 order: order
             }
         });
@@ -777,7 +777,7 @@
      * Check password verification
      */
     function checkVerification(callback) {
-        if (!devnotesAdmin.settings.require_password_verification || isVerified) {
+        if (!sitedocsAdmin.settings.require_password_verification || isVerified) {
             callback();
             return;
         }
@@ -790,7 +790,7 @@
      * Show password verification modal
      */
     function showPasswordModal() {
-        $('#devnotes-password-modal').addClass('active');
+        $('#sitedocs-password-modal').addClass('active');
         $('#verify-password').val('').focus();
         $('#password-error').hide();
     }
@@ -799,9 +799,9 @@
      * Initialize activity log
      */
     function initActivityLog() {
-        if (!devnotesAdmin.canViewCredentials) return;
+        if (!sitedocsAdmin.canViewCredentials) return;
 
-        $('#devnotes-activity-filter-action').on('change', function() {
+        $('#sitedocs-activity-filter-action').on('change', function() {
             loadActivityLog();
         });
     }
@@ -811,17 +811,17 @@
      */
     function loadActivityLog(page) {
         page = page || 1;
-        const container = $('#devnotes-activity-log');
-        const actionFilter = $('#devnotes-activity-filter-action').val();
+        const container = $('#sitedocs-activity-log');
+        const actionFilter = $('#sitedocs-activity-filter-action').val();
 
-        container.html('<div class="devnotes-loading"><div class="devnotes-spinner"></div></div>');
+        container.html('<div class="sitedocs-loading"><div class="sitedocs-spinner"></div></div>');
 
         $.ajax({
-            url: devnotesAdmin.ajaxUrl,
+            url: sitedocsAdmin.ajaxUrl,
             type: 'POST',
             data: {
-                action: 'devnotes_get_activity_log',
-                nonce: devnotesAdmin.nonce,
+                action: 'sitedocs_get_activity_log',
+                nonce: sitedocsAdmin.nonce,
                 page: page,
                 action_type: actionFilter
             },
@@ -837,11 +837,11 @@
      * Render activity log
      */
     function renderActivityLog(data) {
-        const container = $('#devnotes-activity-log');
-        const pagination = $('#devnotes-activity-pagination');
+        const container = $('#sitedocs-activity-log');
+        const pagination = $('#sitedocs-activity-pagination');
 
         if (!data.items || data.items.length === 0) {
-            container.html('<div class="devnotes-empty-state"><p>No activity recorded yet.</p></div>');
+            container.html('<div class="sitedocs-empty-state"><p>No activity recorded yet.</p></div>');
             pagination.html('');
             return;
         }
@@ -856,16 +856,16 @@
             if (log.action_type.startsWith('notes_')) {
                 label = 'Markdown Notes';
                 if (log.details) {
-                    details = `<div class="devnotes-activity-details">${escapeHtml(log.details)}</div>`;
+                    details = `<div class="sitedocs-activity-details">${escapeHtml(log.details)}</div>`;
                 }
             }
 
             html += `
-                <div class="devnotes-activity-row">
-                    <div class="devnotes-activity-time">${escapeHtml(log.created_at_formatted)}</div>
-                    <div class="devnotes-activity-action ${log.action_type}">${escapeHtml(log.action_label)}</div>
-                    <div class="devnotes-activity-label">${escapeHtml(label)}${details}</div>
-                    <div class="devnotes-activity-user">${escapeHtml(log.user_display_name)}</div>
+                <div class="sitedocs-activity-row">
+                    <div class="sitedocs-activity-time">${escapeHtml(log.created_at_formatted)}</div>
+                    <div class="sitedocs-activity-action ${log.action_type}">${escapeHtml(log.action_label)}</div>
+                    <div class="sitedocs-activity-label">${escapeHtml(label)}${details}</div>
+                    <div class="sitedocs-activity-user">${escapeHtml(log.user_display_name)}</div>
                 </div>
             `;
         });
@@ -892,7 +892,7 @@
      * Initialize settings
      */
     function initSettings() {
-        $('#devnotes-settings-form').on('submit', function(e) {
+        $('#sitedocs-settings-form').on('submit', function(e) {
             e.preventDefault();
             saveSettings();
         });
@@ -908,20 +908,20 @@
         });
 
         $.ajax({
-            url: devnotesAdmin.ajaxUrl,
+            url: sitedocsAdmin.ajaxUrl,
             type: 'POST',
             data: {
-                action: 'devnotes_save_settings',
-                nonce: devnotesAdmin.nonce,
+                action: 'sitedocs_save_settings',
+                nonce: sitedocsAdmin.nonce,
                 require_password_verification: $('input[name="require_password_verification"]').is(':checked') ? 1 : 0,
                 audit_log_retention_days: $('input[name="audit_log_retention_days"]').val(),
                 user_access: userAccess
             },
             success: function(response) {
                 if (response.success) {
-                    $('#devnotes-settings-status').addClass('saved').text(devnotesAdmin.strings.saved);
+                    $('#sitedocs-settings-status').addClass('saved').text(sitedocsAdmin.strings.saved);
                     setTimeout(function() {
-                        $('#devnotes-settings-status').removeClass('saved').text('');
+                        $('#sitedocs-settings-status').removeClass('saved').text('');
                     }, 3000);
                 }
             }
@@ -933,19 +933,19 @@
      */
     function initModals() {
         // Close modal buttons
-        $('.devnotes-modal-close, .devnotes-modal-cancel').on('click', function() {
+        $('.sitedocs-modal-close, .sitedocs-modal-cancel').on('click', function() {
             closeModal();
         });
 
         // Close on backdrop click
-        $('.devnotes-modal').on('click', function(e) {
+        $('.sitedocs-modal').on('click', function(e) {
             if (e.target === this) {
                 closeModal();
             }
         });
 
         // Password verification form
-        $('#devnotes-password-form').on('submit', function(e) {
+        $('#sitedocs-password-form').on('submit', function(e) {
             e.preventDefault();
             verifyPassword();
         });
@@ -962,7 +962,7 @@
      * Close modal
      */
     function closeModal() {
-        $('.devnotes-modal').removeClass('active');
+        $('.sitedocs-modal').removeClass('active');
         pendingAction = null;
     }
 
@@ -973,17 +973,17 @@
         const password = $('#verify-password').val();
 
         $.ajax({
-            url: devnotesAdmin.ajaxUrl,
+            url: sitedocsAdmin.ajaxUrl,
             type: 'POST',
             data: {
-                action: 'devnotes_verify_password',
-                nonce: devnotesAdmin.nonce,
+                action: 'sitedocs_verify_password',
+                nonce: sitedocsAdmin.nonce,
                 password: password
             },
             success: function(response) {
                 if (response.success) {
                     isVerified = true;
-                    $('#devnotes-password-modal').removeClass('active');
+                    $('#sitedocs-password-modal').removeClass('active');
 
                     if (pendingAction) {
                         pendingAction();
@@ -1040,11 +1040,11 @@
         notesAccessLogged = true;
 
         $.ajax({
-            url: devnotesAdmin.ajaxUrl,
+            url: sitedocsAdmin.ajaxUrl,
             type: 'POST',
             data: {
-                action: 'devnotes_log_notes_access',
-                nonce: devnotesAdmin.nonce
+                action: 'sitedocs_log_notes_access',
+                nonce: sitedocsAdmin.nonce
             }
         });
     }
@@ -1053,7 +1053,7 @@
      * Initialize copy/paste tracking on the editor
      */
     function initEditorCopyPasteTracking() {
-        const editorContainer = document.getElementById('devnotes-editor');
+        const editorContainer = document.getElementById('sitedocs-editor');
         if (!editorContainer) return;
 
         // Track copy events
@@ -1123,11 +1123,11 @@
      */
     function logNotesCopy(selectionLength, isFullContent) {
         $.ajax({
-            url: devnotesAdmin.ajaxUrl,
+            url: sitedocsAdmin.ajaxUrl,
             type: 'POST',
             data: {
-                action: 'devnotes_log_notes_copy',
-                nonce: devnotesAdmin.nonce,
+                action: 'sitedocs_log_notes_copy',
+                nonce: sitedocsAdmin.nonce,
                 selection_length: selectionLength,
                 is_full_content: isFullContent ? 'true' : 'false'
             }
@@ -1139,11 +1139,11 @@
      */
     function logNotesPaste(pasteLength, pasteType) {
         $.ajax({
-            url: devnotesAdmin.ajaxUrl,
+            url: sitedocsAdmin.ajaxUrl,
             type: 'POST',
             data: {
-                action: 'devnotes_log_notes_paste',
-                nonce: devnotesAdmin.nonce,
+                action: 'sitedocs_log_notes_paste',
+                nonce: sitedocsAdmin.nonce,
                 paste_length: pasteLength,
                 paste_type: pasteType
             }
