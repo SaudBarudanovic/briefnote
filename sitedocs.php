@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: SiteDocs
- * Plugin URI: https://github.com/SaudBarudanovic/wp-dev-notes
+ * Plugin URI: https://github.com/SaudBarudanovic/sitedocs
  * Description: A live-rendering Markdown editor and secure credentials storage for developer documentation in the WordPress admin.
  * Version: 1.0.0
  * Author: Saud Barudanovic
