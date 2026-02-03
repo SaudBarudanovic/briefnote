@@ -1,19 +1,19 @@
 <?php
 /**
- * Database class for SiteDocs
+ * Database class for Briefnote
  *
- * @package SiteDocs
+ * @package Briefnote
  * @since 1.0.0
  * @license GPL-2.0-or-later
  *
- * This file is part of SiteDocs.
+ * This file is part of Briefnote.
  *
- * SiteDocs is free software: you can redistribute it and/or modify
+ * Briefnote is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 2 of the License, or
  * any later version.
  *
- * SiteDocs is distributed in the hope that it will be useful,
+ * Briefnote is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
@@ -25,11 +25,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * SiteDocs Database Class
+ * Briefnote Database Class
  *
  * Handles database table creation and management
  */
-class SiteDocs_Database {
+class Briefnote_Database {
 
     /**
      * Get credentials table name
@@ -38,7 +38,7 @@ class SiteDocs_Database {
      */
     public static function get_credentials_table() {
         global $wpdb;
-        return $wpdb->prefix . 'sitedocs_credentials';
+        return $wpdb->prefix . 'briefnote_credentials';
     }
 
     /**
@@ -48,7 +48,7 @@ class SiteDocs_Database {
      */
     public static function get_audit_log_table() {
         global $wpdb;
-        return $wpdb->prefix . 'sitedocs_audit_log';
+        return $wpdb->prefix . 'briefnote_audit_log';
     }
 
     /**
@@ -105,7 +105,7 @@ class SiteDocs_Database {
         dbDelta( $sql_audit_log );
 
         // Store database version
-        update_option( 'sitedocs_db_version', SITEDOCS_VERSION );
+        update_option( 'briefnote_db_version', BRIEFNOTE_VERSION );
     }
 
     /**
@@ -152,6 +152,6 @@ class SiteDocs_Database {
         // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.DirectDatabaseQuery.SchemaChange, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter
         $wpdb->query( "DROP TABLE IF EXISTS {$audit_log_table}" );
 
-        delete_option( 'sitedocs_db_version' );
+        delete_option( 'briefnote_db_version' );
     }
 }

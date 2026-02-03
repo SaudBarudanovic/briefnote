@@ -1,8 +1,8 @@
 <?php
 /**
- * AJAX handler class for SiteDocs
+ * AJAX handler class for Briefnote
  *
- * @package SiteDocs
+ * @package Briefnote
  */
 
 // Prevent direct access
@@ -11,23 +11,23 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * SiteDocs AJAX Class
+ * Briefnote AJAX Class
  *
  * Handles all AJAX requests for the plugin
  */
-class SiteDocs_Ajax {
+class Briefnote_Ajax {
 
     /**
      * Single instance
      *
-     * @var SiteDocs_Ajax|null
+     * @var Briefnote_Ajax|null
      */
     private static $instance = null;
 
     /**
      * Get single instance
      *
-     * @return SiteDocs_Ajax
+     * @return Briefnote_Ajax
      */
     public static function instance() {
         if ( is_null( self::$instance ) ) {
@@ -41,28 +41,28 @@ class SiteDocs_Ajax {
      */
     private function __construct() {
         // Notes actions
-        add_action( 'wp_ajax_sitedocs_save_notes', array( $this, 'save_notes' ) );
-        add_action( 'wp_ajax_sitedocs_log_notes_access', array( $this, 'log_notes_access' ) );
-        add_action( 'wp_ajax_sitedocs_log_notes_copy', array( $this, 'log_notes_copy' ) );
-        add_action( 'wp_ajax_sitedocs_log_notes_paste', array( $this, 'log_notes_paste' ) );
+        add_action( 'wp_ajax_briefnote_save_notes', array( $this, 'save_notes' ) );
+        add_action( 'wp_ajax_briefnote_log_notes_access', array( $this, 'log_notes_access' ) );
+        add_action( 'wp_ajax_briefnote_log_notes_copy', array( $this, 'log_notes_copy' ) );
+        add_action( 'wp_ajax_briefnote_log_notes_paste', array( $this, 'log_notes_paste' ) );
 
         // Credential actions
-        add_action( 'wp_ajax_sitedocs_get_credentials', array( $this, 'get_credentials' ) );
-        add_action( 'wp_ajax_sitedocs_get_credential', array( $this, 'get_credential' ) );
-        add_action( 'wp_ajax_sitedocs_save_credential', array( $this, 'save_credential' ) );
-        add_action( 'wp_ajax_sitedocs_delete_credential', array( $this, 'delete_credential' ) );
-        add_action( 'wp_ajax_sitedocs_reveal_credential', array( $this, 'reveal_credential' ) );
-        add_action( 'wp_ajax_sitedocs_copy_credential', array( $this, 'copy_credential' ) );
-        add_action( 'wp_ajax_sitedocs_reorder_credentials', array( $this, 'reorder_credentials' ) );
+        add_action( 'wp_ajax_briefnote_get_credentials', array( $this, 'get_credentials' ) );
+        add_action( 'wp_ajax_briefnote_get_credential', array( $this, 'get_credential' ) );
+        add_action( 'wp_ajax_briefnote_save_credential', array( $this, 'save_credential' ) );
+        add_action( 'wp_ajax_briefnote_delete_credential', array( $this, 'delete_credential' ) );
+        add_action( 'wp_ajax_briefnote_reveal_credential', array( $this, 'reveal_credential' ) );
+        add_action( 'wp_ajax_briefnote_copy_credential', array( $this, 'copy_credential' ) );
+        add_action( 'wp_ajax_briefnote_reorder_credentials', array( $this, 'reorder_credentials' ) );
 
         // Audit log actions
-        add_action( 'wp_ajax_sitedocs_get_activity_log', array( $this, 'get_activity_log' ) );
+        add_action( 'wp_ajax_briefnote_get_activity_log', array( $this, 'get_activity_log' ) );
 
         // Settings actions
-        add_action( 'wp_ajax_sitedocs_save_settings', array( $this, 'save_settings' ) );
+        add_action( 'wp_ajax_briefnote_save_settings', array( $this, 'save_settings' ) );
 
         // Password verification
-        add_action( 'wp_ajax_sitedocs_verify_password', array( $this, 'verify_password' ) );
+        add_action( 'wp_ajax_briefnote_verify_password', array( $this, 'verify_password' ) );
     }
 
     /**
@@ -73,14 +73,14 @@ class SiteDocs_Ajax {
      */
     private function verify_request( $capability = 'manage_options' ) {
         // Verify nonce
-        if ( ! isset( $_POST['nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['nonce'] ) ), 'sitedocs_nonce' ) ) {
-            wp_send_json_error( array( 'message' => __( 'Security check failed.', 'sitedocs' ) ) );
+        if ( ! isset( $_POST['nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['nonce'] ) ), 'briefnote_nonce' ) ) {
+            wp_send_json_error( array( 'message' => __( 'Security check failed.', 'briefnote' ) ) );
             return false;
         }
 
         // Verify capability
         if ( ! current_user_can( $capability ) ) {
-            wp_send_json_error( array( 'message' => __( 'You do not have permission to perform this action.', 'sitedocs' ) ) );
+            wp_send_json_error( array( 'message' => __( 'You do not have permission to perform this action.', 'briefnote' ) ) );
             return false;
         }
 
@@ -93,7 +93,7 @@ class SiteDocs_Ajax {
      * @return bool True if verification is not needed or is valid
      */
     private function check_password_verification() {
-        $settings = get_option( 'sitedocs_settings', array() );
+        $settings = get_option( 'briefnote_settings', array() );
 
         // If password verification is not required, return true
         if ( empty( $settings['require_password_verification'] ) ) {
@@ -101,7 +101,7 @@ class SiteDocs_Ajax {
         }
 
         // Check session-based verification
-        $session_key = 'sitedocs_verified_' . get_current_user_id();
+        $session_key = 'briefnote_verified_' . get_current_user_id();
         $verified_time = get_transient( $session_key );
 
         // Verification valid for 15 minutes
@@ -121,26 +121,26 @@ class SiteDocs_Ajax {
         }
 
         // Nonce verified in verify_request() above.
-        // phpcs:ignore WordPress.Security.NonceVerification.Missing, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- content is Markdown; sanitized via wp_kses_post in SiteDocs_Notes::save_content().
+        // phpcs:ignore WordPress.Security.NonceVerification.Missing, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- content is Markdown; sanitized via wp_kses_post in Briefnote_Notes::save_content().
         $content = isset( $_POST['content'] ) ? wp_unslash( $_POST['content'] ) : '';
         // phpcs:ignore WordPress.Security.NonceVerification.Missing
         $save_type = isset( $_POST['save_type'] ) ? sanitize_text_field( wp_unslash( $_POST['save_type'] ) ) : 'manual';
 
-        if ( SiteDocs_Notes::save_content( $content ) ) {
+        if ( Briefnote_Notes::save_content( $content ) ) {
             // Log the save action with content length info
             $content_length = strlen( $content );
             $word_count = str_word_count( wp_strip_all_tags( $content ) );
-            SiteDocs_Audit_Log::log_notes(
+            Briefnote_Audit_Log::log_notes(
                 'notes_saved',
                 sprintf( '%s save, %d characters, ~%d words', ucfirst( $save_type ), $content_length, $word_count )
             );
 
             wp_send_json_success( array(
-                'message'   => __( 'Notes saved successfully.', 'sitedocs' ),
-                'lastSaved' => SiteDocs_Notes::get_last_saved_formatted(),
+                'message'   => __( 'Notes saved successfully.', 'briefnote' ),
+                'lastSaved' => Briefnote_Notes::get_last_saved_formatted(),
             ) );
         } else {
-            wp_send_json_error( array( 'message' => __( 'Failed to save notes.', 'sitedocs' ) ) );
+            wp_send_json_error( array( 'message' => __( 'Failed to save notes.', 'briefnote' ) ) );
         }
     }
 
@@ -152,7 +152,7 @@ class SiteDocs_Ajax {
             return;
         }
 
-        SiteDocs_Audit_Log::log_notes( 'notes_accessed', 'Notes tab opened' );
+        Briefnote_Audit_Log::log_notes( 'notes_accessed', 'Notes tab opened' );
         wp_send_json_success();
     }
 
@@ -173,7 +173,7 @@ class SiteDocs_Ajax {
             ? sprintf( 'Full content copied (%d characters)', $selection_length )
             : sprintf( 'Selection copied (%d characters)', $selection_length );
 
-        SiteDocs_Audit_Log::log_notes( 'notes_copied', $details );
+        Briefnote_Audit_Log::log_notes( 'notes_copied', $details );
         wp_send_json_success();
     }
 
@@ -192,7 +192,7 @@ class SiteDocs_Ajax {
 
         $details = sprintf( 'Content pasted (%d characters, %s)', $paste_length, $paste_type );
 
-        SiteDocs_Audit_Log::log_notes( 'notes_pasted', $details );
+        Briefnote_Audit_Log::log_notes( 'notes_pasted', $details );
         wp_send_json_success();
     }
 
@@ -200,14 +200,14 @@ class SiteDocs_Ajax {
      * Get all credentials
      */
     public function get_credentials() {
-        if ( ! $this->verify_request( SITEDOCS_CREDENTIALS_CAP ) ) {
+        if ( ! $this->verify_request( BRIEFNOTE_CREDENTIALS_CAP ) ) {
             return;
         }
 
-        $credentials = SiteDocs_Credentials::get_all();
+        $credentials = Briefnote_Credentials::get_all();
 
         // Add type labels
-        $types = SiteDocs_Credentials::get_types();
+        $types = Briefnote_Credentials::get_types();
         foreach ( $credentials as &$cred ) {
             $cred['type_label'] = isset( $types[ $cred['type'] ] ) ? $types[ $cred['type'] ] : $cred['type'];
         }
@@ -219,7 +219,7 @@ class SiteDocs_Ajax {
      * Get single credential for editing
      */
     public function get_credential() {
-        if ( ! $this->verify_request( SITEDOCS_CREDENTIALS_CAP ) ) {
+        if ( ! $this->verify_request( BRIEFNOTE_CREDENTIALS_CAP ) ) {
             return;
         }
 
@@ -227,23 +227,23 @@ class SiteDocs_Ajax {
         $id = isset( $_POST['id'] ) ? intval( $_POST['id'] ) : 0;
 
         if ( ! $id ) {
-            wp_send_json_error( array( 'message' => __( 'Invalid credential ID.', 'sitedocs' ) ) );
+            wp_send_json_error( array( 'message' => __( 'Invalid credential ID.', 'briefnote' ) ) );
             return;
         }
 
         // Check password verification for getting decrypted data
         if ( ! $this->check_password_verification() ) {
             wp_send_json_error( array(
-                'message'              => __( 'Password verification required.', 'sitedocs' ),
+                'message'              => __( 'Password verification required.', 'briefnote' ),
                 'require_verification' => true,
             ) );
             return;
         }
 
-        $credential = SiteDocs_Credentials::get( $id, true );
+        $credential = Briefnote_Credentials::get( $id, true );
 
         if ( ! $credential ) {
-            wp_send_json_error( array( 'message' => __( 'Credential not found.', 'sitedocs' ) ) );
+            wp_send_json_error( array( 'message' => __( 'Credential not found.', 'briefnote' ) ) );
             return;
         }
 
@@ -256,7 +256,7 @@ class SiteDocs_Ajax {
         }
 
         // Log credential view
-        SiteDocs_Audit_Log::log( 'viewed', $credential['label'], $id );
+        Briefnote_Audit_Log::log( 'viewed', $credential['label'], $id );
 
         wp_send_json_success( array( 'credential' => $credential ) );
     }
@@ -265,14 +265,14 @@ class SiteDocs_Ajax {
      * Save credential (create or update)
      */
     public function save_credential() {
-        if ( ! $this->verify_request( SITEDOCS_CREDENTIALS_CAP ) ) {
+        if ( ! $this->verify_request( BRIEFNOTE_CREDENTIALS_CAP ) ) {
             return;
         }
 
         // Verify encryption is available before saving credentials
-        if ( ! SiteDocs_Encryption::is_available() ) {
+        if ( ! Briefnote_Encryption::is_available() ) {
             wp_send_json_error( array(
-                'message' => __( 'Encryption is not available. Cannot save credentials securely.', 'sitedocs' ),
+                'message' => __( 'Encryption is not available. Cannot save credentials securely.', 'briefnote' ),
             ) );
             return;
         }
@@ -295,18 +295,18 @@ class SiteDocs_Ajax {
         // phpcs:enable WordPress.Security.NonceVerification.Missing, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 
         if ( empty( $data['label'] ) ) {
-            wp_send_json_error( array( 'message' => __( 'Label is required.', 'sitedocs' ) ) );
+            wp_send_json_error( array( 'message' => __( 'Label is required.', 'briefnote' ) ) );
             return;
         }
 
         if ( $id ) {
             // Update existing
-            $result = SiteDocs_Credentials::update( $id, $data );
-            $message = __( 'Credential updated successfully.', 'sitedocs' );
+            $result = Briefnote_Credentials::update( $id, $data );
+            $message = __( 'Credential updated successfully.', 'briefnote' );
         } else {
             // Create new
-            $result = SiteDocs_Credentials::create( $data );
-            $message = __( 'Credential created successfully.', 'sitedocs' );
+            $result = Briefnote_Credentials::create( $data );
+            $message = __( 'Credential created successfully.', 'briefnote' );
         }
 
         if ( $result ) {
@@ -315,7 +315,7 @@ class SiteDocs_Ajax {
                 'id'      => $id ? $id : $result,
             ) );
         } else {
-            wp_send_json_error( array( 'message' => __( 'Failed to save credential.', 'sitedocs' ) ) );
+            wp_send_json_error( array( 'message' => __( 'Failed to save credential.', 'briefnote' ) ) );
         }
     }
 
@@ -323,7 +323,7 @@ class SiteDocs_Ajax {
      * Delete credential
      */
     public function delete_credential() {
-        if ( ! $this->verify_request( SITEDOCS_CREDENTIALS_CAP ) ) {
+        if ( ! $this->verify_request( BRIEFNOTE_CREDENTIALS_CAP ) ) {
             return;
         }
 
@@ -331,14 +331,14 @@ class SiteDocs_Ajax {
         $id = isset( $_POST['id'] ) ? intval( $_POST['id'] ) : 0;
 
         if ( ! $id ) {
-            wp_send_json_error( array( 'message' => __( 'Invalid credential ID.', 'sitedocs' ) ) );
+            wp_send_json_error( array( 'message' => __( 'Invalid credential ID.', 'briefnote' ) ) );
             return;
         }
 
-        if ( SiteDocs_Credentials::delete( $id ) ) {
-            wp_send_json_success( array( 'message' => __( 'Credential deleted successfully.', 'sitedocs' ) ) );
+        if ( Briefnote_Credentials::delete( $id ) ) {
+            wp_send_json_success( array( 'message' => __( 'Credential deleted successfully.', 'briefnote' ) ) );
         } else {
-            wp_send_json_error( array( 'message' => __( 'Failed to delete credential.', 'sitedocs' ) ) );
+            wp_send_json_error( array( 'message' => __( 'Failed to delete credential.', 'briefnote' ) ) );
         }
     }
 
@@ -346,14 +346,14 @@ class SiteDocs_Ajax {
      * Reveal credential value
      */
     public function reveal_credential() {
-        if ( ! $this->verify_request( SITEDOCS_CREDENTIALS_CAP ) ) {
+        if ( ! $this->verify_request( BRIEFNOTE_CREDENTIALS_CAP ) ) {
             return;
         }
 
         // Check password verification
         if ( ! $this->check_password_verification() ) {
             wp_send_json_error( array(
-                'message'              => __( 'Password verification required.', 'sitedocs' ),
+                'message'              => __( 'Password verification required.', 'briefnote' ),
                 'require_verification' => true,
             ) );
             return;
@@ -365,19 +365,19 @@ class SiteDocs_Ajax {
         $field = isset( $_POST['field'] ) ? sanitize_text_field( wp_unslash( $_POST['field'] ) ) : '';
 
         if ( ! $id || ! $field ) {
-            wp_send_json_error( array( 'message' => __( 'Invalid request.', 'sitedocs' ) ) );
+            wp_send_json_error( array( 'message' => __( 'Invalid request.', 'briefnote' ) ) );
             return;
         }
 
-        $credential = SiteDocs_Credentials::get( $id, true );
+        $credential = Briefnote_Credentials::get( $id, true );
 
         if ( ! $credential ) {
-            wp_send_json_error( array( 'message' => __( 'Credential not found.', 'sitedocs' ) ) );
+            wp_send_json_error( array( 'message' => __( 'Credential not found.', 'briefnote' ) ) );
             return;
         }
 
         // Log the view action
-        SiteDocs_Audit_Log::log( 'viewed', $credential['label'], $id, 'Field: ' . $field );
+        Briefnote_Audit_Log::log( 'viewed', $credential['label'], $id, 'Field: ' . $field );
 
         // Return the decrypted value (sanitized for safe output)
         $value = isset( $credential[ $field ] ) ? $credential[ $field ] : '';
@@ -392,14 +392,14 @@ class SiteDocs_Ajax {
      * Copy credential value (for logging purposes)
      */
     public function copy_credential() {
-        if ( ! $this->verify_request( SITEDOCS_CREDENTIALS_CAP ) ) {
+        if ( ! $this->verify_request( BRIEFNOTE_CREDENTIALS_CAP ) ) {
             return;
         }
 
         // Check password verification
         if ( ! $this->check_password_verification() ) {
             wp_send_json_error( array(
-                'message'              => __( 'Password verification required.', 'sitedocs' ),
+                'message'              => __( 'Password verification required.', 'briefnote' ),
                 'require_verification' => true,
             ) );
             return;
@@ -411,19 +411,19 @@ class SiteDocs_Ajax {
         $field = isset( $_POST['field'] ) ? sanitize_text_field( wp_unslash( $_POST['field'] ) ) : '';
 
         if ( ! $id || ! $field ) {
-            wp_send_json_error( array( 'message' => __( 'Invalid request.', 'sitedocs' ) ) );
+            wp_send_json_error( array( 'message' => __( 'Invalid request.', 'briefnote' ) ) );
             return;
         }
 
-        $credential = SiteDocs_Credentials::get( $id, true );
+        $credential = Briefnote_Credentials::get( $id, true );
 
         if ( ! $credential ) {
-            wp_send_json_error( array( 'message' => __( 'Credential not found.', 'sitedocs' ) ) );
+            wp_send_json_error( array( 'message' => __( 'Credential not found.', 'briefnote' ) ) );
             return;
         }
 
         // Log the copy action
-        SiteDocs_Audit_Log::log( 'copied', $credential['label'], $id, 'Field: ' . $field );
+        Briefnote_Audit_Log::log( 'copied', $credential['label'], $id, 'Field: ' . $field );
 
         // Return the decrypted value for copying (sanitized for safe output)
         $value = isset( $credential[ $field ] ) ? $credential[ $field ] : '';
@@ -438,7 +438,7 @@ class SiteDocs_Ajax {
      * Reorder credentials
      */
     public function reorder_credentials() {
-        if ( ! $this->verify_request( SITEDOCS_CREDENTIALS_CAP ) ) {
+        if ( ! $this->verify_request( BRIEFNOTE_CREDENTIALS_CAP ) ) {
             return;
         }
 
@@ -446,14 +446,14 @@ class SiteDocs_Ajax {
         $order = isset( $_POST['order'] ) ? array_map( 'intval', wp_unslash( $_POST['order'] ) ) : array();
 
         if ( empty( $order ) ) {
-            wp_send_json_error( array( 'message' => __( 'Invalid order data.', 'sitedocs' ) ) );
+            wp_send_json_error( array( 'message' => __( 'Invalid order data.', 'briefnote' ) ) );
             return;
         }
 
-        if ( SiteDocs_Credentials::update_sort_order( $order ) ) {
-            wp_send_json_success( array( 'message' => __( 'Order saved.', 'sitedocs' ) ) );
+        if ( Briefnote_Credentials::update_sort_order( $order ) ) {
+            wp_send_json_success( array( 'message' => __( 'Order saved.', 'briefnote' ) ) );
         } else {
-            wp_send_json_error( array( 'message' => __( 'Failed to save order.', 'sitedocs' ) ) );
+            wp_send_json_error( array( 'message' => __( 'Failed to save order.', 'briefnote' ) ) );
         }
     }
 
@@ -461,7 +461,7 @@ class SiteDocs_Ajax {
      * Get activity log
      */
     public function get_activity_log() {
-        if ( ! $this->verify_request( SITEDOCS_CREDENTIALS_CAP ) ) {
+        if ( ! $this->verify_request( BRIEFNOTE_CREDENTIALS_CAP ) ) {
             return;
         }
 
@@ -473,13 +473,13 @@ class SiteDocs_Ajax {
         );
         // phpcs:enable WordPress.Security.NonceVerification.Missing
 
-        $logs = SiteDocs_Audit_Log::get_logs( $args );
+        $logs = Briefnote_Audit_Log::get_logs( $args );
 
         // Format dates
         $date_format = get_option( 'date_format' ) . ' ' . get_option( 'time_format' );
         foreach ( $logs['items'] as &$log ) {
             $log['created_at_formatted'] = date_i18n( $date_format, strtotime( $log['created_at'] ) );
-            $log['action_label'] = SiteDocs_Audit_Log::get_action_types()[ $log['action_type'] ] ?? $log['action_type'];
+            $log['action_label'] = Briefnote_Audit_Log::get_action_types()[ $log['action_type'] ] ?? $log['action_type'];
         }
 
         wp_send_json_success( $logs );
@@ -511,35 +511,35 @@ class SiteDocs_Ajax {
         foreach ( $users as $user ) {
             $user_obj = new WP_User( $user->ID );
             if ( in_array( $user->ID, $user_access, true ) ) {
-                $user_obj->add_cap( SITEDOCS_CREDENTIALS_CAP );
+                $user_obj->add_cap( BRIEFNOTE_CREDENTIALS_CAP );
             } else {
-                $user_obj->remove_cap( SITEDOCS_CREDENTIALS_CAP );
+                $user_obj->remove_cap( BRIEFNOTE_CREDENTIALS_CAP );
             }
         }
 
-        update_option( 'sitedocs_settings', $settings );
+        update_option( 'briefnote_settings', $settings );
 
-        wp_send_json_success( array( 'message' => __( 'Settings saved successfully.', 'sitedocs' ) ) );
+        wp_send_json_success( array( 'message' => __( 'Settings saved successfully.', 'briefnote' ) ) );
     }
 
     /**
      * Verify user password
      */
     public function verify_password() {
-        if ( ! $this->verify_request( SITEDOCS_CREDENTIALS_CAP ) ) {
+        if ( ! $this->verify_request( BRIEFNOTE_CREDENTIALS_CAP ) ) {
             return;
         }
 
         $user = wp_get_current_user();
 
         // Rate limiting: Check for too many failed attempts
-        $attempts_key = 'sitedocs_pwd_attempts_' . $user->ID;
-        $lockout_key = 'sitedocs_pwd_lockout_' . $user->ID;
+        $attempts_key = 'briefnote_pwd_attempts_' . $user->ID;
+        $lockout_key = 'briefnote_pwd_lockout_' . $user->ID;
 
         // Check if user is locked out
         if ( get_transient( $lockout_key ) ) {
             wp_send_json_error( array(
-                'message' => __( 'Too many failed attempts. Please wait 5 minutes before trying again.', 'sitedocs' ),
+                'message' => __( 'Too many failed attempts. Please wait 5 minutes before trying again.', 'briefnote' ),
             ) );
             return;
         }
@@ -548,7 +548,7 @@ class SiteDocs_Ajax {
         $password = isset( $_POST['password'] ) ? wp_unslash( $_POST['password'] ) : '';
 
         if ( empty( $password ) ) {
-            wp_send_json_error( array( 'message' => __( 'Password is required.', 'sitedocs' ) ) );
+            wp_send_json_error( array( 'message' => __( 'Password is required.', 'briefnote' ) ) );
             return;
         }
 
@@ -564,15 +564,15 @@ class SiteDocs_Ajax {
                 delete_transient( $attempts_key );
 
                 // Log the lockout
-                SiteDocs_Audit_Log::log( 'viewed', null, null, 'Password verification lockout triggered' );
+                Briefnote_Audit_Log::log( 'viewed', null, null, 'Password verification lockout triggered' );
 
                 wp_send_json_error( array(
-                    'message' => __( 'Too many failed attempts. Please wait 5 minutes before trying again.', 'sitedocs' ),
+                    'message' => __( 'Too many failed attempts. Please wait 5 minutes before trying again.', 'briefnote' ),
                 ) );
                 return;
             }
 
-            wp_send_json_error( array( 'message' => __( 'Incorrect password.', 'sitedocs' ) ) );
+            wp_send_json_error( array( 'message' => __( 'Incorrect password.', 'briefnote' ) ) );
             return;
         }
 
@@ -580,9 +580,9 @@ class SiteDocs_Ajax {
         delete_transient( $attempts_key );
 
         // Set session-based verification (valid for 15 minutes)
-        $session_key = 'sitedocs_verified_' . $user->ID;
+        $session_key = 'briefnote_verified_' . $user->ID;
         set_transient( $session_key, time(), 900 );
 
-        wp_send_json_success( array( 'message' => __( 'Password verified.', 'sitedocs' ) ) );
+        wp_send_json_success( array( 'message' => __( 'Password verified.', 'briefnote' ) ) );
     }
 }

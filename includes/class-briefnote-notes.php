@@ -1,19 +1,19 @@
 <?php
 /**
- * Notes class for SiteDocs
+ * Notes class for Briefnote
  *
- * @package SiteDocs
+ * @package Briefnote
  * @since 1.0.0
  * @license GPL-2.0-or-later
  *
- * This file is part of SiteDocs.
+ * This file is part of Briefnote.
  *
- * SiteDocs is free software: you can redistribute it and/or modify
+ * Briefnote is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 2 of the License, or
  * any later version.
  *
- * SiteDocs is distributed in the hope that it will be useful,
+ * Briefnote is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
@@ -25,21 +25,21 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * SiteDocs Notes Class
+ * Briefnote Notes Class
  *
  * Handles Markdown notes storage and retrieval
  */
-class SiteDocs_Notes {
+class Briefnote_Notes {
 
     /**
      * Option name for notes content
      */
-    const OPTION_CONTENT = 'sitedocs_content';
+    const OPTION_CONTENT = 'briefnote_content';
 
     /**
      * Option name for last saved timestamp
      */
-    const OPTION_LAST_SAVED = 'sitedocs_last_saved';
+    const OPTION_LAST_SAVED = 'briefnote_last_saved';
 
     /**
      * Get notes content
@@ -91,7 +91,7 @@ class SiteDocs_Notes {
         $timestamp = self::get_last_saved();
 
         if ( ! $timestamp ) {
-            return __( 'Never', 'sitedocs' );
+            return __( 'Never', 'briefnote' );
         }
 
         $datetime = strtotime( $timestamp );

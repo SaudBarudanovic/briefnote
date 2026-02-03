@@ -1,19 +1,19 @@
 <?php
 /**
- * Encryption class for SiteDocs
+ * Encryption class for Briefnote
  *
- * @package SiteDocs
+ * @package Briefnote
  * @since 1.0.0
  * @license GPL-2.0-or-later
  *
- * This file is part of SiteDocs.
+ * This file is part of Briefnote.
  *
- * SiteDocs is free software: you can redistribute it and/or modify
+ * Briefnote is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 2 of the License, or
  * any later version.
  *
- * SiteDocs is distributed in the hope that it will be useful,
+ * Briefnote is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
@@ -25,16 +25,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * SiteDocs Encryption Class
+ * Briefnote Encryption Class
  *
  * Uses sodium_compat for secure encryption of credentials
  */
-class SiteDocs_Encryption {
+class Briefnote_Encryption {
 
     /**
      * Option name for storing our encryption key
      */
-    const KEY_OPTION = 'sitedocs_encryption_key';
+    const KEY_OPTION = 'briefnote_encryption_key';
 
     /**
      * Get or generate the encryption key
@@ -109,7 +109,7 @@ class SiteDocs_Encryption {
         } catch ( Exception $e ) {
             if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
                 // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
-                error_log( 'SiteDocs Encryption Error: ' . $e->getMessage() );
+                error_log( 'Briefnote Encryption Error: ' . $e->getMessage() );
             }
             return false;
         }
@@ -153,7 +153,7 @@ class SiteDocs_Encryption {
         } catch ( Exception $e ) {
             if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
                 // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
-                error_log( 'SiteDocs Decryption Error: ' . $e->getMessage() );
+                error_log( 'Briefnote Decryption Error: ' . $e->getMessage() );
             }
             return false;
         }

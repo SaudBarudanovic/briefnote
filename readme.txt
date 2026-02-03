@@ -1,4 +1,4 @@
-=== SiteDocs ===
+=== Briefnote ===
 Contributors: saudbarudanovic
 Tags: markdown, notes, credentials, developer, encryption
 Requires at least: 5.2
@@ -12,7 +12,7 @@ A live-rendering Markdown editor and secure credentials storage for developer do
 
 == Description ==
 
-SiteDocs is designed for developers and site administrators who need a secure, centralized location to store development notes and sensitive credentials directly within the WordPress admin interface. The plugin combines a powerful Markdown editor with enterprise-grade encryption for credential storage.
+Briefnote is designed for developers and site administrators who need a secure, centralized location to store development notes and sensitive credentials directly within the WordPress admin interface. The plugin combines a powerful Markdown editor with enterprise-grade encryption for credential storage.
 
 = Markdown Notes Editor =
 
@@ -49,9 +49,9 @@ SiteDocs is designed for developers and site administrators who need a secure, c
 
 == Installation ==
 
-1. Upload the `sitedocs` folder to the `/wp-content/plugins/` directory
+1. Upload the `briefnote` folder to the `/wp-content/plugins/` directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
-3. Access SiteDocs from the new menu item in the WordPress admin sidebar
+3. Access Briefnote from the new menu item in the WordPress admin sidebar
 
 The plugin automatically creates the required database tables and generates a secure encryption key on first use.
 
@@ -59,7 +59,7 @@ The plugin automatically creates the required database tables and generates a se
 
 = What encryption does this plugin use? =
 
-SiteDocs uses libsodium's crypto_secretbox construction, which provides XSalsa20 stream cipher encryption with Poly1305 message authentication. This is equivalent to AES-256-GCM in security strength.
+Briefnote uses libsodium's crypto_secretbox construction, which provides XSalsa20 stream cipher encryption with Poly1305 message authentication. This is equivalent to AES-256-GCM in security strength.
 
 = Where is the encryption key stored? =
 
@@ -67,11 +67,11 @@ The encryption key is automatically generated using cryptographically secure ran
 
 = Can I grant credential access to non-admin users? =
 
-Yes. Go to Settings tab and toggle access for specific users. Users with access receive the `view_sitedocs_credentials` capability. Administrators always have access.
+Yes. Go to Settings tab and toggle access for specific users. Users with access receive the `view_briefnote_credentials` capability. Administrators always have access.
 
 = What happens if I delete the plugin? =
 
-Deactivating the plugin keeps all data intact. To completely remove all data, delete the plugin and then manually remove the database tables (`wp_sitedocs_credentials`, `wp_sitedocs_audit_log`) and options (`sitedocs_content`, `sitedocs_settings`, `sitedocs_encryption_key`).
+Deactivating the plugin keeps all data intact. To completely remove all data, delete the plugin and then manually remove the database tables (`wp_briefnote_credentials`, `wp_briefnote_audit_log`) and options (`briefnote_content`, `briefnote_settings`, `briefnote_encryption_key`).
 
 = Is the Markdown content encrypted? =
 
@@ -99,11 +99,11 @@ No, the Markdown notes are stored as plain text in the WordPress options table. 
 == Upgrade Notice ==
 
 = 1.0.0 =
-Initial release of SiteDocs.
+Initial release of Briefnote.
 
 == Privacy Policy ==
 
-SiteDocs does not collect, transmit, or share any user data with external services. All data is stored locally in your WordPress database. The plugin does not make any external API calls or load resources from external servers.
+Briefnote does not collect, transmit, or share any user data with external services. All data is stored locally in your WordPress database. The plugin does not make any external API calls or load resources from external servers.
 
 == Third-Party Libraries ==
 

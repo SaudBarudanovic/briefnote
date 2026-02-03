@@ -1,5 +1,5 @@
 /**
- * SiteDocs Admin Styles
+ * Briefnote Admin Styles
  * Modern, clean design with proper dark mode support
  */
 
@@ -60,7 +60,7 @@
 /* ========================================
    CSS Variables - Dark Mode
    ======================================== */
-.sitedocs-dark {
+.briefnote-dark {
     --sd-primary: #60a5fa;
     --sd-primary-hover: #93c5fd;
     --sd-primary-light: #1e3a5f;
@@ -101,7 +101,7 @@
 /* ========================================
    Base Styles
    ======================================== */
-.sitedocs-wrap {
+.briefnote-wrap {
     /* max-width: 1400px; */
     margin: 20px 20px 20px 0;
     padding: 24px;
@@ -112,31 +112,31 @@
 }
 
 /* Dark mode full background override */
-.sitedocs-dark {
+.briefnote-dark {
     background: var(--sd-bg-primary) !important;
 }
 
 /* Override WordPress admin background in dark mode */
-body.sitedocs-dark-mode,
-body.sitedocs-dark-mode #wpcontent,
-body.sitedocs-dark-mode #wpbody,
-body.sitedocs-dark-mode #wpbody-content {
+body.briefnote-dark-mode,
+body.briefnote-dark-mode #wpcontent,
+body.briefnote-dark-mode #wpbody,
+body.briefnote-dark-mode #wpbody-content {
     background: #0f172a !important;
 }
 
-body.sitedocs-dark-mode #wpfooter {
+body.briefnote-dark-mode #wpfooter {
     background: #0f172a !important;
     color: #64748b;
 }
 
-.sitedocs-wrap * {
+.briefnote-wrap * {
     box-sizing: border-box;
 }
 
 /* ========================================
    Header / Title
    ======================================== */
-.sitedocs-title {
+.briefnote-title {
     display: flex;
     align-items: center;
     gap: 12px;
@@ -148,7 +148,7 @@ body.sitedocs-dark-mode #wpfooter {
     letter-spacing: -0.5px;
 }
 
-.sitedocs-title .dashicons {
+.briefnote-title .dashicons {
     font-size: 32px;
     width: 32px;
     height: 32px;
@@ -158,7 +158,7 @@ body.sitedocs-dark-mode #wpfooter {
 /* ========================================
    Tabs Navigation
    ======================================== */
-.sitedocs-tabs {
+.briefnote-tabs {
     display: flex;
     align-items: center;
     gap: 4px;
@@ -170,7 +170,7 @@ body.sitedocs-dark-mode #wpfooter {
     border: 1px solid var(--sd-border);
 }
 
-.sitedocs-tab {
+.briefnote-tab {
     display: flex;
     align-items: center;
     gap: 8px;
@@ -185,31 +185,31 @@ body.sitedocs-dark-mode #wpfooter {
     transition: all 0.2s ease;
 }
 
-.sitedocs-tab:hover {
+.briefnote-tab:hover {
     background: var(--sd-bg-hover);
     color: var(--sd-text-primary);
 }
 
-.sitedocs-tab.active {
+.briefnote-tab.active {
     background: var(--sd-bg-primary);
     color: var(--sd-primary);
     box-shadow: var(--sd-shadow);
 }
 
-.sitedocs-tab .dashicons {
+.briefnote-tab .dashicons {
     font-size: 18px;
     width: 18px;
     height: 18px;
 }
 
-.sitedocs-tab-actions {
+.briefnote-tab-actions {
     margin-left: auto;
     display: flex;
     align-items: center;
     gap: 8px;
 }
 
-.sitedocs-theme-toggle {
+.briefnote-theme-toggle {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -223,27 +223,27 @@ body.sitedocs-dark-mode #wpfooter {
     transition: all 0.2s ease;
 }
 
-.sitedocs-theme-toggle:hover {
+.briefnote-theme-toggle:hover {
     background: var(--sd-primary);
     border-color: var(--sd-primary);
     color: var(--sd-text-inverse);
 }
 
-.sitedocs-dark .sitedocs-theme-toggle {
+.briefnote-dark .briefnote-theme-toggle {
     color: var(--sd-warning);
 }
 
 /* Dark mode tabs styling */
-.sitedocs-dark .sitedocs-tabs {
+.briefnote-dark .briefnote-tabs {
     background: #1e293b;
     border-color: #334155;
 }
 
-.sitedocs-dark .sitedocs-tab.active {
+.briefnote-dark .briefnote-tab.active {
     background: #0f172a;
 }
 
-.sitedocs-dark .sitedocs-tab-content {
+.briefnote-dark .briefnote-tab-content {
     background: #0f172a;
     border-color: #334155;
 }
@@ -251,7 +251,7 @@ body.sitedocs-dark-mode #wpfooter {
 /* ========================================
    Tab Content
    ======================================== */
-.sitedocs-tab-content {
+.briefnote-tab-content {
     display: none;
     background: var(--sd-bg-primary);
     padding: 24px;
@@ -260,14 +260,14 @@ body.sitedocs-dark-mode #wpfooter {
     box-shadow: var(--sd-shadow);
 }
 
-.sitedocs-tab-content.active {
+.briefnote-tab-content.active {
     display: block;
 }
 
 /* ========================================
    Notes Editor Section
    ======================================== */
-.sitedocs-editor-header {
+.briefnote-editor-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -276,7 +276,7 @@ body.sitedocs-dark-mode #wpfooter {
     border-bottom: 1px solid var(--sd-border);
 }
 
-.sitedocs-save-status {
+.briefnote-save-status {
     display: flex;
     align-items: center;
     gap: 12px;
@@ -284,16 +284,16 @@ body.sitedocs-dark-mode #wpfooter {
     font-size: 13px;
 }
 
-.sitedocs-last-saved {
+.briefnote-last-saved {
     color: var(--sd-text-secondary);
 }
 
-#sitedocs-last-saved-time {
+#briefnote-last-saved-time {
     font-weight: 500;
     color: var(--sd-text-primary);
 }
 
-.sitedocs-save-indicator {
+.briefnote-save-indicator {
     display: inline-flex;
     align-items: center;
     gap: 6px;
@@ -305,22 +305,22 @@ body.sitedocs-dark-mode #wpfooter {
     letter-spacing: 0.5px;
 }
 
-.sitedocs-save-indicator.saving {
+.briefnote-save-indicator.saving {
     background: var(--sd-warning-bg);
     color: var(--sd-warning);
 }
 
-.sitedocs-save-indicator.saved {
+.briefnote-save-indicator.saved {
     background: var(--sd-success-bg);
     color: var(--sd-success);
 }
 
-.sitedocs-save-indicator.error {
+.briefnote-save-indicator.error {
     background: var(--sd-error-bg);
     color: var(--sd-error);
 }
 
-#sitedocs-save-btn {
+#briefnote-save-btn {
     display: flex;
     align-items: center;
     gap: 8px;
@@ -335,20 +335,20 @@ body.sitedocs-dark-mode #wpfooter {
     transition: all 0.2s ease;
 }
 
-#sitedocs-save-btn:hover {
+#briefnote-save-btn:hover {
     background: var(--sd-primary-hover);
     transform: translateY(-1px);
     box-shadow: var(--sd-shadow-md);
 }
 
-#sitedocs-save-btn .dashicons {
+#briefnote-save-btn .dashicons {
     font-size: 18px;
     width: 18px;
     height: 18px;
 }
 
 /* Editor container */
-#sitedocs-editor {
+#briefnote-editor {
     min-height: 600px;
     border: 1px solid var(--sd-border);
     border-radius: var(--sd-radius);
@@ -356,7 +356,7 @@ body.sitedocs-dark-mode #wpfooter {
     background: var(--sd-editor-bg);
 }
 
-.sitedocs-dark #sitedocs-editor {
+.briefnote-dark #briefnote-editor {
     border-color: #334155;
     background: #1e293b;
 }
@@ -514,109 +514,109 @@ body.sitedocs-dark-mode #wpfooter {
 }
 
 /* Placeholder text in dark mode */
-.sitedocs-dark .ProseMirror .placeholder,
-.sitedocs-dark .toastui-editor-contents .placeholder {
+.briefnote-dark .ProseMirror .placeholder,
+.briefnote-dark .toastui-editor-contents .placeholder {
     color: var(--sd-text-muted) !important;
 }
 
 /* Force dark mode colors on editor content */
-.sitedocs-dark .toastui-editor-defaultUI,
-.sitedocs-dark .toastui-editor-main,
-.sitedocs-dark .toastui-editor-main-container,
-.sitedocs-dark .toastui-editor-md-container,
-.sitedocs-dark .toastui-editor-ww-container {
+.briefnote-dark .toastui-editor-defaultUI,
+.briefnote-dark .toastui-editor-main,
+.briefnote-dark .toastui-editor-main-container,
+.briefnote-dark .toastui-editor-md-container,
+.briefnote-dark .toastui-editor-ww-container {
     background: #1e293b !important;
 }
 
-.sitedocs-dark .toastui-editor-contents,
-.sitedocs-dark .toastui-editor-contents *:not(pre):not(code):not(.token),
-.sitedocs-dark .ProseMirror,
-.sitedocs-dark .ProseMirror *:not(pre):not(code):not(.token) {
+.briefnote-dark .toastui-editor-contents,
+.briefnote-dark .toastui-editor-contents *:not(pre):not(code):not(.token),
+.briefnote-dark .ProseMirror,
+.briefnote-dark .ProseMirror *:not(pre):not(code):not(.token) {
     color: #f1f5f9 !important;
 }
 
-.sitedocs-dark .toastui-editor-md-preview,
-.sitedocs-dark .toastui-editor-md-preview *:not(pre):not(code):not(.token) {
+.briefnote-dark .toastui-editor-md-preview,
+.briefnote-dark .toastui-editor-md-preview *:not(pre):not(code):not(.token) {
     color: #f1f5f9 !important;
 }
 
-.sitedocs-dark .CodeMirror,
-.sitedocs-dark .CodeMirror-code,
-.sitedocs-dark .CodeMirror-line,
-.sitedocs-dark .CodeMirror-lines,
-.sitedocs-dark .CodeMirror pre,
-.sitedocs-dark .CodeMirror span {
+.briefnote-dark .CodeMirror,
+.briefnote-dark .CodeMirror-code,
+.briefnote-dark .CodeMirror-line,
+.briefnote-dark .CodeMirror-lines,
+.briefnote-dark .CodeMirror pre,
+.briefnote-dark .CodeMirror span {
     color: #f1f5f9 !important;
     background: #1e293b !important;
 }
 
-.sitedocs-dark .CodeMirror-gutters {
+.briefnote-dark .CodeMirror-gutters {
     background: #1e293b !important;
     border-right-color: #334155 !important;
 }
 
-.sitedocs-dark .CodeMirror-linenumber {
+.briefnote-dark .CodeMirror-linenumber {
     color: #64748b !important;
 }
 
-.sitedocs-dark .toastui-editor-toolbar,
-.sitedocs-dark .toastui-editor-defaultUI-toolbar,
-.sitedocs-dark .toastui-editor-toolbar-group {
+.briefnote-dark .toastui-editor-toolbar,
+.briefnote-dark .toastui-editor-defaultUI-toolbar,
+.briefnote-dark .toastui-editor-toolbar-group {
     background: #1e293b !important;
     border-color: #334155 !important;
 }
 
-.sitedocs-dark .toastui-editor-toolbar-icons {
+.briefnote-dark .toastui-editor-toolbar-icons {
     background-color: transparent !important;
     border-color: transparent !important;
     filter: brightness(0) invert(1) !important;
 }
 
-.sitedocs-dark .toastui-editor-toolbar-icons:hover {
+.briefnote-dark .toastui-editor-toolbar-icons:hover {
     background-color: #334155 !important;
 }
 
-.sitedocs-dark .toastui-editor-toolbar-icons:active,
-.sitedocs-dark .toastui-editor-toolbar-icons.active {
+.briefnote-dark .toastui-editor-toolbar-icons:active,
+.briefnote-dark .toastui-editor-toolbar-icons.active {
     background-color: #3b82f6 !important;
 }
 
-.sitedocs-dark .toastui-editor-toolbar-divider {
+.briefnote-dark .toastui-editor-toolbar-divider {
     background-color: #334155 !important;
 }
 
-.sitedocs-dark .toastui-editor-dropdown-toolbar {
+.briefnote-dark .toastui-editor-dropdown-toolbar {
     background: #1e293b !important;
     border-color: #334155 !important;
 }
 
-.sitedocs-dark .toastui-editor-popup {
+.briefnote-dark .toastui-editor-popup {
     background: #1e293b !important;
     border-color: #334155 !important;
 }
 
-.sitedocs-dark .toastui-editor-popup-body {
+.briefnote-dark .toastui-editor-popup-body {
     background: #1e293b !important;
 }
 
-.sitedocs-dark .toastui-editor-popup-body label,
-.sitedocs-dark .toastui-editor-popup-body input,
-.sitedocs-dark .toastui-editor-popup-body select {
+.briefnote-dark .toastui-editor-popup-body label,
+.briefnote-dark .toastui-editor-popup-body input,
+.briefnote-dark .toastui-editor-popup-body select {
     color: #f1f5f9 !important;
     background: #0f172a !important;
     border-color: #334155 !important;
 }
 
-.sitedocs-dark .toastui-editor-mode-switch {
+.briefnote-dark .toastui-editor-mode-switch {
     background: #1e293b !important;
     border-top-color: #334155 !important;
 }
 
-.sitedocs-dark .toastui-editor-mode-switch .tab-item {
+.briefnote-dark .toastui-editor-mode-switch .tab-item {
     color: #94a3b8 !important;
 }
 
-.sitedocs-dark .toastui-editor-mode-switch .tab-item.active {
+.briefnote-dark .toastui-editor-mode-switch .tab-item.active {
     color: #60a5fa !important;
     background: #0f172a !important;
 }
@@ -691,21 +691,21 @@ body.sitedocs-dark-mode #wpfooter {
 /* ========================================
    Credentials Section
    ======================================== */
-.sitedocs-credentials-header {
+.briefnote-credentials-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 24px;
 }
 
-.sitedocs-credentials-header h2 {
+.briefnote-credentials-header h2 {
     margin: 0;
     font-size: 20px;
     font-weight: 600;
     color: var(--sd-text-primary);
 }
 
-#sitedocs-add-credential {
+#briefnote-add-credential {
     display: flex;
     align-items: center;
     gap: 8px;
@@ -720,13 +720,13 @@ body.sitedocs-dark-mode #wpfooter {
     transition: all 0.2s ease;
 }
 
-#sitedocs-add-credential:hover {
+#briefnote-add-credential:hover {
     background: var(--sd-primary-hover);
     transform: translateY(-1px);
     box-shadow: var(--sd-shadow-md);
 }
 
-#sitedocs-add-credential .dashicons {
+#briefnote-add-credential .dashicons {
     font-size: 18px;
     width: 18px;
     height: 18px;
@@ -734,14 +734,14 @@ body.sitedocs-dark-mode #wpfooter {
 }
 
 /* Credentials list */
-.sitedocs-credentials-list {
+.briefnote-credentials-list {
     display: flex;
     flex-direction: column;
     gap: 12px;
 }
 
 /* Credential card */
-.sitedocs-credential-card {
+.briefnote-credential-card {
     background: var(--sd-bg-secondary);
     border: 1px solid var(--sd-border);
     border-radius: var(--sd-radius-lg);
@@ -753,24 +753,24 @@ body.sitedocs-dark-mode #wpfooter {
     transition: all 0.2s ease;
 }
 
-.sitedocs-credential-card:hover {
+.briefnote-credential-card:hover {
     border-color: var(--sd-primary);
     box-shadow: var(--sd-shadow-md);
     transform: translateY(-2px);
 }
 
-.sitedocs-credential-info {
+.briefnote-credential-info {
     min-width: 0;
 }
 
-.sitedocs-credential-label {
+.briefnote-credential-label {
     font-weight: 600;
     font-size: 16px;
     color: var(--sd-text-primary);
     margin-bottom: 8px;
 }
 
-.sitedocs-credential-meta {
+.briefnote-credential-meta {
     display: flex;
     gap: 16px;
     flex-wrap: wrap;
@@ -778,35 +778,35 @@ body.sitedocs-dark-mode #wpfooter {
     color: var(--sd-text-secondary);
 }
 
-.sitedocs-credential-meta span {
+.briefnote-credential-meta span {
     display: flex;
     align-items: center;
     gap: 6px;
 }
 
-.sitedocs-credential-meta .dashicons {
+.briefnote-credential-meta .dashicons {
     font-size: 14px;
     width: 14px;
     height: 14px;
     color: var(--sd-text-muted);
 }
 
-.sitedocs-credential-meta a {
+.briefnote-credential-meta a {
     color: var(--sd-primary);
     text-decoration: none;
 }
 
-.sitedocs-credential-meta a:hover {
+.briefnote-credential-meta a:hover {
     text-decoration: underline;
 }
 
 /* Credential action buttons */
-.sitedocs-credential-actions {
+.briefnote-credential-actions {
     display: flex;
     gap: 8px;
 }
 
-.sitedocs-credential-actions button {
+.briefnote-credential-actions button {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -821,7 +821,7 @@ body.sitedocs-dark-mode #wpfooter {
     transition: all 0.2s ease;
 }
 
-.sitedocs-credential-actions button:hover {
+.briefnote-credential-actions button:hover {
     background: var(--sd-primary);
     border-color: var(--sd-primary);
     color: white;
@@ -829,19 +829,19 @@ body.sitedocs-dark-mode #wpfooter {
     box-shadow: var(--sd-shadow);
 }
 
-.sitedocs-credential-actions button.delete:hover {
+.briefnote-credential-actions button.delete:hover {
     background: var(--sd-error);
     border-color: var(--sd-error);
 }
 
-.sitedocs-credential-actions .dashicons {
+.briefnote-credential-actions .dashicons {
     font-size: 18px;
     width: 18px;
     height: 18px;
 }
 
 /* Credential revealed fields */
-.sitedocs-credential-fields {
+.briefnote-credential-fields {
     grid-column: 1 / -1;
     margin-top: 16px;
     padding-top: 16px;
@@ -849,11 +849,11 @@ body.sitedocs-dark-mode #wpfooter {
     display: none;
 }
 
-.sitedocs-credential-fields.visible {
+.briefnote-credential-fields.visible {
     display: block;
 }
 
-.sitedocs-field-row {
+.briefnote-field-row {
     display: flex;
     align-items: center;
     gap: 12px;
@@ -864,11 +864,11 @@ body.sitedocs-dark-mode #wpfooter {
     border-radius: var(--sd-radius);
 }
 
-.sitedocs-field-row:last-child {
+.briefnote-field-row:last-child {
     margin-bottom: 0;
 }
 
-.sitedocs-field-label {
+.briefnote-field-label {
     font-weight: 600;
     font-size: 12px;
     text-transform: uppercase;
@@ -877,7 +877,7 @@ body.sitedocs-dark-mode #wpfooter {
     min-width: 100px;
 }
 
-.sitedocs-field-value {
+.briefnote-field-value {
     flex: 1;
     font-family: "JetBrains Mono", "Fira Code", monospace;
     font-size: 14px;
@@ -888,17 +888,17 @@ body.sitedocs-dark-mode #wpfooter {
     border-radius: var(--sd-radius-sm);
 }
 
-.sitedocs-field-value.masked {
+.briefnote-field-value.masked {
     letter-spacing: 3px;
     color: var(--sd-text-muted);
 }
 
-.sitedocs-field-actions {
+.briefnote-field-actions {
     display: flex;
     gap: 6px;
 }
 
-.sitedocs-field-actions button {
+.briefnote-field-actions button {
     padding: 6px 12px;
     border-radius: var(--sd-radius-sm);
     border: 1px solid var(--sd-border);
@@ -910,7 +910,7 @@ body.sitedocs-dark-mode #wpfooter {
     transition: all 0.2s ease;
 }
 
-.sitedocs-field-actions button:hover {
+.briefnote-field-actions button:hover {
     background: var(--sd-primary);
     border-color: var(--sd-primary);
     color: white;
@@ -919,13 +919,13 @@ body.sitedocs-dark-mode #wpfooter {
 /* ========================================
    Empty State
    ======================================== */
-.sitedocs-empty-state {
+.briefnote-empty-state {
     text-align: center;
     padding: 60px 20px;
     color: var(--sd-text-muted);
 }
 
-.sitedocs-empty-state .dashicons {
+.briefnote-empty-state .dashicons {
     font-size: 64px;
     width: 64px;
     height: 64px;
@@ -933,7 +933,7 @@ body.sitedocs-dark-mode #wpfooter {
     color: var(--sd-text-muted);
 }
 
-.sitedocs-empty-state p {
+.briefnote-empty-state p {
     font-size: 16px;
     margin: 0 0 24px;
     color: var(--sd-text-secondary);
@@ -943,7 +943,7 @@ body.sitedocs-dark-mode #wpfooter {
 /* ========================================
    Modal Styles
    ======================================== */
-.sitedocs-modal {
+.briefnote-modal {
     display: none;
     position: fixed;
     top: 0;
@@ -958,11 +958,11 @@ body.sitedocs-dark-mode #wpfooter {
     padding: 20px;
 }
 
-.sitedocs-modal.active {
+.briefnote-modal.active {
     display: flex;
 }
 
-.sitedocs-modal-content {
+.briefnote-modal-content {
     background: var(--sd-bg-primary);
     border-radius: var(--sd-radius-xl);
     width: 100%;
@@ -973,11 +973,11 @@ body.sitedocs-dark-mode #wpfooter {
     border: 1px solid var(--sd-border);
 }
 
-.sitedocs-modal-small {
+.briefnote-modal-small {
     max-width: 420px;
 }
 
-.sitedocs-modal-header {
+.briefnote-modal-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -987,14 +987,14 @@ body.sitedocs-dark-mode #wpfooter {
     border-radius: var(--sd-radius-xl) var(--sd-radius-xl) 0 0;
 }
 
-.sitedocs-modal-header h3 {
+.briefnote-modal-header h3 {
     margin: 0;
     font-size: 18px;
     font-weight: 600;
     color: var(--sd-text-primary);
 }
 
-.sitedocs-modal-close {
+.briefnote-modal-close {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1009,25 +1009,25 @@ body.sitedocs-dark-mode #wpfooter {
     transition: all 0.2s ease;
 }
 
-.sitedocs-modal-close:hover {
+.briefnote-modal-close:hover {
     background: var(--sd-error);
     color: white;
 }
 
-#sitedocs-credential-form,
-#sitedocs-password-form {
+#briefnote-credential-form,
+#briefnote-password-form {
     padding: 24px;
 }
 
-.sitedocs-form-row {
+.briefnote-form-row {
     margin-bottom: 20px;
 }
 
-.sitedocs-form-row:last-of-type {
+.briefnote-form-row:last-of-type {
     margin-bottom: 0;
 }
 
-.sitedocs-form-row label {
+.briefnote-form-row label {
     display: block;
     margin-bottom: 8px;
     font-weight: 500;
@@ -1035,16 +1035,16 @@ body.sitedocs-dark-mode #wpfooter {
     font-size: 14px;
 }
 
-.sitedocs-form-row label .required {
+.briefnote-form-row label .required {
     color: var(--sd-error);
     margin-left: 2px;
 }
 
-.sitedocs-form-row input[type="text"],
-.sitedocs-form-row input[type="url"],
-.sitedocs-form-row input[type="password"],
-.sitedocs-form-row select,
-.sitedocs-form-row textarea {
+.briefnote-form-row input[type="text"],
+.briefnote-form-row input[type="url"],
+.briefnote-form-row input[type="password"],
+.briefnote-form-row select,
+.briefnote-form-row textarea {
     width: 100%;
     padding: 12px 14px;
     border: 1px solid var(--sd-border);
@@ -1055,35 +1055,35 @@ body.sitedocs-dark-mode #wpfooter {
     transition: all 0.2s ease;
 }
 
-.sitedocs-form-row input:focus,
-.sitedocs-form-row select:focus,
-.sitedocs-form-row textarea:focus {
+.briefnote-form-row input:focus,
+.briefnote-form-row select:focus,
+.briefnote-form-row textarea:focus {
     border-color: var(--sd-primary);
     outline: none;
     box-shadow: 0 0 0 3px var(--sd-primary-light);
 }
 
-.sitedocs-form-row select {
+.briefnote-form-row select {
     cursor: pointer;
 }
 
-.sitedocs-form-row textarea {
+.briefnote-form-row textarea {
     resize: vertical;
     min-height: 100px;
 }
 
 /* Password field with toggle */
-.sitedocs-password-field {
+.briefnote-password-field {
     position: relative;
     display: flex;
 }
 
-.sitedocs-password-field input,
-.sitedocs-password-field textarea {
+.briefnote-password-field input,
+.briefnote-password-field textarea {
     padding-right: 48px;
 }
 
-.sitedocs-toggle-visibility {
+.briefnote-toggle-visibility {
     position: absolute;
     right: 4px;
     top: 50%;
@@ -1101,21 +1101,21 @@ body.sitedocs-dark-mode #wpfooter {
     transition: all 0.2s ease;
 }
 
-.sitedocs-toggle-visibility:hover {
+.briefnote-toggle-visibility:hover {
     background: var(--sd-primary);
     color: white;
 }
 
-.sitedocs-secure-textarea {
+.briefnote-secure-textarea {
     font-family: "JetBrains Mono", "Fira Code", monospace;
     -webkit-text-security: disc;
 }
 
-.sitedocs-secure-textarea.visible {
+.briefnote-secure-textarea.visible {
     -webkit-text-security: none;
 }
 
-.sitedocs-modal-footer {
+.briefnote-modal-footer {
     display: flex;
     justify-content: flex-end;
     gap: 12px;
@@ -1126,7 +1126,7 @@ body.sitedocs-dark-mode #wpfooter {
     margin-top: 24px;
 }
 
-.sitedocs-modal-footer .button {
+.briefnote-modal-footer .button {
     padding: 10px 20px;
     border-radius: var(--sd-radius);
     font-size: 14px;
@@ -1135,29 +1135,29 @@ body.sitedocs-dark-mode #wpfooter {
     transition: all 0.2s ease;
 }
 
-.sitedocs-modal-footer .button.button-primary {
+.briefnote-modal-footer .button.button-primary {
     background: var(--sd-primary);
     border-color: var(--sd-primary);
     color: white;
 }
 
-.sitedocs-modal-footer .button.button-primary:hover {
+.briefnote-modal-footer .button.button-primary:hover {
     background: var(--sd-primary-hover);
     border-color: var(--sd-primary-hover);
 }
 
-.sitedocs-modal-cancel {
+.briefnote-modal-cancel {
     background: var(--sd-bg-tertiary) !important;
     border: 1px solid var(--sd-border) !important;
     color: var(--sd-text-secondary) !important;
 }
 
-.sitedocs-modal-cancel:hover {
+.briefnote-modal-cancel:hover {
     background: var(--sd-bg-hover) !important;
     color: var(--sd-text-primary) !important;
 }
 
-.sitedocs-error {
+.briefnote-error {
     color: var(--sd-error);
     font-size: 13px;
     margin-top: 12px;
@@ -1170,21 +1170,21 @@ body.sitedocs-dark-mode #wpfooter {
 /* ========================================
    Activity Log
    ======================================== */
-.sitedocs-activity-header {
+.briefnote-activity-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 24px;
 }
 
-.sitedocs-activity-header h2 {
+.briefnote-activity-header h2 {
     margin: 0;
     font-size: 20px;
     font-weight: 600;
     color: var(--sd-text-primary);
 }
 
-.sitedocs-activity-filters select {
+.briefnote-activity-filters select {
     padding: 10px 14px;
     border: 1px solid var(--sd-border);
     border-radius: var(--sd-radius);
@@ -1194,20 +1194,20 @@ body.sitedocs-dark-mode #wpfooter {
     cursor: pointer;
 }
 
-.sitedocs-activity-filters select:focus {
+.briefnote-activity-filters select:focus {
     border-color: var(--sd-primary);
     outline: none;
     box-shadow: 0 0 0 3px var(--sd-primary-light);
 }
 
-.sitedocs-activity-log {
+.briefnote-activity-log {
     background: var(--sd-bg-secondary);
     border: 1px solid var(--sd-border);
     border-radius: var(--sd-radius-lg);
     overflow: hidden;
 }
 
-.sitedocs-activity-row {
+.briefnote-activity-row {
     display: grid;
     grid-template-columns: 160px 100px 1fr 150px;
     gap: 16px;
@@ -1218,20 +1218,20 @@ body.sitedocs-dark-mode #wpfooter {
     transition: background 0.2s ease;
 }
 
-.sitedocs-activity-row:last-child {
+.briefnote-activity-row:last-child {
     border-bottom: none;
 }
 
-.sitedocs-activity-row:hover {
+.briefnote-activity-row:hover {
     background: var(--sd-bg-tertiary);
 }
 
-.sitedocs-activity-time {
+.briefnote-activity-time {
     color: var(--sd-text-muted);
     font-size: 13px;
 }
 
-.sitedocs-activity-action {
+.briefnote-activity-action {
     font-weight: 600;
     font-size: 12px;
     text-transform: uppercase;
@@ -1242,100 +1242,100 @@ body.sitedocs-dark-mode #wpfooter {
     text-align: center;
 }
 
-.sitedocs-activity-action.viewed {
+.briefnote-activity-action.viewed {
     background: var(--sd-info-bg);
     color: var(--sd-info);
 }
 
-.sitedocs-activity-action.copied {
+.briefnote-activity-action.copied {
     background: var(--sd-warning-bg);
     color: var(--sd-warning);
 }
 
-.sitedocs-activity-action.created {
+.briefnote-activity-action.created {
     background: var(--sd-success-bg);
     color: var(--sd-success);
 }
 
-.sitedocs-activity-action.modified {
+.briefnote-activity-action.modified {
     background: #f3e8ff;
     color: #9333ea;
 }
 
-.sitedocs-dark .sitedocs-activity-action.modified {
+.briefnote-dark .briefnote-activity-action.modified {
     background: #581c87;
     color: #c084fc;
 }
 
-.sitedocs-activity-action.deleted {
+.briefnote-activity-action.deleted {
     background: var(--sd-error-bg);
     color: var(--sd-error);
 }
 
 /* Notes action types */
-.sitedocs-activity-action.notes_accessed {
+.briefnote-activity-action.notes_accessed {
     background: #ecfdf5;
     color: #059669;
 }
 
-.sitedocs-dark .sitedocs-activity-action.notes_accessed {
+.briefnote-dark .briefnote-activity-action.notes_accessed {
     background: #064e3b;
     color: #6ee7b7;
 }
 
-.sitedocs-activity-action.notes_saved {
+.briefnote-activity-action.notes_saved {
     background: #eff6ff;
     color: #2563eb;
 }
 
-.sitedocs-dark .sitedocs-activity-action.notes_saved {
+.briefnote-dark .briefnote-activity-action.notes_saved {
     background: #1e3a8a;
     color: #93c5fd;
 }
 
-.sitedocs-activity-action.notes_copied {
+.briefnote-activity-action.notes_copied {
     background: #fef3c7;
     color: #d97706;
 }
 
-.sitedocs-dark .sitedocs-activity-action.notes_copied {
+.briefnote-dark .briefnote-activity-action.notes_copied {
     background: #78350f;
     color: #fcd34d;
 }
 
-.sitedocs-activity-action.notes_pasted {
+.briefnote-activity-action.notes_pasted {
     background: #fce7f3;
     color: #db2777;
 }
 
-.sitedocs-dark .sitedocs-activity-action.notes_pasted {
+.briefnote-dark .briefnote-activity-action.notes_pasted {
     background: #831843;
     color: #f9a8d4;
 }
 
-.sitedocs-activity-action.notes_exported {
+.briefnote-activity-action.notes_exported {
     background: #f0fdf4;
     color: #16a34a;
 }
 
-.sitedocs-dark .sitedocs-activity-action.notes_exported {
+.briefnote-dark .briefnote-activity-action.notes_exported {
     background: #14532d;
     color: #86efac;
 }
 
-.sitedocs-activity-label {
+.briefnote-activity-label {
     color: var(--sd-text-primary);
     font-weight: 500;
 }
 
-.sitedocs-activity-details {
+.briefnote-activity-details {
     font-size: 12px;
     color: var(--sd-text-muted);
     font-weight: 400;
     margin-top: 4px;
 }
 
-.sitedocs-activity-user {
+.briefnote-activity-user {
     color: var(--sd-text-secondary);
     font-size: 13px;
     text-align: right;
@@ -1344,14 +1344,14 @@ body.sitedocs-dark-mode #wpfooter {
 /* ========================================
    Pagination
    ======================================== */
-.sitedocs-pagination {
+.briefnote-pagination {
     display: flex;
     justify-content: center;
     gap: 6px;
     margin-top: 24px;
 }
 
-.sitedocs-pagination button {
+.briefnote-pagination button {
     padding: 10px 16px;
     border: 1px solid var(--sd-border);
     border-radius: var(--sd-radius);
@@ -1363,18 +1363,18 @@ body.sitedocs-dark-mode #wpfooter {
     transition: all 0.2s ease;
 }
 
-.sitedocs-pagination button:hover:not(:disabled) {
+.briefnote-pagination button:hover:not(:disabled) {
     background: var(--sd-primary);
     border-color: var(--sd-primary);
     color: white;
 }
 
-.sitedocs-pagination button:disabled {
+.briefnote-pagination button:disabled {
     opacity: 0.4;
     cursor: not-allowed;
 }
 
-.sitedocs-pagination button.active {
+.briefnote-pagination button.active {
     background: var(--sd-primary);
     border-color: var(--sd-primary);
     color: white;
@@ -1383,14 +1383,14 @@ body.sitedocs-dark-mode #wpfooter {
 /* ========================================
    Settings
    ======================================== */
-.sitedocs-settings h2 {
+.briefnote-settings h2 {
     margin: 0 0 24px;
     font-size: 20px;
     font-weight: 600;
     color: var(--sd-text-primary);
 }
 
-.sitedocs-settings h3 {
+.briefnote-settings h3 {
     margin: 32px 0 16px;
     padding-bottom: 12px;
     border-bottom: 1px solid var(--sd-border);
@@ -1399,53 +1399,53 @@ body.sitedocs-dark-mode #wpfooter {
     font-weight: 600;
 }
 
-.sitedocs-settings h3:first-of-type {
+.briefnote-settings h3:first-of-type {
     margin-top: 0;
 }
 
-.sitedocs-dark .sitedocs-settings h2,
-.sitedocs-dark .sitedocs-settings h3 {
+.briefnote-dark .briefnote-settings h2,
+.briefnote-dark .briefnote-settings h3 {
     color: #f1f5f9;
 }
 
-.sitedocs-dark .sitedocs-settings h3 {
+.briefnote-dark .briefnote-settings h3 {
     border-bottom-color: #334155;
 }
 
-.sitedocs-settings .form-table {
+.briefnote-settings .form-table {
     background: var(--sd-bg-secondary);
     border-radius: var(--sd-radius-lg);
     border: 1px solid var(--sd-border);
     overflow: hidden;
 }
 
-.sitedocs-settings .form-table th {
+.briefnote-settings .form-table th {
     color: var(--sd-text-primary);
     font-weight: 500;
     background: var(--sd-bg-tertiary);
     padding: 16px 20px;
 }
 
-.sitedocs-settings .form-table td {
+.briefnote-settings .form-table td {
     padding: 16px 20px;
     background: var(--sd-bg-secondary);
 }
 
-.sitedocs-settings .form-table tr {
+.briefnote-settings .form-table tr {
     border-bottom: 1px solid var(--sd-border);
 }
 
-.sitedocs-settings .form-table tr:last-child {
+.briefnote-settings .form-table tr:last-child {
     border-bottom: none;
 }
 
-.sitedocs-settings .description {
+.briefnote-settings .description {
     color: var(--sd-text-muted);
     font-size: 13px;
     margin-top: 8px;
 }
 
-.sitedocs-settings input[type="number"] {
+.briefnote-settings input[type="number"] {
     width: 80px;
     padding: 8px 12px;
     border: 1px solid var(--sd-border);
@@ -1454,19 +1454,19 @@ body.sitedocs-dark-mode #wpfooter {
     color: var(--sd-text-primary);
 }
 
-.sitedocs-settings input[type="checkbox"] {
+.briefnote-settings input[type="checkbox"] {
     width: 18px;
     height: 18px;
     accent-color: var(--sd-primary);
 }
 
-.sitedocs-settings .submit {
+.briefnote-settings .submit {
     margin-top: 24px;
     padding-top: 24px;
     border-top: 1px solid var(--sd-border);
 }
 
-.sitedocs-settings .submit .button-primary {
+.briefnote-settings .submit .button-primary {
     padding: 10px 24px;
     background: var(--sd-primary);
     border-color: var(--sd-primary);
@@ -1475,26 +1475,26 @@ body.sitedocs-dark-mode #wpfooter {
     font-weight: 500;
 }
 
-.sitedocs-settings .submit .button-primary:hover {
+.briefnote-settings .submit .button-primary:hover {
     background: var(--sd-primary-hover);
     border-color: var(--sd-primary-hover);
 }
 
 /* Toggle switch */
-.sitedocs-toggle {
+.briefnote-toggle {
     position: relative;
     display: inline-block;
     width: 48px;
     height: 26px;
 }
 
-.sitedocs-toggle input {
+.briefnote-toggle input {
     opacity: 0;
     width: 0;
     height: 0;
 }
 
-.sitedocs-toggle-slider {
+.briefnote-toggle-slider {
     position: absolute;
     cursor: pointer;
     top: 0;
@@ -1507,7 +1507,7 @@ body.sitedocs-dark-mode #wpfooter {
     border: 1px solid var(--sd-border);
 }
 
-.sitedocs-toggle-slider:before {
+.briefnote-toggle-slider:before {
     position: absolute;
     content: "";
     height: 20px;
@@ -1520,17 +1520,17 @@ body.sitedocs-dark-mode #wpfooter {
     box-shadow: var(--sd-shadow);
 }
 
-.sitedocs-toggle input:checked + .sitedocs-toggle-slider {
+.briefnote-toggle input:checked + .briefnote-toggle-slider {
     background-color: var(--sd-primary);
     border-color: var(--sd-primary);
 }
 
-.sitedocs-toggle input:checked + .sitedocs-toggle-slider:before {
+.briefnote-toggle input:checked + .briefnote-toggle-slider:before {
     transform: translateX(22px);
 }
 
 /* Access badge */
-.sitedocs-access-badge {
+.briefnote-access-badge {
     display: inline-block;
     padding: 6px 12px;
     border-radius: 20px;
@@ -1538,24 +1538,24 @@ body.sitedocs-dark-mode #wpfooter {
     font-weight: 600;
 }
 
-.sitedocs-access-badge.access-granted {
+.briefnote-access-badge.access-granted {
     background: var(--sd-success-bg);
     color: var(--sd-success);
 }
 
 /* User access table */
-#sitedocs-user-access {
+#briefnote-user-access {
     margin-top: 16px;
 }
 
-#sitedocs-user-access table {
+#briefnote-user-access table {
     background: var(--sd-bg-secondary);
     border-radius: var(--sd-radius-lg);
     border: 1px solid var(--sd-border);
     overflow: hidden;
 }
 
-#sitedocs-user-access th {
+#briefnote-user-access th {
     background: var(--sd-bg-tertiary);
     color: var(--sd-text-primary);
     font-weight: 600;
@@ -1563,97 +1563,97 @@ body.sitedocs-dark-mode #wpfooter {
     text-align: left;
 }
 
-#sitedocs-user-access td {
+#briefnote-user-access td {
     padding: 14px 16px;
     vertical-align: middle;
     border-top: 1px solid var(--sd-border);
     color: var(--sd-text-primary);
 }
 
-#sitedocs-user-access img {
+#briefnote-user-access img {
     border-radius: 50%;
     vertical-align: middle;
     margin-right: 12px;
 }
 
-#sitedocs-user-access strong {
+#briefnote-user-access strong {
     color: var(--sd-text-primary);
 }
 
-#sitedocs-user-access .description {
+#briefnote-user-access .description {
     color: var(--sd-text-muted);
     font-size: 12px;
 }
 
 /* Dark mode settings overrides */
-.sitedocs-dark .sitedocs-settings .form-table {
+.briefnote-dark .briefnote-settings .form-table {
     background: #1e293b;
     border-color: #334155;
 }
 
-.sitedocs-dark .sitedocs-settings .form-table th {
+.briefnote-dark .briefnote-settings .form-table th {
     background: #334155;
     color: #f1f5f9;
 }
 
-.sitedocs-dark .sitedocs-settings .form-table td {
+.briefnote-dark .briefnote-settings .form-table td {
     background: #1e293b;
     color: #f1f5f9;
 }
 
-.sitedocs-dark .sitedocs-settings .form-table tr {
+.briefnote-dark .briefnote-settings .form-table tr {
     border-bottom-color: #334155;
 }
 
-.sitedocs-dark .sitedocs-settings .description {
+.briefnote-dark .briefnote-settings .description {
     color: #94a3b8;
 }
 
-.sitedocs-dark .sitedocs-settings input[type="number"] {
+.briefnote-dark .briefnote-settings input[type="number"] {
     background: #0f172a;
     border-color: #334155;
     color: #f1f5f9;
 }
 
-.sitedocs-dark .sitedocs-settings input[type="number"]:focus {
+.briefnote-dark .briefnote-settings input[type="number"]:focus {
     border-color: #60a5fa;
     box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.2);
 }
 
-.sitedocs-dark .sitedocs-settings .submit {
+.briefnote-dark .briefnote-settings .submit {
     border-top-color: #334155;
 }
 
-.sitedocs-dark #sitedocs-user-access table {
+.briefnote-dark #briefnote-user-access table {
     background: #1e293b;
     border-color: #334155;
 }
 
-.sitedocs-dark #sitedocs-user-access th {
+.briefnote-dark #briefnote-user-access th {
     background: #334155;
     color: #f1f5f9;
 }
 
-.sitedocs-dark #sitedocs-user-access td {
+.briefnote-dark #briefnote-user-access td {
     background: #1e293b;
     border-top-color: #334155;
     color: #f1f5f9;
 }
 
-.sitedocs-dark #sitedocs-user-access strong {
+.briefnote-dark #briefnote-user-access strong {
     color: #f1f5f9;
 }
 
-.sitedocs-dark #sitedocs-user-access .description {
+.briefnote-dark #briefnote-user-access .description {
     color: #64748b;
 }
 
-.sitedocs-dark .sitedocs-toggle-slider {
+.briefnote-dark .briefnote-toggle-slider {
     background-color: #334155;
     border-color: #475569;
 }
 
-.sitedocs-dark .sitedocs-access-badge.access-granted {
+.briefnote-dark .briefnote-access-badge.access-granted {
     background: #064e3b;
     color: #34d399;
 }
@@ -1661,14 +1661,14 @@ body.sitedocs-dark-mode #wpfooter {
 /* ========================================
    Loading & Notifications
    ======================================== */
-.sitedocs-loading {
+.briefnote-loading {
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 60px;
 }
 
-.sitedocs-spinner {
+.briefnote-spinner {
     width: 40px;
     height: 40px;
     border: 3px solid var(--sd-border);
@@ -1684,7 +1684,7 @@ body.sitedocs-dark-mode #wpfooter {
 }
 
 /* Copied notification */
-.sitedocs-copied-notice {
+.briefnote-copied-notice {
     position: fixed;
     bottom: 30px;
     right: 30px;
@@ -1712,12 +1712,12 @@ body.sitedocs-dark-mode #wpfooter {
 /* ========================================
    Drag and Drop
    ======================================== */
-.sitedocs-credential-card.dragging {
+.briefnote-credential-card.dragging {
     opacity: 0.5;
     transform: scale(0.98);
 }
 
-.sitedocs-credential-card.drag-over {
+.briefnote-credential-card.drag-over {
     border-color: var(--sd-primary);
     background: var(--sd-primary-light);
 }
@@ -1726,36 +1726,36 @@ body.sitedocs-dark-mode #wpfooter {
    Responsive Design
    ======================================== */
 @media screen and (max-width: 1024px) {
-    .sitedocs-activity-row {
+    .briefnote-activity-row {
         grid-template-columns: 1fr 1fr;
         gap: 12px;
     }
 
-    .sitedocs-activity-user {
+    .briefnote-activity-user {
         text-align: left;
     }
 }
 
 @media screen and (max-width: 782px) {
-    .sitedocs-wrap {
+    .briefnote-wrap {
         margin: 10px;
     }
 
-    .sitedocs-title {
+    .briefnote-title {
         font-size: 22px;
     }
 
-    .sitedocs-tabs {
+    .briefnote-tabs {
         flex-wrap: wrap;
         padding: 8px;
     }
 
-    .sitedocs-tab {
+    .briefnote-tab {
         padding: 10px 14px;
         font-size: 13px;
     }
 
-    .sitedocs-tab-actions {
+    .briefnote-tab-actions {
         width: 100%;
         justify-content: flex-end;
         margin-top: 8px;
@@ -1763,63 +1763,63 @@ body.sitedocs-dark-mode #wpfooter {
         border-top: 1px solid var(--sd-border);
     }
 
-    .sitedocs-tab-content {
+    .briefnote-tab-content {
         padding: 16px;
     }
 
-    .sitedocs-editor-header {
+    .briefnote-editor-header {
         flex-direction: column;
         gap: 12px;
         align-items: stretch;
     }
 
-    .sitedocs-save-status {
+    .briefnote-save-status {
         justify-content: center;
     }
 
-    #sitedocs-save-btn {
+    #briefnote-save-btn {
         width: 100%;
         justify-content: center;
     }
 
-    #sitedocs-editor {
+    #briefnote-editor {
         min-height: 400px;
     }
 
-    .sitedocs-credentials-header {
+    .briefnote-credentials-header {
         flex-direction: column;
         gap: 16px;
         align-items: stretch;
     }
 
-    #sitedocs-add-credential {
+    #briefnote-add-credential {
         width: 100%;
         justify-content: center;
     }
 
-    .sitedocs-credential-card {
+    .briefnote-credential-card {
         grid-template-columns: 1fr;
         gap: 16px;
     }
 
-    .sitedocs-credential-actions {
+    .briefnote-credential-actions {
         justify-content: flex-start;
     }
 
-    .sitedocs-activity-row {
+    .briefnote-activity-row {
         grid-template-columns: 1fr;
         gap: 8px;
     }
 
-    .sitedocs-modal-content {
+    .briefnote-modal-content {
         margin: 10px;
         max-height: calc(100vh - 20px);
     }
 
-    .sitedocs-modal-header,
-    #sitedocs-credential-form,
-    #sitedocs-password-form,
-    .sitedocs-modal-footer {
+    .briefnote-modal-header,
+    #briefnote-credential-form,
+    #briefnote-password-form,
+    .briefnote-modal-footer {
         padding: 16px;
     }
 }
@@ -1827,11 +1827,11 @@ body.sitedocs-dark-mode #wpfooter {
 /* ========================================
    WordPress Admin Overrides
    ======================================== */
-.sitedocs-wrap .button {
+.briefnote-wrap .button {
     height: auto;
     line-height: 1.4;
 }
 
-.sitedocs-wrap input[type="checkbox"] {
+.briefnote-wrap input[type="checkbox"] {
     margin: 0;
 }

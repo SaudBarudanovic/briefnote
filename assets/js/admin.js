@@ -1,5 +1,5 @@
 /**
- * SiteDocs Admin JavaScript
+ * Briefnote Admin JavaScript
  */
 
 (function($) {
@@ -35,22 +35,22 @@
      */
     function initTheme() {
         // Check for saved preference or system preference
-        const savedTheme = localStorage.getItem('sitedocs_theme');
+        const savedTheme = localStorage.getItem('briefnote_theme');
         const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
         if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
-            document.querySelector('.sitedocs-wrap').classList.add('sitedocs-dark');
-            document.body.classList.add('sitedocs-dark-mode');
+            document.querySelector('.briefnote-wrap').classList.add('briefnote-dark');
+            document.body.classList.add('briefnote-dark-mode');
         }
 
         // Toggle button
-        $('#sitedocs-theme-toggle').on('click', function() {
-            const wrap = document.querySelector('.sitedocs-wrap');
-            wrap.classList.toggle('sitedocs-dark');
-            document.body.classList.toggle('sitedocs-dark-mode');
+        $('#briefnote-theme-toggle').on('click', function() {
+            const wrap = document.querySelector('.briefnote-wrap');
+            wrap.classList.toggle('briefnote-dark');
+            document.body.classList.toggle('briefnote-dark-mode');
 
-            const isDark = wrap.classList.contains('sitedocs-dark');
-            localStorage.setItem('sitedocs_theme', isDark ? 'dark' : 'light');
+            const isDark = wrap.classList.contains('briefnote-dark');
+            localStorage.setItem('briefnote_theme', isDark ? 'dark' : 'light');
 
             // Reinitialize editor for theme change
             if (editor) {
@@ -64,23 +64,23 @@
      * Initialize tabs
      */
     function initTabs() {
-        $('.sitedocs-tab').on('click', function() {
+        $('.briefnote-tab').on('click', function() {
             const tabId = $(this).data('tab');
 
             // Update tab buttons
-            $('.sitedocs-tab').removeClass('active');
+            $('.briefnote-tab').removeClass('active');
             $(this).addClass('active');
 
             // Update tab content
-            $('.sitedocs-tab-content').removeClass('active');
+            $('.briefnote-tab-content').removeClass('active');
             $('#tab-' + tabId).addClass('active');
 
             // Load data for specific tabs and log access
             if (tabId === 'notes') {
                 logNotesAccess();
-            } else if (tabId === 'credentials' && sitedocsAdmin.canViewCredentials) {
+            } else if (tabId === 'credentials' && briefnoteAdmin.canViewCredentials) {
                 loadCredentials();
-            } else if (tabId === 'activity' && sitedocsAdmin.canViewCredentials) {
+            } else if (tabId === 'activity' && briefnoteAdmin.canViewCredentials) {
                 loadActivityLog();
             }
         });
@@ -90,14 +90,14 @@
      * Initialize Toast UI Editor
      */
     function initEditor(initialContent) {
-        const container = document.getElementById('sitedocs-editor');
+        const container = document.getElementById('briefnote-editor');
         if (!container) return;
 
         // Clear existing editor
         container.innerHTML = '';
 
-        const isDark = document.querySelector('.sitedocs-wrap').classList.contains('sitedocs-dark');
-        const content = initialContent !== undefined ? initialContent : sitedocsAdmin.content;
+        const isDark = document.querySelector('.briefnote-wrap').classList.contains('briefnote-dark');
+        const content = initialContent !== undefined ? initialContent : briefnoteAdmin.content;
 
         // Initialize Toast UI Editor
         editor = new toastui.Editor({
@@ -126,7 +126,7 @@
         });
 
         // Manual save button
-        $('#sitedocs-save-btn').off('click').on('click', function() {
+        $('#briefnote-save-btn').off('click').on('click', function() {
             saveNotes('manual');
         });
 
@@ -158,11 +158,11 @@
         showSaveIndicator('saving');
 
         $.ajax({
-            url: sitedocsAdmin.ajaxUrl,
+            url: briefnoteAdmin.ajaxUrl,
             type: 'POST',
             data: {
-                action: 'sitedocs_save_notes',
-                nonce: sitedocsAdmin.nonce,
+                action: 'briefnote_save_notes',
+                nonce: briefnoteAdmin.nonce,
                 content: content,
                 save_type: saveType
             },
@@ -170,7 +170,7 @@
                 if (response.success) {
                     isDirty = false;
                     showSaveIndicator('saved');
-                    $('#sitedocs-last-saved-time').text(response.data.lastSaved);
+                    $('#briefnote-last-saved-time').text(response.data.lastSaved);
                 } else {
                     showSaveIndicator('error');
                 }
@@ -185,21 +185,21 @@
      * Show save indicator
      */
     function showSaveIndicator(status) {
-        const indicator = $('#sitedocs-save-indicator');
+        const indicator = $('#briefnote-save-indicator');
         indicator.removeClass('saving saved error');
 
         switch (status) {
             case 'saving':
-                indicator.addClass('saving').text(sitedocsAdmin.strings.saving);
+                indicator.addClass('saving').text(briefnoteAdmin.strings.saving);
                 break;
             case 'saved':
-                indicator.addClass('saved').text(sitedocsAdmin.strings.saved);
+                indicator.addClass('saved').text(briefnoteAdmin.strings.saved);
                 setTimeout(function() {
                     indicator.removeClass('saved').text('');
                 }, 3000);
                 break;
             case 'error':
-                indicator.addClass('error').text(sitedocsAdmin.strings.saveError);
+                indicator.addClass('error').text(briefnoteAdmin.strings.saveError);
                 break;
         }
     }
@@ -208,10 +208,10 @@
      * Initialize credentials functionality
      */
     function initCredentials() {
-        if (!sitedocsAdmin.canViewCredentials) return;
+        if (!briefnoteAdmin.canViewCredentials) return;
 
         // Add credential button
-        $('#sitedocs-add-credential').on('click', function() {
+        $('#briefnote-add-credential').on('click', function() {
             openCredentialModal();
         });
 
@@ -221,13 +221,13 @@
         });
 
         // Form submission
-        $('#sitedocs-credential-form').on('submit', function(e) {
+        $('#briefnote-credential-form').on('submit', function(e) {
             e.preventDefault();
             saveCredential();
         });
 
         // Toggle visibility buttons
-        $(document).on('click', '.sitedocs-toggle-visibility', function() {
+        $(document).on('click', '.briefnote-toggle-visibility', function() {
             const targetId = $(this).data('target');
             const target = $('#' + targetId);
             const icon = $(this).find('.dashicons');
@@ -251,15 +251,15 @@
      * Load credentials list
      */
     function loadCredentials() {
-        const container = $('#sitedocs-credentials-list');
-        container.html('<div class="sitedocs-loading"><div class="sitedocs-spinner"></div></div>');
+        const container = $('#briefnote-credentials-list');
+        container.html('<div class="briefnote-loading"><div class="briefnote-spinner"></div></div>');
 
         $.ajax({
-            url: sitedocsAdmin.ajaxUrl,
+            url: briefnoteAdmin.ajaxUrl,
             type: 'POST',
             data: {
-                action: 'sitedocs_get_credentials',
-                nonce: sitedocsAdmin.nonce
+                action: 'briefnote_get_credentials',
+                nonce: briefnoteAdmin.nonce
             },
             success: function(response) {
                 if (response.success) {
@@ -273,13 +273,13 @@
      * Render credentials list
      */
     function renderCredentials(credentials) {
-        const container = $('#sitedocs-credentials-list');
+        const container = $('#briefnote-credentials-list');
 
         if (!credentials || credentials.length === 0) {
             container.html(`
-                <div class="sitedocs-empty-state">
+                <div class="briefnote-empty-state">
                     <span class="dashicons dashicons-lock"></span>
-                    <p>${sitedocsAdmin.strings.noCredentials}</p>
+                    <p>${briefnoteAdmin.strings.noCredentials}</p>
                 </div>
             `);
             return;
@@ -289,15 +289,15 @@
         credentials.forEach(function(cred) {
             const typeIcon = getTypeIcon(cred.type);
             html += `
-                <div class="sitedocs-credential-card" data-id="${cred.id}" draggable="true">
-                    <div class="sitedocs-credential-info">
-                        <div class="sitedocs-credential-label">${escapeHtml(cred.label)}</div>
-                        <div class="sitedocs-credential-meta">
+                <div class="briefnote-credential-card" data-id="${cred.id}" draggable="true">
+                    <div class="briefnote-credential-info">
+                        <div class="briefnote-credential-label">${escapeHtml(cred.label)}</div>
+                        <div class="briefnote-credential-meta">
                             <span><span class="dashicons ${typeIcon}"></span> ${escapeHtml(cred.type_label)}</span>
                             ${cred.url ? `<span><span class="dashicons dashicons-admin-links"></span> <a href="${escapeHtml(cred.url)}" target="_blank">${truncateUrl(cred.url)}</a></span>` : ''}
                         </div>
                     </div>
-                    <div class="sitedocs-credential-actions">
+                    <div class="briefnote-credential-actions">
                         <button type="button" class="reveal-btn" data-id="${cred.id}" title="Reveal">
                             <span class="dashicons dashicons-visibility"></span>
                         </button>
@@ -311,7 +311,7 @@
                             <span class="dashicons dashicons-trash"></span>
                         </button>
                     </div>
-                    <div class="sitedocs-credential-fields" id="fields-${cred.id}"></div>
+                    <div class="briefnote-credential-fields" id="fields-${cred.id}"></div>
                 </div>
             `;
         });
@@ -356,14 +356,14 @@
      * Open credential modal for adding
      */
     function openCredentialModal(credential) {
-        const modal = $('#sitedocs-credential-modal');
-        const form = $('#sitedocs-credential-form')[0];
+        const modal = $('#briefnote-credential-modal');
+        const form = $('#briefnote-credential-form')[0];
 
         form.reset();
         $('#credential-id').val('');
 
         if (credential) {
-            $('#sitedocs-modal-title').text(sitedocsAdmin.strings.editCredential);
+            $('#briefnote-modal-title').text(briefnoteAdmin.strings.editCredential);
             $('#credential-id').val(credential.id);
             $('#credential-label').val(credential.label);
             $('#credential-type').val(credential.type);
@@ -377,7 +377,7 @@
             if (credential.ssh_key) $('#credential-ssh-key').val(credential.ssh_key);
             if (credential.secure_note) $('#credential-secure-note').val(credential.secure_note);
         } else {
-            $('#sitedocs-modal-title').text(sitedocsAdmin.strings.addCredential);
+            $('#briefnote-modal-title').text(briefnoteAdmin.strings.addCredential);
         }
 
         updateCredentialFields($('#credential-type').val());
@@ -396,10 +396,10 @@
      * Save credential
      */
     function saveCredential() {
-        const form = $('#sitedocs-credential-form');
+        const form = $('#briefnote-credential-form');
         const data = {
-            action: 'sitedocs_save_credential',
-            nonce: sitedocsAdmin.nonce,
+            action: 'briefnote_save_credential',
+            nonce: briefnoteAdmin.nonce,
             id: $('#credential-id').val(),
             label: $('#credential-label').val(),
             type: $('#credential-type').val(),
@@ -413,7 +413,7 @@
         };
 
         $.ajax({
-            url: sitedocsAdmin.ajaxUrl,
+            url: briefnoteAdmin.ajaxUrl,
             type: 'POST',
             data: data,
             success: function(response) {
@@ -433,11 +433,11 @@
     function editCredential(id) {
         checkVerification(function() {
             $.ajax({
-                url: sitedocsAdmin.ajaxUrl,
+                url: briefnoteAdmin.ajaxUrl,
                 type: 'POST',
                 data: {
-                    action: 'sitedocs_get_credential',
-                    nonce: sitedocsAdmin.nonce,
+                    action: 'briefnote_get_credential',
+                    nonce: briefnoteAdmin.nonce,
                     id: id
                 },
                 success: function(response) {
@@ -458,16 +458,16 @@
      * Delete credential
      */
     function deleteCredential(id) {
-        if (!confirm(sitedocsAdmin.strings.confirmDelete)) {
+        if (!confirm(briefnoteAdmin.strings.confirmDelete)) {
             return;
         }
 
         $.ajax({
-            url: sitedocsAdmin.ajaxUrl,
+            url: briefnoteAdmin.ajaxUrl,
             type: 'POST',
             data: {
-                action: 'sitedocs_delete_credential',
-                nonce: sitedocsAdmin.nonce,
+                action: 'briefnote_delete_credential',
+                nonce: briefnoteAdmin.nonce,
                 id: id
             },
             success: function(response) {
@@ -493,11 +493,11 @@
             }
 
             $.ajax({
-                url: sitedocsAdmin.ajaxUrl,
+                url: briefnoteAdmin.ajaxUrl,
                 type: 'POST',
                 data: {
-                    action: 'sitedocs_get_credential',
-                    nonce: sitedocsAdmin.nonce,
+                    action: 'briefnote_get_credential',
+                    nonce: briefnoteAdmin.nonce,
                     id: id
                 },
                 success: function(response) {
@@ -540,10 +540,10 @@
         typeFields.forEach(function(field) {
             const value = credential[field.key] || '';
             html += `
-                <div class="sitedocs-field-row">
-                    <span class="sitedocs-field-label">${field.label}:</span>
-                    <span class="sitedocs-field-value" data-field="${field.key}">${escapeHtml(value)}</span>
-                    <div class="sitedocs-field-actions">
+                <div class="briefnote-field-row">
+                    <span class="briefnote-field-label">${field.label}:</span>
+                    <span class="briefnote-field-value" data-field="${field.key}">${escapeHtml(value)}</span>
+                    <div class="briefnote-field-actions">
                         <button type="button" class="copy-field-btn" data-id="${id}" data-field="${field.key}">Copy</button>
                     </div>
                 </div>
@@ -564,11 +564,11 @@
     function copyCredential(id) {
         checkVerification(function() {
             $.ajax({
-                url: sitedocsAdmin.ajaxUrl,
+                url: briefnoteAdmin.ajaxUrl,
                 type: 'POST',
                 data: {
-                    action: 'sitedocs_get_credential',
-                    nonce: sitedocsAdmin.nonce,
+                    action: 'briefnote_get_credential',
+                    nonce: briefnoteAdmin.nonce,
                     id: id
                 },
                 success: function(response) {
@@ -610,11 +610,11 @@
      */
     function copyCredentialField(id, field) {
         $.ajax({
-            url: sitedocsAdmin.ajaxUrl,
+            url: briefnoteAdmin.ajaxUrl,
             type: 'POST',
             data: {
-                action: 'sitedocs_copy_credential',
-                nonce: sitedocsAdmin.nonce,
+                action: 'briefnote_copy_credential',
+                nonce: briefnoteAdmin.nonce,
                 id: id,
                 field: field
             },
@@ -647,11 +647,11 @@
      */
     function logCopyAction(id, field) {
         $.ajax({
-            url: sitedocsAdmin.ajaxUrl,
+            url: briefnoteAdmin.ajaxUrl,
             type: 'POST',
             data: {
-                action: 'sitedocs_copy_credential',
-                nonce: sitedocsAdmin.nonce,
+                action: 'briefnote_copy_credential',
+                nonce: briefnoteAdmin.nonce,
                 id: id,
                 field: field
             }
@@ -687,7 +687,7 @@
             document.execCommand('copy');
             showCopiedNotice();
         } catch (e) {
-            alert(sitedocsAdmin.strings.copyFailed);
+            alert(briefnoteAdmin.strings.copyFailed);
         }
         document.body.removeChild(textarea);
     }
@@ -696,7 +696,7 @@
      * Show copied notification
      */
     function showCopiedNotice() {
-        const notice = $('<div class="sitedocs-copied-notice">' + sitedocsAdmin.strings.copied + '</div>');
+        const notice = $('<div class="briefnote-copied-notice">' + briefnoteAdmin.strings.copied + '</div>');
         $('body').append(notice);
         setTimeout(function() {
             notice.fadeOut(function() {
@@ -709,7 +709,7 @@
      * Initialize drag and drop for reordering
      */
     function initDragAndDrop() {
-        const cards = document.querySelectorAll('.sitedocs-credential-card');
+        const cards = document.querySelectorAll('.briefnote-credential-card');
         let draggedItem = null;
 
         cards.forEach(function(card) {
@@ -720,7 +720,7 @@
 
             card.addEventListener('dragend', function() {
                 this.classList.remove('dragging');
-                document.querySelectorAll('.sitedocs-credential-card').forEach(function(c) {
+                document.querySelectorAll('.briefnote-credential-card').forEach(function(c) {
                     c.classList.remove('drag-over');
                 });
                 saveOrder();
@@ -739,7 +739,7 @@
                 e.preventDefault();
                 if (draggedItem !== this) {
                     const container = this.parentNode;
-                    const allCards = [...container.querySelectorAll('.sitedocs-credential-card')];
+                    const allCards = [...container.querySelectorAll('.briefnote-credential-card')];
                     const draggedIndex = allCards.indexOf(draggedItem);
                     const targetIndex = allCards.indexOf(this);
 
@@ -758,16 +758,16 @@
      */
     function saveOrder() {
         const order = [];
-        $('.sitedocs-credential-card').each(function() {
+        $('.briefnote-credential-card').each(function() {
             order.push($(this).data('id'));
         });
 
         $.ajax({
-            url: sitedocsAdmin.ajaxUrl,
+            url: briefnoteAdmin.ajaxUrl,
             type: 'POST',
             data: {
-                action: 'sitedocs_reorder_credentials',
-                nonce: sitedocsAdmin.nonce,
+                action: 'briefnote_reorder_credentials',
+                nonce: briefnoteAdmin.nonce,
                 order: order
             }
         });
@@ -777,7 +777,7 @@
      * Check password verification
      */
     function checkVerification(callback) {
-        if (!sitedocsAdmin.settings.require_password_verification || isVerified) {
+        if (!briefnoteAdmin.settings.require_password_verification || isVerified) {
             callback();
             return;
         }
@@ -790,7 +790,7 @@
      * Show password verification modal
      */
     function showPasswordModal() {
-        $('#sitedocs-password-modal').addClass('active');
+        $('#briefnote-password-modal').addClass('active');
         $('#verify-password').val('').focus();
         $('#password-error').hide();
     }
@@ -799,9 +799,9 @@
      * Initialize activity log
      */
     function initActivityLog() {
-        if (!sitedocsAdmin.canViewCredentials) return;
+        if (!briefnoteAdmin.canViewCredentials) return;
 
-        $('#sitedocs-activity-filter-action').on('change', function() {
+        $('#briefnote-activity-filter-action').on('change', function() {
             loadActivityLog();
         });
     }
@@ -811,17 +811,17 @@
      */
     function loadActivityLog(page) {
         page = page || 1;
-        const container = $('#sitedocs-activity-log');
-        const actionFilter = $('#sitedocs-activity-filter-action').val();
+        const container = $('#briefnote-activity-log');
+        const actionFilter = $('#briefnote-activity-filter-action').val();
 
-        container.html('<div class="sitedocs-loading"><div class="sitedocs-spinner"></div></div>');
+        container.html('<div class="briefnote-loading"><div class="briefnote-spinner"></div></div>');
 
         $.ajax({
-            url: sitedocsAdmin.ajaxUrl,
+            url: briefnoteAdmin.ajaxUrl,
             type: 'POST',
             data: {
-                action: 'sitedocs_get_activity_log',
-                nonce: sitedocsAdmin.nonce,
+                action: 'briefnote_get_activity_log',
+                nonce: briefnoteAdmin.nonce,
                 page: page,
                 action_type: actionFilter
             },
@@ -837,11 +837,11 @@
      * Render activity log
      */
     function renderActivityLog(data) {
-        const container = $('#sitedocs-activity-log');
-        const pagination = $('#sitedocs-activity-pagination');
+        const container = $('#briefnote-activity-log');
+        const pagination = $('#briefnote-activity-pagination');
 
         if (!data.items || data.items.length === 0) {
-            container.html('<div class="sitedocs-empty-state"><p>No activity recorded yet.</p></div>');
+            container.html('<div class="briefnote-empty-state"><p>No activity recorded yet.</p></div>');
             pagination.html('');
             return;
         }
@@ -856,16 +856,16 @@
             if (log.action_type.startsWith('notes_')) {
                 label = 'Markdown Notes';
                 if (log.details) {
-                    details = `<div class="sitedocs-activity-details">${escapeHtml(log.details)}</div>`;
+                    details = `<div class="briefnote-activity-details">${escapeHtml(log.details)}</div>`;
                 }
             }
 
             html += `
-                <div class="sitedocs-activity-row">
-                    <div class="sitedocs-activity-time">${escapeHtml(log.created_at_formatted)}</div>
-                    <div class="sitedocs-activity-action ${log.action_type}">${escapeHtml(log.action_label)}</div>
-                    <div class="sitedocs-activity-label">${escapeHtml(label)}${details}</div>
-                    <div class="sitedocs-activity-user">${escapeHtml(log.user_display_name)}</div>
+                <div class="briefnote-activity-row">
+                    <div class="briefnote-activity-time">${escapeHtml(log.created_at_formatted)}</div>
+                    <div class="briefnote-activity-action ${log.action_type}">${escapeHtml(log.action_label)}</div>
+                    <div class="briefnote-activity-label">${escapeHtml(label)}${details}</div>
+                    <div class="briefnote-activity-user">${escapeHtml(log.user_display_name)}</div>
                 </div>
             `;
         });
@@ -892,7 +892,7 @@
      * Initialize settings
      */
     function initSettings() {
-        $('#sitedocs-settings-form').on('submit', function(e) {
+        $('#briefnote-settings-form').on('submit', function(e) {
             e.preventDefault();
             saveSettings();
         });
@@ -908,20 +908,20 @@
         });
 
         $.ajax({
-            url: sitedocsAdmin.ajaxUrl,
+            url: briefnoteAdmin.ajaxUrl,
             type: 'POST',
             data: {
-                action: 'sitedocs_save_settings',
-                nonce: sitedocsAdmin.nonce,
+                action: 'briefnote_save_settings',
+                nonce: briefnoteAdmin.nonce,
                 require_password_verification: $('input[name="require_password_verification"]').is(':checked') ? 1 : 0,
                 audit_log_retention_days: $('input[name="audit_log_retention_days"]').val(),
                 user_access: userAccess
             },
             success: function(response) {
                 if (response.success) {
-                    $('#sitedocs-settings-status').addClass('saved').text(sitedocsAdmin.strings.saved);
+                    $('#briefnote-settings-status').addClass('saved').text(briefnoteAdmin.strings.saved);
                     setTimeout(function() {
-                        $('#sitedocs-settings-status').removeClass('saved').text('');
+                        $('#briefnote-settings-status').removeClass('saved').text('');
                     }, 3000);
                 }
             }
@@ -933,19 +933,19 @@
      */
     function initModals() {
         // Close modal buttons
-        $('.sitedocs-modal-close, .sitedocs-modal-cancel').on('click', function() {
+        $('.briefnote-modal-close, .briefnote-modal-cancel').on('click', function() {
             closeModal();
         });
 
         // Close on backdrop click
-        $('.sitedocs-modal').on('click', function(e) {
+        $('.briefnote-modal').on('click', function(e) {
             if (e.target === this) {
                 closeModal();
             }
         });
 
         // Password verification form
-        $('#sitedocs-password-form').on('submit', function(e) {
+        $('#briefnote-password-form').on('submit', function(e) {
             e.preventDefault();
             verifyPassword();
         });
@@ -962,7 +962,7 @@
      * Close modal
      */
     function closeModal() {
-        $('.sitedocs-modal').removeClass('active');
+        $('.briefnote-modal').removeClass('active');
         pendingAction = null;
     }
 
@@ -973,17 +973,17 @@
         const password = $('#verify-password').val();
 
         $.ajax({
-            url: sitedocsAdmin.ajaxUrl,
+            url: briefnoteAdmin.ajaxUrl,
             type: 'POST',
             data: {
-                action: 'sitedocs_verify_password',
-                nonce: sitedocsAdmin.nonce,
+                action: 'briefnote_verify_password',
+                nonce: briefnoteAdmin.nonce,
                 password: password
             },
             success: function(response) {
                 if (response.success) {
                     isVerified = true;
-                    $('#sitedocs-password-modal').removeClass('active');
+                    $('#briefnote-password-modal').removeClass('active');
 
                     if (pendingAction) {
                         pendingAction();
@@ -1040,11 +1040,11 @@
         notesAccessLogged = true;
 
         $.ajax({
-            url: sitedocsAdmin.ajaxUrl,
+            url: briefnoteAdmin.ajaxUrl,
             type: 'POST',
             data: {
-                action: 'sitedocs_log_notes_access',
-                nonce: sitedocsAdmin.nonce
+                action: 'briefnote_log_notes_access',
+                nonce: briefnoteAdmin.nonce
             }
         });
     }
@@ -1053,7 +1053,7 @@
      * Initialize copy/paste tracking on the editor
      */
     function initEditorCopyPasteTracking() {
-        const editorContainer = document.getElementById('sitedocs-editor');
+        const editorContainer = document.getElementById('briefnote-editor');
         if (!editorContainer) return;
 
         // Track copy events
@@ -1123,11 +1123,11 @@
      */
     function logNotesCopy(selectionLength, isFullContent) {
         $.ajax({
-            url: sitedocsAdmin.ajaxUrl,
+            url: briefnoteAdmin.ajaxUrl,
             type: 'POST',
             data: {
-                action: 'sitedocs_log_notes_copy',
-                nonce: sitedocsAdmin.nonce,
+                action: 'briefnote_log_notes_copy',
+                nonce: briefnoteAdmin.nonce,
                 selection_length: selectionLength,
                 is_full_content: isFullContent ? 'true' : 'false'
             }
@@ -1139,11 +1139,11 @@
      */
     function logNotesPaste(pasteLength, pasteType) {
         $.ajax({
-            url: sitedocsAdmin.ajaxUrl,
+            url: briefnoteAdmin.ajaxUrl,
             type: 'POST',
             data: {
-                action: 'sitedocs_log_notes_paste',
-                nonce: sitedocsAdmin.nonce,
+                action: 'briefnote_log_notes_paste',
+                nonce: briefnoteAdmin.nonce,
                 paste_length: pasteLength,
                 paste_type: pasteType
             }

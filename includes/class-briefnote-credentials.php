@@ -1,8 +1,8 @@
 <?php
 /**
- * Credentials class for SiteDocs
+ * Credentials class for Briefnote
  *
- * @package SiteDocs
+ * @package Briefnote
  */
 
 // Prevent direct access
@@ -11,11 +11,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * SiteDocs Credentials Class
+ * Briefnote Credentials Class
  *
  * Handles secure credential storage and retrieval
  */
-class SiteDocs_Credentials {
+class Briefnote_Credentials {
 
     /**
      * Credential types
@@ -32,10 +32,10 @@ class SiteDocs_Credentials {
      */
     public static function get_types() {
         return array(
-            self::TYPE_USERNAME_PASSWORD => __( 'Username & Password', 'sitedocs' ),
-            self::TYPE_API_KEY           => __( 'API Key', 'sitedocs' ),
-            self::TYPE_SSH_KEY           => __( 'SSH Key / Certificate', 'sitedocs' ),
-            self::TYPE_SECURE_NOTE       => __( 'Secure Note', 'sitedocs' ),
+            self::TYPE_USERNAME_PASSWORD => __( 'Username & Password', 'briefnote' ),
+            self::TYPE_API_KEY           => __( 'API Key', 'briefnote' ),
+            self::TYPE_SSH_KEY           => __( 'SSH Key / Certificate', 'briefnote' ),
+            self::TYPE_SECURE_NOTE       => __( 'Secure Note', 'briefnote' ),
         );
     }
 
@@ -47,7 +47,7 @@ class SiteDocs_Credentials {
     public static function get_all() {
         global $wpdb;
 
-        $table = SiteDocs_Database::get_credentials_table();
+        $table = Briefnote_Database::get_credentials_table();
 
         // phpcs:disable WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter
         $results = $wpdb->get_results(
@@ -71,7 +71,7 @@ class SiteDocs_Credentials {
     public static function get( $id, $decrypt = false ) {
         global $wpdb;
 
-        $table = SiteDocs_Database::get_credentials_table();
+        $table = Briefnote_Database::get_credentials_table();
 
         // phpcs:disable WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter
         $result = $wpdb->get_row(
@@ -111,7 +111,7 @@ class SiteDocs_Credentials {
 
         foreach ( $sensitive_fields as $field ) {
             if ( ! empty( $credential[ $field ] ) ) {
-                $decrypted = SiteDocs_Encryption::decrypt( $credential[ $field ] );
+                $decrypted = Briefnote_Encryption::decrypt( $credential[ $field ] );
                 // Store decrypted value without the _encrypted suffix
                 $clean_field = str_replace( '_encrypted', '', $field );
                 $credential[ $clean_field ] = $decrypted !== false ? $decrypted : '';
@@ -130,7 +130,7 @@ class SiteDocs_Credentials {
     public static function create( $data ) {
         global $wpdb;
 
-        $table = SiteDocs_Database::get_credentials_table();
+        $table = Briefnote_Database::get_credentials_table();
 
         // Validate required fields
         if ( empty( $data['label'] ) || empty( $data['type'] ) ) {
@@ -156,28 +156,28 @@ class SiteDocs_Credentials {
         switch ( $data['type'] ) {
             case self::TYPE_USERNAME_PASSWORD:
                 if ( ! empty( $data['username'] ) ) {
-                    $insert_data['username_encrypted'] = SiteDocs_Encryption::encrypt( $data['username'] );
+                    $insert_data['username_encrypted'] = Briefnote_Encryption::encrypt( $data['username'] );
                 }
                 if ( ! empty( $data['password'] ) ) {
-                    $insert_data['password_encrypted'] = SiteDocs_Encryption::encrypt( $data['password'] );
+                    $insert_data['password_encrypted'] = Briefnote_Encryption::encrypt( $data['password'] );
                 }
                 break;
 
             case self::TYPE_API_KEY:
                 if ( ! empty( $data['api_key'] ) ) {
-                    $insert_data['api_key_encrypted'] = SiteDocs_Encryption::encrypt( $data['api_key'] );
+                    $insert_data['api_key_encrypted'] = Briefnote_Encryption::encrypt( $data['api_key'] );
                 }
                 break;
 
             case self::TYPE_SSH_KEY:
                 if ( ! empty( $data['ssh_key'] ) ) {
-                    $insert_data['ssh_key_encrypted'] = SiteDocs_Encryption::encrypt( $data['ssh_key'] );
+                    $insert_data['ssh_key_encrypted'] = Briefnote_Encryption::encrypt( $data['ssh_key'] );
                 }
                 break;
 
             case self::TYPE_SECURE_NOTE:
                 if ( ! empty( $data['secure_note'] ) ) {
-                    $insert_data['secure_note_encrypted'] = SiteDocs_Encryption::encrypt( $data['secure_note'] );
+                    $insert_data['secure_note_encrypted'] = Briefnote_Encryption::encrypt( $data['secure_note'] );
                 }
                 break;
         }
@@ -192,7 +192,7 @@ class SiteDocs_Credentials {
         $credential_id = $wpdb->insert_id;
 
         // Log creation
-        SiteDocs_Audit_Log::log( 'created', $insert_data['label'], $credential_id );
+        Briefnote_Audit_Log::log( 'created', $insert_data['label'], $credential_id );
 
         return $credential_id;
     }
@@ -207,7 +207,7 @@ class SiteDocs_Credentials {
     public static function update( $id, $data ) {
         global $wpdb;
 
-        $table = SiteDocs_Database::get_credentials_table();
+        $table = Briefnote_Database::get_credentials_table();
 
         // Get existing credential
         $existing = self::get( $id );
@@ -257,12 +257,12 @@ class SiteDocs_Credentials {
             case self::TYPE_USERNAME_PASSWORD:
                 if ( isset( $data['username'] ) ) {
                     $update_data['username_encrypted'] = ! empty( $data['username'] )
-                        ? SiteDocs_Encryption::encrypt( $data['username'] )
+                        ? Briefnote_Encryption::encrypt( $data['username'] )
                         : null;
                 }
                 if ( isset( $data['password'] ) ) {
                     $update_data['password_encrypted'] = ! empty( $data['password'] )
-                        ? SiteDocs_Encryption::encrypt( $data['password'] )
+                        ? Briefnote_Encryption::encrypt( $data['password'] )
                         : null;
                 }
                 break;
@@ -270,7 +270,7 @@ class SiteDocs_Credentials {
             case self::TYPE_API_KEY:
                 if ( isset( $data['api_key'] ) ) {
                     $update_data['api_key_encrypted'] = ! empty( $data['api_key'] )
-                        ? SiteDocs_Encryption::encrypt( $data['api_key'] )
+                        ? Briefnote_Encryption::encrypt( $data['api_key'] )
                         : null;
                 }
                 break;
@@ -278,7 +278,7 @@ class SiteDocs_Credentials {
             case self::TYPE_SSH_KEY:
                 if ( isset( $data['ssh_key'] ) ) {
                     $update_data['ssh_key_encrypted'] = ! empty( $data['ssh_key'] )
-                        ? SiteDocs_Encryption::encrypt( $data['ssh_key'] )
+                        ? Briefnote_Encryption::encrypt( $data['ssh_key'] )
                         : null;
                 }
                 break;
@@ -286,7 +286,7 @@ class SiteDocs_Credentials {
             case self::TYPE_SECURE_NOTE:
                 if ( isset( $data['secure_note'] ) ) {
                     $update_data['secure_note_encrypted'] = ! empty( $data['secure_note'] )
-                        ? SiteDocs_Encryption::encrypt( $data['secure_note'] )
+                        ? Briefnote_Encryption::encrypt( $data['secure_note'] )
                         : null;
                 }
                 break;
@@ -307,7 +307,7 @@ class SiteDocs_Credentials {
 
         // Log modification
         $label = isset( $update_data['label'] ) ? $update_data['label'] : $existing['label'];
-        SiteDocs_Audit_Log::log( 'modified', $label, $id );
+        Briefnote_Audit_Log::log( 'modified', $label, $id );
 
         return true;
     }
@@ -321,7 +321,7 @@ class SiteDocs_Credentials {
     public static function delete( $id ) {
         global $wpdb;
 
-        $table = SiteDocs_Database::get_credentials_table();
+        $table = Briefnote_Database::get_credentials_table();
 
         // Get credential for logging
         $credential = self::get( $id );
@@ -341,7 +341,7 @@ class SiteDocs_Credentials {
         }
 
         // Log deletion
-        SiteDocs_Audit_Log::log( 'deleted', $credential['label'], $id );
+        Briefnote_Audit_Log::log( 'deleted', $credential['label'], $id );
 
         return true;
     }
@@ -355,7 +355,7 @@ class SiteDocs_Credentials {
     public static function update_sort_order( $order ) {
         global $wpdb;
 
-        $table = SiteDocs_Database::get_credentials_table();
+        $table = Briefnote_Database::get_credentials_table();
 
         foreach ( $order as $position => $id ) {
             // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
@@ -377,6 +377,6 @@ class SiteDocs_Credentials {
      * @return bool
      */
     public static function current_user_can_view() {
-        return current_user_can( SITEDOCS_CREDENTIALS_CAP );
+        return current_user_can( BRIEFNOTE_CREDENTIALS_CAP );
     }
 }

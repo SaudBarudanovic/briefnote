@@ -1,8 +1,8 @@
 <?php
 /**
- * Settings class for SiteDocs
+ * Settings class for Briefnote
  *
- * @package SiteDocs
+ * @package Briefnote
  */
 
 // Prevent direct access
@@ -11,23 +11,23 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * SiteDocs Settings Class
+ * Briefnote Settings Class
  *
  * Handles plugin settings and configuration
  */
-class SiteDocs_Settings {
+class Briefnote_Settings {
 
     /**
      * Single instance
      *
-     * @var SiteDocs_Settings|null
+     * @var Briefnote_Settings|null
      */
     private static $instance = null;
 
     /**
      * Get single instance
      *
-     * @return SiteDocs_Settings
+     * @return Briefnote_Settings
      */
     public static function instance() {
         if ( is_null( self::$instance ) ) {
@@ -51,7 +51,7 @@ class SiteDocs_Settings {
      * @return mixed
      */
     public static function get( $key, $default = null ) {
-        $settings = get_option( 'sitedocs_settings', array() );
+        $settings = get_option( 'briefnote_settings', array() );
         return isset( $settings[ $key ] ) ? $settings[ $key ] : $default;
     }
 
@@ -63,9 +63,9 @@ class SiteDocs_Settings {
      * @return bool
      */
     public static function set( $key, $value ) {
-        $settings = get_option( 'sitedocs_settings', array() );
+        $settings = get_option( 'briefnote_settings', array() );
         $settings[ $key ] = $value;
-        return update_option( 'sitedocs_settings', $settings );
+        return update_option( 'briefnote_settings', $settings );
     }
 
     /**
